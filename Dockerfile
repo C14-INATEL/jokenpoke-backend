@@ -1,23 +1,26 @@
 FROM python:3.12-slim
 
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
 WORKDIR /app
 
-# instalar dependências do sistema
 RUN apt-get update && apt-get install -y \
-    curl \
     build-essential \
+    libpq-dev \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
-# instalar poetry
-RUN pip install poetry
+RUN pip install --no-cache-dir poetry
 
-# copiar apenas dependências primeiro (cache docker)
-COPY pyproject.toml poetry.lock* ./
+RUN poetry config virtualenvs.create false
 
-RUN poetry config virtualenvs.create false \
-    && poetry install --no-interaction --no-ansi --no-root
+# cache de dependências
+COPY pyproject.toml poetry.lock* README.md ./
 
-# copiar código
+RUN poetry install --no-interaction --no-ansi --no-root
+
+# código da aplicação
 COPY . .
 
 EXPOSE 8000
