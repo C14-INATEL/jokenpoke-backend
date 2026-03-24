@@ -1,7 +1,6 @@
 from fastapi import FastAPI
+from app.interfaces.api.router import router
 
-app = FastAPI()
+app = FastAPI(title="Jokenpoke API")
 
-@app.get("/")
-def read_root():
-    return {"message": "Jokenpoke API running"}
+app.include_router(router)
