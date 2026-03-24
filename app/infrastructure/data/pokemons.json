@@ -1,0 +1,2704 @@
+[
+  {
+    "id": 1,
+    "original_name": "Bulbasaur",
+    "name": "Bulbasaur",
+    "move": "tesoura",
+    "description": "A strange seed was planted on its back at birth. The plant sprouts and grows with this pokémon."
+  },
+  {
+    "id": 2,
+    "original_name": "Ivysaur",
+    "name": "Ivysaur",
+    "move": "pedra",
+    "description": "When the bulb on its back grows large, it appears to lose the ability to stand on its hind legs."
+  },
+  {
+    "id": 3,
+    "original_name": "Venusaur",
+    "name": "Venusaur",
+    "move": "papel",
+    "description": "The plant blooms when it is absorbing solar energy. It stays on the move to seek sunlight."
+  },
+  {
+    "id": 4,
+    "original_name": "Charmander",
+    "name": "Charmander",
+    "move": "papel",
+    "description": "Obviously prefers hot places. When it rains, steam is said to spout from the tip of its tail."
+  },
+  {
+    "id": 5,
+    "original_name": "Charmeleon",
+    "name": "Charmeleon",
+    "move": "pedra",
+    "description": "When it swings its burning tail, it elevates the temperature to unbearably high levels."
+  },
+  {
+    "id": 6,
+    "original_name": "Charizard",
+    "name": "Charizard",
+    "move": "tesoura",
+    "description": "Spits fire that is hot enough to melt boulders. Known to cause forest fires unintentionally."
+  },
+  {
+    "id": 7,
+    "original_name": "Squirtle",
+    "name": "Squirtle",
+    "move": "papel",
+    "description": "After birth, its back swells and hardens into a shell. Powerfully sprays foam from its mouth."
+  },
+  {
+    "id": 8,
+    "original_name": "Wartortle",
+    "name": "Wartortle",
+    "move": "pedra",
+    "description": "Often hides in water to stalk unwary prey. For swimming fast, it moves its ears to maintain balance."
+  },
+  {
+    "id": 9,
+    "original_name": "Blastoise",
+    "name": "Blastoise",
+    "move": "tesoura",
+    "description": "A brutal Pokémon with pressurized water jets on its shell. They are used for high-speed tackles."
+  },
+  {
+    "id": 10,
+    "original_name": "Caterpie",
+    "name": "Caterpie",
+    "move": "tesoura",
+    "description": "Its short feet are tipped with suction pads that enable it to tirelessly climb slopes and walls."
+  },
+  {
+    "id": 11,
+    "original_name": "Metapod",
+    "name": "Metapod",
+    "move": "fogo",
+    "description": "This Pokémon is vulnerable to attack while its shell is soft, exposing its weak and tender body."
+  },
+  {
+    "id": 12,
+    "original_name": "Butterfree",
+    "name": "Butterfree",
+    "move": "pedra",
+    "description": "In battle, it flaps its wings at great speed to release highly toxic dust into the air."
+  },
+  {
+    "id": 13,
+    "original_name": "Weedle",
+    "name": "Weedle",
+    "move": "corda",
+    "description": "Often found in forests, eating leaves. It has a sharp venomous stinger on its head."
+  },
+  {
+    "id": 14,
+    "original_name": "Kakuna",
+    "name": "Kakuna",
+    "move": "tesoura",
+    "description": "Almost incapable of moving, this Pokémon can only harden its shell to protect itself from predators."
+  },
+  {
+    "id": 15,
+    "original_name": "Beedrill",
+    "name": "Beedrill",
+    "move": "tesoura",
+    "description": "Flies at high speed and attacks using its large venomous stingers on its forelegs and tail."
+  },
+  {
+    "id": 16,
+    "original_name": "Pidgey",
+    "name": "Pidgey",
+    "move": "papel",
+    "description": "A common sight in forests and woods. It flaps its wings at ground level to kick up blinding sand."
+  },
+  {
+    "id": 17,
+    "original_name": "Pidgeotto",
+    "name": "Pidgeotto",
+    "move": "agua",
+    "description": "Very protective of its sprawling territorial area, this Pokémon will fiercely peck at any intruder."
+  },
+  {
+    "id": 18,
+    "original_name": "Pidgeot",
+    "name": "Pidgeot",
+    "move": "fogo",
+    "description": "When hunting, it skims the surface of water at high speed to pick off unwary prey such as Magikarp."
+  },
+  {
+    "id": 19,
+    "original_name": "Rattata",
+    "name": "Rattata",
+    "move": "tesoura",
+    "description": "Bites anything when it attacks. Small and very quick, it is a common sight in many places."
+  },
+  {
+    "id": 20,
+    "original_name": "Raticate",
+    "name": "Raticate",
+    "move": "papel",
+    "description": "It uses its whiskers to maintain its balance. It apparently slows down if they are cut off."
+  },
+  {
+    "id": 21,
+    "original_name": "Spearow",
+    "name": "Spearow",
+    "move": "tesoura",
+    "description": "Eats bugs in grassy areas. It has to flap its short wings at high speed to stay airborne."
+  },
+  {
+    "id": 22,
+    "original_name": "Fearow",
+    "name": "Fearow",
+    "move": "tesoura",
+    "description": "With its huge and magnificent wings, it can keep aloft without ever having to land for rest."
+  },
+  {
+    "id": 23,
+    "original_name": "Ekans",
+    "name": "Ekans",
+    "move": "pedra",
+    "description": "Moves silently and stealthily. Eats the eggs of birds, such as Pidgey and Spearow, whole."
+  },
+  {
+    "id": 24,
+    "original_name": "Arbok",
+    "name": "Arbok",
+    "move": "tesoura",
+    "description": "It is rumored that the ferocious warning markings on its belly differ from area to area."
+  },
+  {
+    "id": 25,
+    "original_name": "Pikachu",
+    "name": "Pikachu",
+    "move": "fogo",
+    "description": "When several of these Pokémon gather, their electricity could build and cause lightning storms."
+  },
+  {
+    "id": 26,
+    "original_name": "Raichu",
+    "name": "Raichu",
+    "move": "fogo",
+    "description": "Its long tail serves as a ground to protect itself from its own high-voltage power."
+  },
+  {
+    "id": 27,
+    "original_name": "Sandshrew",
+    "name": "Sandshrew",
+    "move": "fogo",
+    "description": "Burrows deep underground in arid locations far from water. It only emerges to hunt for food."
+  },
+  {
+    "id": 28,
+    "original_name": "Sandslash",
+    "name": "Sandslash",
+    "move": "fogo",
+    "description": "Curls up into a spiny ball when threatened. It can roll while curled up to attack or escape."
+  },
+  {
+    "id": 29,
+    "original_name": "Nidoran♀",
+    "name": "Nidoran-F",
+    "move": "tesoura",
+    "description": "Although small, its venomous barbs render this Pokémon dangerous. The female has smaller horns."
+  },
+  {
+    "id": 30,
+    "original_name": "Nidorina",
+    "name": "Nidorina",
+    "move": "agua",
+    "description": "The female is usually docile. However, if it becomes enraged, it will attack wildly with bites and scratches."
+  },
+  {
+    "id": 31,
+    "original_name": "Nidoqueen",
+    "name": "Nidoqueen",
+    "move": "tesoura",
+    "description": "Its hard scales provide strong protection. It uses its hefty bulk to execute powerful moves."
+  },
+  {
+    "id": 32,
+    "original_name": "Nidoran♂",
+    "name": "Nidoran-M",
+    "move": "tesoura",
+    "description": "Stiffens its ears to sense danger. The larger its horns, the more powerful its secreted venom."
+  },
+  {
+    "id": 33,
+    "original_name": "Nidorino",
+    "name": "Nidorino",
+    "move": "pedra",
+    "description": "An aggressive Pokémon that is quick to attack. The horn on its head secretes a powerful venom."
+  },
+  {
+    "id": 34,
+    "original_name": "Nidoking",
+    "name": "Nidoking",
+    "move": "fogo",
+    "description": "It uses its powerful tail in battle to smash, constrict, then break its prey's bones."
+  },
+  {
+    "id": 35,
+    "original_name": "Clefairy",
+    "name": "Clefairy",
+    "move": "tesoura",
+    "description": "Its magical and cute appeal has many admirers. It is rare and found only in certain areas."
+  },
+  {
+    "id": 36,
+    "original_name": "Clefable",
+    "name": "Clefable",
+    "move": "pedra",
+    "description": "A timid fairy Pokémon that is rarely seen. It will run and hide the moment it senses people."
+  },
+  {
+    "id": 37,
+    "original_name": "Vulpix",
+    "name": "Vulpix",
+    "move": "corda",
+    "description": "At the time of birth, it has just one tail. The tail splits from its tip as it grows older."
+  },
+  {
+    "id": 38,
+    "original_name": "Ninetales",
+    "name": "Ninetales",
+    "move": "fogo",
+    "description": "Very smart and very vengeful. Grabbing one of its many tails could result in a 1000-year curse."
+  },
+  {
+    "id": 39,
+    "original_name": "Jigglypuff",
+    "name": "Jigglypuff",
+    "move": "pedra",
+    "description": "When its huge eyes light up, it sings a mysteriously soothing melody that lulls its enemies to sleep."
+  },
+  {
+    "id": 40,
+    "original_name": "Wigglytuff",
+    "name": "Wigglytuff",
+    "move": "agua",
+    "description": "The body is soft and rubbery. When angered, it will suck in air and inflate itself to an enormous size."
+  },
+  {
+    "id": 41,
+    "original_name": "Zubat",
+    "name": "Zubat",
+    "move": "fogo",
+    "description": "Forms colonies in perpetually dark places. Uses ultrasonic waves to identify and approach targets."
+  },
+  {
+    "id": 42,
+    "original_name": "Golbat",
+    "name": "Golbat",
+    "move": "papel",
+    "description": "Once it strikes, it will not stop draining energy from the victim even if it gets too heavy to fly."
+  },
+  {
+    "id": 43,
+    "original_name": "Oddish",
+    "name": "Oddish",
+    "move": "papel",
+    "description": "During the day, it keeps its face buried in the ground. At night, it wanders around sowing its seeds."
+  },
+  {
+    "id": 44,
+    "original_name": "Gloom",
+    "name": "Gloom",
+    "move": "agua",
+    "description": "The fluid that oozes from its mouth isn’t drool. It is a nectar that is used to attract prey."
+  },
+  {
+    "id": 45,
+    "original_name": "Vileplume",
+    "name": "Vileplume",
+    "move": "corda",
+    "description": "The larger its petals, the more toxic pollen it contains. Its big head is heavy and hard to hold up."
+  },
+  {
+    "id": 46,
+    "original_name": "Paras",
+    "name": "Paras",
+    "move": "tesoura",
+    "description": "Burrows to suck tree roots. The mushrooms on its back grow by drawing nutrients from the bug host."
+  },
+  {
+    "id": 47,
+    "original_name": "Parasect",
+    "name": "Parasect",
+    "move": "pedra",
+    "description": "A host-parasite pair in which the parasite mushroom has taken over the host bug. Prefers damp places."
+  },
+  {
+    "id": 48,
+    "original_name": "Venonat",
+    "name": "Venonat",
+    "move": "pedra",
+    "description": "Lives in the shadows of tall trees where it eats insects. It is attracted by light at night."
+  },
+  {
+    "id": 49,
+    "original_name": "Venomoth",
+    "name": "Venomoth",
+    "move": "pedra",
+    "description": "The dust-like scales covering its wings are color coded to indicate the kinds of poison it has."
+  },
+  {
+    "id": 50,
+    "original_name": "Diglett",
+    "name": "Diglett",
+    "move": "tesoura",
+    "description": "Lives about one yard underground where it feeds on plant roots. It sometimes appears above ground."
+  },
+  {
+    "id": 51,
+    "original_name": "Dugtrio",
+    "name": "Dugtrio",
+    "move": "fogo",
+    "description": "A team of DIGLETT triplets. It triggers huge earthquakes by burrowing 60 miles underground."
+  },
+  {
+    "id": 52,
+    "original_name": "Meowth",
+    "name": "Meowth",
+    "move": "fogo",
+    "description": "Adores circular objects. Wanders the streets on a nightly basis to look for dropped loose change."
+  },
+  {
+    "id": 53,
+    "original_name": "Persian",
+    "name": "Persian",
+    "move": "agua",
+    "description": "Although its fur has many admirers, it is tough to raise as a pet because of its fickle meanness."
+  },
+  {
+    "id": 54,
+    "original_name": "Psyduck",
+    "name": "Psyduck",
+    "move": "pedra",
+    "description": "While lulling its enemies with its vacant look, this wily POKéMON will use psychokinetic powers."
+  },
+  {
+    "id": 55,
+    "original_name": "Golduck",
+    "name": "Golduck",
+    "move": "pedra",
+    "description": "Often seen swimming elegantly by lake shores. It is often mistaken for the Japanese monster, Kappa."
+  },
+  {
+    "id": 56,
+    "original_name": "Mankey",
+    "name": "Mankey",
+    "move": "fogo",
+    "description": "Extremely quick to anger. It could be docile one moment then thrashing away the next instant."
+  },
+  {
+    "id": 57,
+    "original_name": "Primeape",
+    "name": "Primeape",
+    "move": "papel",
+    "description": "Always furious and tenacious to boot. It will not abandon chasing its quarry until it is caught."
+  },
+  {
+    "id": 58,
+    "original_name": "Growlithe",
+    "name": "Growlithe",
+    "move": "papel",
+    "description": "Very protective of its territory. It will bark and bite to repel intruders from its space."
+  },
+  {
+    "id": 59,
+    "original_name": "Arcanine",
+    "name": "Arcanine",
+    "move": "agua",
+    "description": "A POKéMON that has been admired since the past for its beauty. It runs agilely as if on wings."
+  },
+  {
+    "id": 60,
+    "original_name": "Poliwag",
+    "name": "Poliwag",
+    "move": "corda",
+    "description": "Its newly grown legs prevent it from running. It appears to prefer swimming than trying to stand."
+  },
+  {
+    "id": 61,
+    "original_name": "Poliwhirl",
+    "name": "Poliwhirl",
+    "move": "pedra",
+    "description": "Capable of living in or out of water. When out of water, it sweats to keep its body slimy."
+  },
+  {
+    "id": 62,
+    "original_name": "Poliwrath",
+    "name": "Poliwrath",
+    "move": "tesoura",
+    "description": "An adept swimmer at both the front crawl and breast stroke. Easily overtakes the best human swimmers."
+  },
+  {
+    "id": 63,
+    "original_name": "Abra",
+    "name": "Abra",
+    "move": "pedra",
+    "description": "Using its ability to read minds, it will identify impending danger and TELEPORT to safety."
+  },
+  {
+    "id": 64,
+    "original_name": "Kadabra",
+    "name": "Kadabra",
+    "move": "tesoura",
+    "description": "It emits special alpha waves from its body that induce headaches just by being close by."
+  },
+  {
+    "id": 65,
+    "original_name": "Alakazam",
+    "name": "Alakazam",
+    "move": "tesoura",
+    "description": "Its brain can outperform a supercomputer. Its intelligence quotient is said to be 5,000."
+  },
+  {
+    "id": 66,
+    "original_name": "Machop",
+    "name": "Machop",
+    "move": "papel",
+    "description": "Loves to build its muscles. It trains in all styles of martial arts to become even stronger."
+  },
+  {
+    "id": 67,
+    "original_name": "Machoke",
+    "name": "Machoke",
+    "move": "papel",
+    "description": "Its muscular body is so powerful, it must wear a power save belt to be able to regulate its motions."
+  },
+  {
+    "id": 68,
+    "original_name": "Machamp",
+    "name": "Machamp",
+    "move": "tesoura",
+    "description": "Using its heavy muscles, it throws powerful punches that can send the victim clear over the horizon."
+  },
+  {
+    "id": 69,
+    "original_name": "Bellsprout",
+    "name": "Bellsprout",
+    "move": "fogo",
+    "description": "A carnivorous POKéMON that traps and eats bugs. It uses its root feet to soak up needed moisture."
+  },
+  {
+    "id": 70,
+    "original_name": "Weepinbell",
+    "name": "Weepinbell",
+    "move": "agua",
+    "description": "It spits out POISONPOWDER to immobilize the enemy and then finishes it with a spray of ACID."
+  },
+  {
+    "id": 71,
+    "original_name": "Victreebel",
+    "name": "Victreebel",
+    "move": "corda",
+    "description": "Said to live in huge colonies deep in jungles, although no one has ever returned from there."
+  },
+  {
+    "id": 72,
+    "original_name": "Tentacool",
+    "name": "Tentacool",
+    "move": "fogo",
+    "description": "Drifts in shallow seas. Anglers who hook them by accident are often punished by its stinging acid."
+  },
+  {
+    "id": 73,
+    "original_name": "Tentacruel",
+    "name": "Tentacruel",
+    "move": "papel",
+    "description": "The tentacles are normally kept short. On hunts, they are extended to ensnare and immobilize prey."
+  },
+  {
+    "id": 74,
+    "original_name": "Geodude",
+    "name": "Geodude",
+    "move": "tesoura",
+    "description": "Found in fields and mountains. Mistaking them for boulders, people often step or trip on them."
+  },
+  {
+    "id": 75,
+    "original_name": "Graveler",
+    "name": "Graveler",
+    "move": "papel",
+    "description": "Rolls down slopes to move. It rolls over any obstacle without slowing or changing its direction."
+  },
+  {
+    "id": 76,
+    "original_name": "Golem",
+    "name": "Golem",
+    "move": "pedra",
+    "description": "Its boulder-like body is extremely hard. It can easily withstand dynamite blasts without damage."
+  },
+  {
+    "id": 77,
+    "original_name": "Ponyta",
+    "name": "Ponyta",
+    "move": "pedra",
+    "description": "Its hooves are 10 times harder than diamonds. It can trample anything completely flat in little time."
+  },
+  {
+    "id": 78,
+    "original_name": "Rapidash",
+    "name": "Rapidash",
+    "move": "corda",
+    "description": "Very competitive, this POKéMON will chase anything that moves fast in the hopes of racing it."
+  },
+  {
+    "id": 79,
+    "original_name": "Slowpoke",
+    "name": "Slowpoke",
+    "move": "corda",
+    "description": "Incredibly slow and dopey. It takes 5 seconds for it to feel pain when under attack."
+  },
+  {
+    "id": 80,
+    "original_name": "Slowbro",
+    "name": "Slowbro",
+    "move": "papel",
+    "description": "The SHELLDER that is latched onto SLOWPOKE’s tail is said to feed on the host’s left over scraps."
+  },
+  {
+    "id": 81,
+    "original_name": "Magnemite",
+    "name": "Magnemite",
+    "move": "tesoura",
+    "description": "Uses anti-gravity to stay suspended. Appears without warning and uses THUNDER WAVE and similar moves."
+  },
+  {
+    "id": 82,
+    "original_name": "Magneton",
+    "name": "Magneton",
+    "move": "pedra",
+    "description": "Formed by several MAGNEMITEs linked together. They frequently appear when sunspots flare up."
+  },
+  {
+    "id": 83,
+    "original_name": "Farfetch'd",
+    "name": "Farfetchd",
+    "move": "papel",
+    "description": "The sprig of green onions it holds is its weapon. It is used much like a metal sword."
+  },
+  {
+    "id": 84,
+    "original_name": "Doduo",
+    "name": "Doduo",
+    "move": "fogo",
+    "description": "A bird that makes up for its poor flying with its fast foot speed. Leaves giant footprints."
+  },
+  {
+    "id": 85,
+    "original_name": "Dodrio",
+    "name": "Dodrio",
+    "move": "tesoura",
+    "description": "Uses its three brains to execute complex plans. While two heads sleep, one head stays awake."
+  },
+  {
+    "id": 86,
+    "original_name": "Seel",
+    "name": "Seel",
+    "move": "papel",
+    "description": "The protruding horn on its head is very hard. It is used for bashing through thick ice."
+  },
+  {
+    "id": 87,
+    "original_name": "Dewgong",
+    "name": "Dewgong",
+    "move": "tesoura",
+    "description": "Stores thermal energy in its body. Swims at a steady 8 knots even in intensely cold waters."
+  },
+  {
+    "id": 88,
+    "original_name": "Grimer",
+    "name": "Grimer",
+    "move": "tesoura",
+    "description": "Appears in filthy areas. Thrives by sucking up polluted sludge that is pumped out of factories."
+  },
+  {
+    "id": 89,
+    "original_name": "Muk",
+    "name": "Muk",
+    "move": "papel",
+    "description": "Thickly covered with a filthy, vile sludge. It is so toxic, even its footprints contain poison."
+  },
+  {
+    "id": 90,
+    "original_name": "Shellder",
+    "name": "Shellder",
+    "move": "agua",
+    "description": "Its hard shell repels any kind of attack. It is vulnerable only when its shell is open."
+  },
+  {
+    "id": 91,
+    "original_name": "Cloyster",
+    "name": "Cloyster",
+    "move": "tesoura",
+    "description": "When attacked, it launches its horns in quick volleys. Its innards have never been seen."
+  },
+  {
+    "id": 92,
+    "original_name": "Gastly",
+    "name": "Gastly",
+    "move": "tesoura",
+    "description": "Almost invisible, this gaseous POKéMON cloaks the target and puts it to sleep without notice."
+  },
+  {
+    "id": 93,
+    "original_name": "Haunter",
+    "name": "Haunter",
+    "move": "fogo",
+    "description": "Because of its ability to slip through block walls, it is said to be from another dimension."
+  },
+  {
+    "id": 94,
+    "original_name": "Gengar",
+    "name": "Gengar",
+    "move": "fogo",
+    "description": "Under a full moon, this POKéMON likes to mimic the shadows of people and laugh at their fright."
+  },
+  {
+    "id": 95,
+    "original_name": "Onix",
+    "name": "Onix",
+    "move": "corda",
+    "description": "As it grows, the stone portions of its body harden to become similar to a diamond, but colored black."
+  },
+  {
+    "id": 96,
+    "original_name": "Drowzee",
+    "name": "Drowzee",
+    "move": "pedra",
+    "description": "Puts enemies to sleep then eats their dreams. Occasionally gets sick from eating bad dreams."
+  },
+  {
+    "id": 97,
+    "original_name": "Hypno",
+    "name": "Hypno",
+    "move": "tesoura",
+    "description": "When it locks eyes with an enemy, it will use a mix of PSI moves such as HYPNOSIS and CONFUSION."
+  },
+  {
+    "id": 98,
+    "original_name": "Krabby",
+    "name": "Krabby",
+    "move": "papel",
+    "description": "Its pincers are not only powerful weapons, they are used for balance when walking sideways."
+  },
+  {
+    "id": 99,
+    "original_name": "Kingler",
+    "name": "Kingler",
+    "move": "papel",
+    "description": "The large pincer has 10000 hp of crushing power. However, its huge size makes it unwieldy to use."
+  },
+  {
+    "id": 100,
+    "original_name": "Voltorb",
+    "name": "Voltorb",
+    "move": "tesoura",
+    "description": "Usually found in power plants. Easily mistaken for a POKé BALL, they have zapped many people."
+  },
+  {
+    "id": 101,
+    "original_name": "Electrode",
+    "name": "Electrode",
+    "move": "papel",
+    "description": "It stores electric energy under very high pressure. It often explodes with little or no provocation."
+  },
+  {
+    "id": 102,
+    "original_name": "Exeggcute",
+    "name": "Exeggcute",
+    "move": "pedra",
+    "description": "Often mistaken for eggs. When disturbed, they quickly gather and attack in swarms."
+  },
+  {
+    "id": 103,
+    "original_name": "Exeggutor",
+    "name": "Exeggutor",
+    "move": "pedra",
+    "description": "Legend has it that on rare occasions, one of its heads will drop off and continue on as an EXEGGCUTE."
+  },
+  {
+    "id": 104,
+    "original_name": "Cubone",
+    "name": "Cubone",
+    "move": "pedra",
+    "description": "Because it never removes its skull helmet, no one has ever seen this POKéMON’s real face."
+  },
+  {
+    "id": 105,
+    "original_name": "Marowak",
+    "name": "Marowak",
+    "move": "papel",
+    "description": "The bone it holds is its key weapon. It throws the bone skillfully like a boomerang to KO targets."
+  },
+  {
+    "id": 106,
+    "original_name": "Hitmonlee",
+    "name": "Hitmonlee",
+    "move": "papel",
+    "description": "When in a hurry, its legs lengthen progressively. It runs smoothly with extra long, loping strides."
+  },
+  {
+    "id": 107,
+    "original_name": "Hitmonchan",
+    "name": "Hitmonchan",
+    "move": "papel",
+    "description": "While apparently doing nothing, it fires punches in lightning fast volleys that are impossible to see."
+  },
+  {
+    "id": 108,
+    "original_name": "Lickitung",
+    "name": "Lickitung",
+    "move": "papel",
+    "description": "Its tongue can be extended like a chameleon’s. It leaves a tingling sensation when it licks enemies."
+  },
+  {
+    "id": 109,
+    "original_name": "Koffing",
+    "name": "Koffing",
+    "move": "pedra",
+    "description": "Because it stores several kinds of toxic gases in its body, it is prone to exploding without warning."
+  },
+  {
+    "id": 110,
+    "original_name": "Weezing",
+    "name": "Weezing",
+    "move": "fogo",
+    "description": "Where two kinds of poison gases meet, 2 KOFFINGs can fuse into a WEEZING over many years."
+  },
+  {
+    "id": 111,
+    "original_name": "Rhyhorn",
+    "name": "Rhyhorn",
+    "move": "papel",
+    "description": "Its massive bones are 1000 times harder than human bones. It can easily knock a trailer flying."
+  },
+  {
+    "id": 112,
+    "original_name": "Rhydon",
+    "name": "Rhydon",
+    "move": "pedra",
+    "description": "Protected by an armor-like hide, it is capable of living in molten lava of 3,600 degrees."
+  },
+  {
+    "id": 113,
+    "original_name": "Chansey",
+    "name": "Chansey",
+    "move": "pedra",
+    "description": "A rare and elusive POKéMON that is said to bring happiness to those who manage to get it."
+  },
+  {
+    "id": 114,
+    "original_name": "Tangela",
+    "name": "Tangela",
+    "move": "tesoura",
+    "description": "The whole body is swathed with wide vines that are similar to seaweed. Its vines shake as it walks."
+  },
+  {
+    "id": 115,
+    "original_name": "Kangaskhan",
+    "name": "Kangaskhan",
+    "move": "pedra",
+    "description": "The infant rarely ventures out of its mother’s protective pouch until it is 3 years old."
+  },
+  {
+    "id": 116,
+    "original_name": "Horsea",
+    "name": "Horsea",
+    "move": "pedra",
+    "description": "Known to shoot down flying bugs with precision blasts of ink from the surface of the water."
+  },
+  {
+    "id": 117,
+    "original_name": "Seadra",
+    "name": "Seadra",
+    "move": "pedra",
+    "description": "Capable of swimming backwards by rapidly flapping its wing-like pectoral fins and stout tail."
+  },
+  {
+    "id": 118,
+    "original_name": "Goldeen",
+    "name": "Goldeen",
+    "move": "pedra",
+    "description": "Its tail fin billows like an elegant ballroom dress, giving it the nickname of the Water Queen."
+  },
+  {
+    "id": 119,
+    "original_name": "Seaking",
+    "name": "Seaking",
+    "move": "fogo",
+    "description": "In the autumn spawning season, they can be seen swimming powerfully up rivers and creeks."
+  },
+  {
+    "id": 120,
+    "original_name": "Staryu",
+    "name": "Staryu",
+    "move": "pedra",
+    "description": "An enigmatic POKéMON that can effortlessly regenerate any appendage it loses in battle."
+  },
+  {
+    "id": 121,
+    "original_name": "Starmie",
+    "name": "Starmie",
+    "move": "papel",
+    "description": "Its central core glows with the seven colors of the rainbow. Some people value the core as a gem."
+  },
+  {
+    "id": 122,
+    "original_name": "Mr. Mime",
+    "name": "Mr-Mime",
+    "move": "corda",
+    "description": "If interrupted while it is miming, it will slap around the offender with its broad hands."
+  },
+  {
+    "id": 123,
+    "original_name": "Scyther",
+    "name": "Scyther",
+    "move": "papel",
+    "description": "With ninja-like agility and speed, it can create the illusion that there is more than one."
+  },
+  {
+    "id": 124,
+    "original_name": "Jynx",
+    "name": "Jynx",
+    "move": "fogo",
+    "description": "It seductively wiggles its hips as it walks. It can cause people to dance in unison with it."
+  },
+  {
+    "id": 125,
+    "original_name": "Electabuzz",
+    "name": "Electabuzz",
+    "move": "pedra",
+    "description": "Normally found near power plants, they can wander away and cause major blackouts in cities."
+  },
+  {
+    "id": 126,
+    "original_name": "Magmar",
+    "name": "Magmar",
+    "move": "corda",
+    "description": "Its body always burns with an orange glow that enables it to hide perfectly among flames."
+  },
+  {
+    "id": 127,
+    "original_name": "Pinsir",
+    "name": "Pinsir",
+    "move": "papel",
+    "description": "If it fails to crush the victim in its pincers, it will swing it around and toss it hard."
+  },
+  {
+    "id": 128,
+    "original_name": "Tauros",
+    "name": "Tauros",
+    "move": "papel",
+    "description": "When it targets an enemy, it charges furiously while whipping its body with its long tails."
+  },
+  {
+    "id": 129,
+    "original_name": "Magikarp",
+    "name": "Magikarp",
+    "move": "corda",
+    "description": "In the distant past, it was somewhat stronger than the horribly weak descendants that exist today."
+  },
+  {
+    "id": 130,
+    "original_name": "Gyarados",
+    "name": "Gyarados",
+    "move": "agua",
+    "description": "Rarely seen in the wild. Huge and vicious, it is capable of destroying entire cities in a rage."
+  },
+  {
+    "id": 131,
+    "original_name": "Lapras",
+    "name": "Lapras",
+    "move": "agua",
+    "description": "A POKéMON that has been overhunted almost to extinction. It can ferry people across the water."
+  },
+  {
+    "id": 132,
+    "original_name": "Ditto",
+    "name": "Ditto",
+    "move": "pedra",
+    "description": "Capable of copying an enemy’s genetic code to instantly transform itself into a duplicate of the enemy."
+  },
+  {
+    "id": 133,
+    "original_name": "Eevee",
+    "name": "Eevee",
+    "move": "agua",
+    "description": "Capable of copying an enemy’s genetic code to instantly transform itself into a duplicate of the enemy."
+  },
+  {
+    "id": 134,
+    "original_name": "Vaporeon",
+    "name": "Vaporeon",
+    "move": "corda",
+    "description": "Lives close to water. Its long tail is ridged with a fin which is often mistaken for a mermaid’s."
+  },
+  {
+    "id": 135,
+    "original_name": "Jolteon",
+    "name": "Jolteon",
+    "move": "agua",
+    "description": "It accumulates negative ions in the atmosphere to blast out 10000-volt lightning bolts."
+  },
+  {
+    "id": 136,
+    "original_name": "Flareon",
+    "name": "Flareon",
+    "move": "pedra",
+    "description": "When storing thermal energy in its body, its temperature could soar to over 1600 degrees."
+  },
+  {
+    "id": 137,
+    "original_name": "Porygon",
+    "name": "Porygon",
+    "move": "corda",
+    "description": "A POKéMON that consists entirely of programming code. Capable of moving freely in cyberspace."
+  },
+  {
+    "id": 138,
+    "original_name": "Omanyte",
+    "name": "Omanyte",
+    "move": "tesoura",
+    "description": "Although long extinct, in rare cases, it can be genetically resurrected from fossils."
+  },
+  {
+    "id": 139,
+    "original_name": "Omastar",
+    "name": "Omastar",
+    "move": "agua",
+    "description": "A prehistoric POKéMON that died out when its heavy shell made it impossible to catch prey."
+  },
+  {
+    "id": 140,
+    "original_name": "Kabuto",
+    "name": "Kabuto",
+    "move": "tesoura",
+    "description": "A POKéMON that was resurrected from a fossil found in what was once the ocean floor eons ago."
+  },
+  {
+    "id": 141,
+    "original_name": "Kabutops",
+    "name": "Kabutops",
+    "move": "pedra",
+    "description": "KIts sleek shape is perfect for swimming. It slashes prey with its claws and drains the body fluids."
+  },
+  {
+    "id": 142,
+    "original_name": "Aerodactyl",
+    "name": "Aerodactyl",
+    "move": "tesoura",
+    "description": "A ferocious, prehistoric POKéMON that goes for the enemy’s throat with its serrated saw-like fangs."
+  },
+  {
+    "id": 143,
+    "original_name": "Snorlax",
+    "name": "Snorlax",
+    "move": "tesoura",
+    "description": "Very lazy. Just eats and sleeps. As its rotund bulk builds, it becomes steadily more slothful."
+  },
+  {
+    "id": 144,
+    "original_name": "Articuno",
+    "name": "Articuno",
+    "move": "corda",
+    "description": "A legendary bird POKéMON that is said to appear to doomed people who are lost in icy mountains."
+  },
+  {
+    "id": 145,
+    "original_name": "Zapdos",
+    "name": "Zapdos",
+    "move": "papel",
+    "description": "A legendary bird POKéMON that is said to appear from clouds while dropping enormous lightning bolts."
+  },
+  {
+    "id": 146,
+    "original_name": "Moltres",
+    "name": "Moltres",
+    "move": "papel",
+    "description": "Known as the legendary bird of fire. Every flap of its wings creates a dazzling flash of flames."
+  },
+  {
+    "id": 147,
+    "original_name": "Dratini",
+    "name": "Dratini",
+    "move": "fogo",
+    "description": "Long considered a mythical POKéMON until recently when a small colony was found living underwater."
+  },
+  {
+    "id": 148,
+    "original_name": "Dragonair",
+    "name": "Dragonair",
+    "move": "papel",
+    "description": "A mystical POKéMON that exudes a gentle aura. Has the ability to change climate conditions."
+  },
+  {
+    "id": 149,
+    "original_name": "Dragonite",
+    "name": "Dragonite",
+    "move": "agua",
+    "description": "An extremely rarely seen marine POKéMON. Its intelligence is said to match that of humans."
+  },
+  {
+    "id": 150,
+    "original_name": "Mewtwo",
+    "name": "Mewtwo",
+    "move": "agua",
+    "description": "It was created by a scientist after years of horrific gene splicing and DNA engineering experiments."
+  },
+  {
+    "id": 151,
+    "original_name": "Mew",
+    "name": "Mew",
+    "move": "fogo",
+    "description": "So rare that it is still said to be a mirage by many experts. Only a few people have seen it worldwide."
+  },
+  {
+    "id": 152,
+    "original_name": "Chikorita",
+    "name": "Chikorita",
+    "move": "papel",
+    "description": "A sweet aroma gently wafts from the leaf on its head. It is docile and loves to soak up the sun’s rays."
+  },
+  {
+    "id": 153,
+    "original_name": "Bayleef",
+    "name": "Bayleef",
+    "move": "tesoura",
+    "description": "The aroma that rises from its neck is sweet and spicy. It can also be used to make people energetic."
+  },
+  {
+    "id": 154,
+    "original_name": "Meganium",
+    "name": "Meganium",
+    "move": "pedra",
+    "description": "The aroma of the flower around its neck has a soothing effect. It also contains a power to make withered plants revive."
+  },
+  {
+    "id": 155,
+    "original_name": "Cyndaquil",
+    "name": "Cyndaquil",
+    "move": "tesoura",
+    "description": "It is timid, and always curls itself up in a ball. If it is startled, the flames on its back flare up."
+  },
+  {
+    "id": 156,
+    "original_name": "Quilava",
+    "name": "Quilava",
+    "move": "papel",
+    "description": "When it gets angry, its flames burn more fiercely. It can create a heat haze with its fiery breath to obscure itself."
+  },
+  {
+    "id": 157,
+    "original_name": "Typhlosion",
+    "name": "Typhlosion",
+    "move": "pedra",
+    "description": "It has a explosive temper. It blows away everything with its intense flames. It creates a shimmering heat haze with its fiery breath to conceal itself."
+  },
+  {
+    "id": 158,
+    "original_name": "Totodile",
+    "name": "Totodile",
+    "move": "tesoura",
+    "description": "Its well-developed jaws are powerful and can crush anything. Even its trainer must be careful."
+  },
+  {
+    "id": 159,
+    "original_name": "Croconaw",
+    "name": "Croconaw",
+    "move": "papel",
+    "description": "Its powerful jaws can crush anything. It is said that its teeth are capable of regrowing many times."
+  },
+  {
+    "id": 160,
+    "original_name": "Feraligatr",
+    "name": "Feraligatr",
+    "move": "pedra",
+    "description": "It opens its huge mouth to intimidate enemies. In battle, it will bite with its large, powerful jaws."
+  },
+  {
+    "id": 161,
+    "original_name": "Sentret",
+    "name": "Sentret",
+    "move": "tesoura",
+    "description": "It stands on its tail to see farther. If it spots a foe, it alerts its allies by screeching loudly."
+  },
+  {
+    "id": 162,
+    "original_name": "Furret",
+    "name": "Furret",
+    "move": "papel",
+    "description": "It is slender and can slip through narrow spaces. It is very nimble, making it difficult for foes to catch."
+  },
+  {
+    "id": 163,
+    "original_name": "Hoothoot",
+    "name": "Hoothoot",
+    "move": "agua",
+    "description": "It always stands on one foot. It changes feet so fast that it cannot be seen. It marks time rhythmically."
+  },
+  {
+    "id": 164,
+    "original_name": "Noctowl",
+    "name": "Noctowl",
+    "move": "pedra",
+    "description": "Its eyes are specially developed to enable it to see in the darkest darkness. It can accurately hit a moving target in midair."
+  },
+  {
+    "id": 165,
+    "original_name": "Ledyba",
+    "name": "Ledyba",
+    "move": "tesoura",
+    "description": "When the weather turns cold, Ledyba gathers with others and rubs its forelegs together to generate heat."
+  },
+  {
+    "id": 166,
+    "original_name": "Ledian",
+    "name": "Ledian",
+    "move": "pedra",
+    "description": "It uses its four arms to fight. It will throw its arms out from the shoulder in a flurry of punches."
+  },
+  {
+    "id": 167,
+    "original_name": "Spinarak",
+    "name": "Spinarak",
+    "move": "corda",
+    "description": "It spins a sticky web and waits for prey to get tangled. It is very patient and can wait for days."
+  },
+  {
+    "id": 168,
+    "original_name": "Ariados",
+    "name": "Ariados",
+    "move": "corda",
+    "description": "It sets traps of sticky string around its prey and then waits. The longer the prey struggles, the tighter the string gets."
+  },
+  {
+    "id": 169,
+    "original_name": "Crobat",
+    "name": "Crobat",
+    "move": "agua",
+    "description": "It flies so silently through the dark of night that it may not be noticed even when right nearby. Its four wings allow it to fly fast."
+  },
+  {
+    "id": 170,
+    "original_name": "Chinchou",
+    "name": "Chinchou",
+    "move": "agua",
+    "description": "It senses enemies with its two antennae. It then discharges electricity from the tips of its two horns."
+  },
+  {
+    "id": 171,
+    "original_name": "Lanturn",
+    "name": "Lanturn",
+    "move": "tesoura",
+    "description": "It absorbs light from the ocean's surface and stores it in its antennae. It then uses the stored light to illuminate the deep sea."
+  },
+  {
+    "id": 172,
+    "original_name": "Pichu",
+    "name": "Pichu",
+    "move": "corda",
+    "description": "It is still learning to store electricity. It may shock itself if it laughs too hard."
+  },
+  {
+    "id": 173,
+    "original_name": "Cleffa",
+    "name": "Cleffa",
+    "move": "pedra",
+    "description": "It is said that Cleffa are born from stars. They dance when they see shooting stars."
+  },
+  {
+    "id": 174,
+    "original_name": "Igglybuff",
+    "name": "Igglybuff",
+    "move": "pedra",
+    "description": "It has a very soft and elastic body. It bounces around to express its happiness."
+  },
+  {
+    "id": 175,
+    "original_name": "Togepi",
+    "name": "Togepi",
+    "move": "tesoura",
+    "description": "Its shell is said to be filled with happiness. It shares this happiness with people who are kind to it."
+  },
+  {
+    "id": 176,
+    "original_name": "Togetic",
+    "name": "Togetic",
+    "move": "tesoura",
+    "description": "It is said to appear before kindhearted people and shower them with blessings. It flies around sprinkling its joy."
+  },
+  {
+    "id": 177,
+    "original_name": "Natu",
+    "name": "Natu",
+    "move": "papel",
+    "description": "It is a tiny Pokémon that has a hard time flying. It can peer into the future."
+  },
+  {
+    "id": 178,
+    "original_name": "Xatu",
+    "name": "Xatu",
+    "move": "corda",
+    "description": "It stands still and watches the sun all day long. It is said to have the power to see the future."
+  },
+  {
+    "id": 179,
+    "original_name": "Mareep",
+    "name": "Mareep",
+    "move": "pedra",
+    "description": "Its fleece is charged with static electricity. It can generate enough electricity to light up a light bulb."
+  },
+  {
+    "id": 180,
+    "original_name": "Flaaffy",
+    "name": "Flaaffy",
+    "move": "tesoura",
+    "description": "Its fleece is easy to store electricity. It uses its tail to discharge its electricity."
+  },
+  {
+    "id": 181,
+    "original_name": "Ampharos",
+    "name": "Ampharos",
+    "move": "tesoura",
+    "description": "The bright light on its tail is so bright that it can be seen from space. It has been used as a beacon by sailors."
+  },
+  {
+    "id": 182,
+    "original_name": "Bellossom",
+    "name": "Bellossom",
+    "move": "pedra",
+    "description": "When it dances, it is said that the sun's rays increase its beauty. It is often seen dancing in groups."
+  },
+  {
+    "id": 183,
+    "original_name": "Marill",
+    "name": "Marill",
+    "move": "pedra",
+    "description": "The tip of its tail acts as a float. It can stay afloat even in strong currents."
+  },
+  {
+    "id": 184,
+    "original_name": "Azumarill",
+    "name": "Azumarill",
+    "move": "papel",
+    "description": "Its large, round ears are very sensitive to sound, enabling it to hear underwater sounds from far away."
+  },
+  {
+    "id": 185,
+    "original_name": "Sudowoodo",
+    "name": "Sudowoodo",
+    "move": "papel",
+    "description": "It mimics a tree to avoid being attacked by enemies. If its arm is touched, it will move quickly."
+  },
+  {
+    "id": 186,
+    "original_name": "Politoed",
+    "name": "Politoed",
+    "move": "agua",
+    "description": "When Politoed go to gather, they croak out a song together. The chorus of their croaking is very loud."
+  },
+  {
+    "id": 187,
+    "original_name": "Hoppip",
+    "name": "Hoppip",
+    "move": "pedra",
+    "description": "It drifts in the wind with its lightweight body. If it starts to rain, Hoppip gathers under large trees."
+  },
+  {
+    "id": 188,
+    "original_name": "Skiploom",
+    "name": "Skiploom",
+    "move": "corda",
+    "description": "It opens its petals and spreads them out in the sun. It can absorb the sun's energy for its growth."
+  },
+  {
+    "id": 189,
+    "original_name": "Jumpluff",
+    "name": "Jumpluff",
+    "move": "tesoura",
+    "description": "It floats on the wind to spread its cottony spores. It is said that when it scatters its spores, spring is near."
+  },
+  {
+    "id": 190,
+    "original_name": "Aipom",
+    "name": "Aipom",
+    "move": "pedra",
+    "description": "Its tail is so strong that it can hang from a branch and use it to grab fruit. It can also use its tail to fight."
+  },
+  {
+    "id": 191,
+    "original_name": "Sunkern",
+    "name": "Sunkern",
+    "move": "corda",
+    "description": "It tries to get sunlight by shaking its body. It is often attacked by bird Pokémon."
+  },
+  {
+    "id": 192,
+    "original_name": "Sunflora",
+    "name": "Sunflora",
+    "move": "tesoura",
+    "description": "It converts sunlight into energy. It is said that the more sunlight it gets, the more beautiful its petals become."
+  },
+  {
+    "id": 193,
+    "original_name": "Yanma",
+    "name": "Yanma",
+    "move": "papel",
+    "description": "It has eyes that can see all around it. It can hover in one spot or fly quickly in any direction."
+  },
+  {
+    "id": 194,
+    "original_name": "Wooper",
+    "name": "Wooper",
+    "move": "corda",
+    "description": "It lives in cold water. It uses its fins to propel itself through the water."
+  },
+  {
+    "id": 195,
+    "original_name": "Quagsire",
+    "name": "Quagsire",
+    "move": "pedra",
+    "description": "It is a docile Pokémon that doesn't care much about anything. It often bumps its head on things without realizing it."
+  },
+  {
+    "id": 196,
+    "original_name": "Espeon",
+    "name": "Espeon",
+    "move": "pedra",
+    "description": "Its fur is so sensitive that it can sense minute shifts in the air, allowing it to predict the weather and its opponent's next move."
+  },
+  {
+    "id": 197,
+    "original_name": "Umbreon",
+    "name": "Umbreon",
+    "move": "pedra",
+    "description": "When darkness falls, the rings on its body glow faintly, striking fear into the hearts of anyone nearby. It is a very loyal Pokémon."
+  },
+  {
+    "id": 198,
+    "original_name": "Murkrow",
+    "name": "Murkrow",
+    "move": "tesoura",
+    "description": "It is a nocturnal Pokémon that steals shiny objects. It is said to bring bad luck to those who see it at night."
+  },
+  {
+    "id": 199,
+    "original_name": "Slowking",
+    "name": "Slowking",
+    "move": "papel",
+    "description": "It has gained incredible intelligence and problem-solving skills from the Shellder on its head. It is said to be the wisest of all Pokémon."
+  },
+  {
+    "id": 200,
+    "original_name": "Misdreavus",
+    "name": "Misdreavus",
+    "move": "pedra",
+    "description": "It loves to startle people by suddenly appearing out of nowhere. It feeds on the fear it creates."
+  },
+  {
+    "id": 201,
+    "original_name": "Unown",
+    "name": "Unown",
+    "move": "papel",
+    "description": "They are thought to be able to communicate with the world through their various shapes. It is said that if many Unown gather, something will happen."
+  },
+  {
+    "id": 202,
+    "original_name": "Wobbuffet",
+    "name": "Wobbuffet",
+    "move": "papel",
+    "description": "It hates light and tries to keep itself in the dark. It is a patient Pokémon that endures attacks to deliver a powerful counterattack."
+  },
+  {
+    "id": 203,
+    "original_name": "Girafarig",
+    "name": "Girafarig",
+    "move": "tesoura",
+    "description": "The head on its tail has a brain of its own. It can attack independently, even when the main head is sleeping."
+  },
+  {
+    "id": 204,
+    "original_name": "Pineco",
+    "name": "Pineco",
+    "move": "pedra",
+    "description": "It hangs from a tree branch and waits for prey. If it falls, it is said to explode."
+  },
+  {
+    "id": 205,
+    "original_name": "Forretress",
+    "name": "Forretress",
+    "move": "corda",
+    "description": "It is covered in a hard, steel shell. It can open its shell to fire spikes at its enemies."
+  },
+  {
+    "id": 206,
+    "original_name": "Dunsparce",
+    "name": "Dunsparce",
+    "move": "agua",
+    "description": "It burrows deep underground. It is very shy and rarely appears above ground."
+  },
+  {
+    "id": 207,
+    "original_name": "Gligar",
+    "name": "Gligar",
+    "move": "corda",
+    "description": "It flies silently through the air on its wings and pincers. It then attacks its prey from above."
+  },
+  {
+    "id": 208,
+    "original_name": "Steelix",
+    "name": "Steelix",
+    "move": "tesoura",
+    "description": "It is said to be the strongest of all steel-type Pokémon. Its body has been hardened by the immense pressure of living underground."
+  },
+  {
+    "id": 209,
+    "original_name": "Snubbull",
+    "name": "Snubbull",
+    "move": "tesoura",
+    "description": "Despite its intimidating appearance, it is very playful and affectionate. It loves to play with children."
+  },
+  {
+    "id": 210,
+    "original_name": "Granbull",
+    "name": "Granbull",
+    "move": "papel",
+    "description": "Its fangs are very strong, allowing it to bite through anything. Despite its fearsome appearance, it is very timid."
+  },
+  {
+    "id": 211,
+    "original_name": "Qwilfish",
+    "name": "Qwilfish",
+    "move": "corda",
+    "description": "When it inflates its body, its spikes stand out. It then attacks its enemies with its poisonous spikes."
+  },
+  {
+    "id": 212,
+    "original_name": "Scizor",
+    "name": "Scizor",
+    "move": "fogo",
+    "description": "Its pincers are as hard as steel. It can crush boulders with ease. It is very fast and agile."
+  },
+  {
+    "id": 213,
+    "original_name": "Shuckle",
+    "name": "Shuckle",
+    "move": "corda",
+    "description": "It stores berries in its shell and ferments them into a juice. It is said to be a very delicious juice."
+  },
+  {
+    "id": 214,
+    "original_name": "Heracross",
+    "name": "Heracross",
+    "move": "tesoura",
+    "description": "It attacks its foes with its powerful horn. It can throw a foe a hundred times its own weight."
+  },
+  {
+    "id": 215,
+    "original_name": "Sneasel",
+    "name": "Sneasel",
+    "move": "pedra",
+    "description": "It is a cunning and stealthy Pokémon. It attacks its prey by scratching with its sharp claws and fangs."
+  },
+  {
+    "id": 216,
+    "original_name": "Teddiursa",
+    "name": "Teddiursa",
+    "move": "corda",
+    "description": "It always carries a honey-filled paw with it. It loves honey and will lick it constantly."
+  },
+  {
+    "id": 217,
+    "original_name": "Ursaring",
+    "name": "Ursaring",
+    "move": "papel",
+    "description": "It lives in the mountains and forests. It marks the trees with its claws to show its territory."
+  },
+  {
+    "id": 218,
+    "original_name": "Slugma",
+    "name": "Slugma",
+    "move": "tesoura",
+    "description": "Its body is made of molten magma. It constantly moves to keep its body from solidifying."
+  },
+  {
+    "id": 219,
+    "original_name": "Magcargo",
+    "name": "Magcargo",
+    "move": "tesoura",
+    "description": "Its shell is made of hardened magma. It is said that its body temperature is around 18,000 degrees Fahrenheit."
+  },
+  {
+    "id": 220,
+    "original_name": "Swinub",
+    "name": "Swinub",
+    "move": "fogo",
+    "description": "It searches for food by sniffing with its nose. It often bumps into things because it is clumsy."
+  },
+  {
+    "id": 221,
+    "original_name": "Piloswine",
+    "name": "Piloswine",
+    "move": "corda",
+    "description": "Its long, shaggy hair makes it difficult to see its eyes. It is very strong and can withstand harsh blizzards."
+  },
+  {
+    "id": 222,
+    "original_name": "Corsola",
+    "name": "Corsola",
+    "move": "corda",
+    "description": "It lives in warm seas. It grows a beautiful coral on its head. It is said that the coral grows better in clean water."
+  },
+  {
+    "id": 223,
+    "original_name": "Remoraid",
+    "name": "Remoraid",
+    "move": "fogo",
+    "description": "It attaches itself to larger Pokémon and eats the leftovers. It is a very accurate shooter with its water gun."
+  },
+  {
+    "id": 224,
+    "original_name": "Octillery",
+    "name": "Octillery",
+    "move": "tesoura",
+    "description": "It can shoot ink with great accuracy. It is very intelligent and can learn various attacks."
+  },
+  {
+    "id": 225,
+    "original_name": "Delibird",
+    "name": "Delibird",
+    "move": "corda",
+    "description": "It always carries food in its tail. It shares its food with those who are lost in the mountains."
+  },
+  {
+    "id": 226,
+    "original_name": "Mantine",
+    "name": "Mantine",
+    "move": "agua",
+    "description": "It soars majestically in the sea. It is often seen with Remoraid swimming around it."
+  },
+  {
+    "id": 227,
+    "original_name": "Skarmory",
+    "name": "Skarmory",
+    "move": "agua",
+    "description": "Its wings are made of sharp, durable steel. It can fly at high speeds and cut through enemies."
+  },
+  {
+    "id": 228,
+    "original_name": "Houndour",
+    "name": "Houndour",
+    "move": "papel",
+    "description": "It hunts in packs. It communicates with its pack using howls."
+  },
+  {
+    "id": 229,
+    "original_name": "Houndoom",
+    "name": "Houndoom",
+    "move": "corda",
+    "description": "The ominous howl of a Houndoom makes other Pokémon cower in fear. It burns its prey with poisonous flames."
+  },
+  {
+    "id": 230,
+    "original_name": "Kingdra",
+    "name": "Kingdra",
+    "move": "agua",
+    "description": "It lives in the deep sea. It is said that its power increases when it enters the sea of dragons."
+  },
+  {
+    "id": 231,
+    "original_name": "Phanpy",
+    "name": "Phanpy",
+    "move": "pedra",
+    "description": "It constantly rolls around to play. It can knock down a person if it bumps into them."
+  },
+  {
+    "id": 232,
+    "original_name": "Donphan",
+    "name": "Donphan",
+    "move": "pedra",
+    "description": "It can curl up into a ball and roll at high speeds. It can easily flatten a house."
+  },
+  {
+    "id": 233,
+    "original_name": "Porygon2",
+    "name": "Porygon2",
+    "move": "tesoura",
+    "description": "It was created to explore space. It can move freely in outer space."
+  },
+  {
+    "id": 234,
+    "original_name": "Stantler",
+    "name": "Stantler",
+    "move": "pedra",
+    "description": "The rings on its antlers create a strange, hypnotic effect. It can also create illusions."
+  },
+  {
+    "id": 235,
+    "original_name": "Smeargle",
+    "name": "Smeargle",
+    "move": "tesoura",
+    "description": "It draws on surfaces with the fluid that leaks from its tail. The color and scent of the fluid vary."
+  },
+  {
+    "id": 236,
+    "original_name": "Tyrogue",
+    "name": "Tyrogue",
+    "move": "corda",
+    "description": "It is always training. It evolves into a different Pokémon depending on its highest stat."
+  },
+  {
+    "id": 237,
+    "original_name": "Hitmontop",
+    "name": "Hitmontop",
+    "move": "papel",
+    "description": "It spins like a top to deliver a barrage of kicks. Its spinning attacks are very fast and powerful."
+  },
+  {
+    "id": 238,
+    "original_name": "Smoochum",
+    "name": "Smoochum",
+    "move": "corda",
+    "description": "It is always kissing anything it sees. It communicates by blowing kisses."
+  },
+  {
+    "id": 239,
+    "original_name": "Elekid",
+    "name": "Elekid",
+    "move": "agua",
+    "description": "It loves to play with electricity. It can generate electricity by swinging its arms."
+  },
+  {
+    "id": 240,
+    "original_name": "Magby",
+    "name": "Magby",
+    "move": "fogo",
+    "description": "It lives in volcanic areas. It exhales hot air that can reach over 1,100 degrees Fahrenheit."
+  },
+  {
+    "id": 241,
+    "original_name": "Miltank",
+    "name": "Miltank",
+    "move": "fogo",
+    "description": "It produces highly nutritious milk. It is said that drinking its milk can make a person strong."
+  },
+  {
+    "id": 242,
+    "original_name": "Blissey",
+    "name": "Blissey",
+    "move": "papel",
+    "description": "It is a kindhearted Pokémon that shares its happiness with others. Its eggs are said to bring good fortune."
+  },
+  {
+    "id": 243,
+    "original_name": "Raikou",
+    "name": "Raikou",
+    "move": "pedra",
+    "description": "It embodies the speed of lightning. The roars it lets out send shock waves stomping across the ground and shake the air."
+  },
+  {
+    "id": 244,
+    "original_name": "Entei",
+    "name": "Entei",
+    "move": "fogo",
+    "description": "It embodies the passion of magma. It is thought to have been born in the heart of a volcano."
+  },
+  {
+    "id": 245,
+    "original_name": "Suicune",
+    "name": "Suicune",
+    "move": "pedra",
+    "description": "It embodies the tranquility of a spring. It races across the land, purifying polluted water with a touch."
+  },
+  {
+    "id": 246,
+    "original_name": "Larvitar",
+    "name": "Larvitar",
+    "move": "agua",
+    "description": "It eats soil to grow. After it eats a mountain, it goes to sleep to evolve."
+  },
+  {
+    "id": 247,
+    "original_name": "Pupitar",
+    "name": "Pupitar",
+    "move": "papel",
+    "description": "Its shell is hard as rock. It can cause earthquakes by moving its body."
+  },
+  {
+    "id": 248,
+    "original_name": "Tyranitar",
+    "name": "Tyranitar",
+    "move": "agua",
+    "description": "It is a fearsome Pokémon that can change the landscape. It is so powerful that it can destroy mountains."
+  },
+  {
+    "id": 249,
+    "original_name": "Lugia",
+    "name": "Lugia",
+    "move": "pedra",
+    "description": "It is said to be the guardian of the seas. It is capable of causing a 40-day storm by flapping its wings."
+  },
+  {
+    "id": 250,
+    "original_name": "Ho-Oh",
+    "name": "Ho-Oh",
+    "move": "papel",
+    "description": "Its feathers are said to glow in seven colors depending on the angle at which they are struck by light. It is said to bring happiness to those who see it."
+  },
+  {
+    "id": 251,
+    "original_name": "Celebi",
+    "name": "Celebi",
+    "move": "agua",
+    "description": "This Pokémon came from the future by crossing over time. It is a guardian of the forest and protects the balance of nature."
+  },
+  {
+    "id": 252,
+    "original_name": "Treecko",
+    "name": "Treecko",
+    "move": "pedra",
+    "description": "It makes its nest in a giant tree in the forest. It is an extremely territorial Pokémon."
+  },
+  {
+    "id": 253,
+    "original_name": "Grovyle",
+    "name": "Grovyle",
+    "move": "papel",
+    "description": "The leaves growing out of Grovyle's body are always green. Its ability to blend in with its surroundings is a powerful asset."
+  },
+  {
+    "id": 254,
+    "original_name": "Sceptile",
+    "name": "Sceptile",
+    "move": "tesoura",
+    "description": "The leaves on its arms are very sharp. It is an agile Pokémon that moves through the jungle freely."
+  },
+  {
+    "id": 255,
+    "original_name": "Torchic",
+    "name": "Torchic",
+    "move": "papel",
+    "description": "A fire burns inside Torchic's body, and it's warm if you hug it. This Pokémon is covered in a soft downy fluff."
+  },
+  {
+    "id": 256,
+    "original_name": "Combusken",
+    "name": "Combusken",
+    "move": "pedra",
+    "description": "Combusken toughens up its legs and torques its body. It unleashes a flurry of kicks from the ground or from the air."
+  },
+  {
+    "id": 257,
+    "original_name": "Blaziken",
+    "name": "Blaziken",
+    "move": "tesoura",
+    "description": "It can clear a 30-story building in a single leap. Its kicks are very powerful and can burn its enemies."
+  },
+  {
+    "id": 258,
+    "original_name": "Mudkip",
+    "name": "Mudkip",
+    "move": "tesoura",
+    "description": "The fin on Mudkip's head acts as a radar dish. It is able to detect movements in the water and air."
+  },
+  {
+    "id": 259,
+    "original_name": "Marshtomp",
+    "name": "Marshtomp",
+    "move": "pedra",
+    "description": "The two fins on Marshtomp's head are actually gills. It can move quickly in mud and water."
+  },
+  {
+    "id": 260,
+    "original_name": "Swampert",
+    "name": "Swampert",
+    "move": "papel",
+    "description": "Swampert is very powerful. It can easily pull a large ship with its arms. It is strong enough to move a boulder."
+  },
+  {
+    "id": 261,
+    "original_name": "Poochyena",
+    "name": "Poochyena",
+    "move": "papel",
+    "description": "It follows its nose to track down prey. It's a cowardly Pokémon that gets easily startled."
+  },
+  {
+    "id": 262,
+    "original_name": "Mightyena",
+    "name": "Mightyena",
+    "move": "fogo",
+    "description": "Mightyena travel and act in packs. It can communicate with its pack through various howls."
+  },
+  {
+    "id": 263,
+    "original_name": "Zigzagoon",
+    "name": "Zigzagoon",
+    "move": "corda",
+    "description": "It is a very curious Pokémon that can find items anywhere. It will often go into people's houses."
+  },
+  {
+    "id": 264,
+    "original_name": "Linoone",
+    "name": "Linoone",
+    "move": "papel",
+    "description": "It can run at over 60 miles per hour, but it can't run in a straight line. It runs in zigzags."
+  },
+  {
+    "id": 265,
+    "original_name": "Wurmple",
+    "name": "Wurmple",
+    "move": "papel",
+    "description": "It spins silk from its mouth to attach itself to trees. It feeds on leaves."
+  },
+  {
+    "id": 266,
+    "original_name": "Silcoon",
+    "name": "Silcoon",
+    "move": "corda",
+    "description": "It wraps its body in a hard silk cocoon. It patiently awaits evolution."
+  },
+  {
+    "id": 267,
+    "original_name": "Beautifly",
+    "name": "Beautifly",
+    "move": "agua",
+    "description": "It flies around collecting pollen. It is very beautiful and attracts many admirers."
+  },
+  {
+    "id": 268,
+    "original_name": "Cascoon",
+    "name": "Cascoon",
+    "move": "agua",
+    "description": "It builds a sturdy cocoon around itself to protect itself. It is waiting for its evolution."
+  },
+  {
+    "id": 269,
+    "original_name": "Dustox",
+    "name": "Dustox",
+    "move": "pedra",
+    "description": "It scatters poisonous powder as it flaps its wings. It is a nocturnal Pokémon."
+  },
+  {
+    "id": 270,
+    "original_name": "Lotad",
+    "name": "Lotad",
+    "move": "papel",
+    "description": "It floats on the water. It uses its large leaf to move around like a boat."
+  },
+  {
+    "id": 271,
+    "original_name": "Lombre",
+    "name": "Lombre",
+    "move": "tesoura",
+    "description": "It is a nocturnal Pokémon that plays pranks on people. It can be found in rivers and lakes."
+  },
+  {
+    "id": 272,
+    "original_name": "Ludicolo",
+    "name": "Ludicolo",
+    "move": "pedra",
+    "description": "When it hears festive music, Ludicolo can't help but dance. It is a very cheerful Pokémon."
+  },
+  {
+    "id": 273,
+    "original_name": "Seedot",
+    "name": "Seedot",
+    "move": "papel",
+    "description": "It hangs from tree branches by its head. It dries its body by swaying in the breeze."
+  },
+  {
+    "id": 274,
+    "original_name": "Nuzleaf",
+    "name": "Nuzleaf",
+    "move": "pedra",
+    "description": "It lives in the forest and is known for its mischievous nature. It uses the leaf on its head to make music."
+  },
+  {
+    "id": 275,
+    "original_name": "Shiftry",
+    "name": "Shiftry",
+    "move": "papel",
+    "description": "It is a Pokémon that appears from nowhere. It is said to be a guardian of the forest."
+  },
+  {
+    "id": 276,
+    "original_name": "Taillow",
+    "name": "Taillow",
+    "move": "tesoura",
+    "description": "It is a very persistent Pokémon that will keep flying even when it is tired."
+  },
+  {
+    "id": 277,
+    "original_name": "Swellow",
+    "name": "Swellow",
+    "move": "papel",
+    "description": "It is an agile Pokémon that can fly at high speeds. It can catch its prey in midair."
+  },
+  {
+    "id": 278,
+    "original_name": "Wingull",
+    "name": "Wingull",
+    "move": "tesoura",
+    "description": "It can skim the surface of the sea to catch prey. It carries items in its beak."
+  },
+  {
+    "id": 279,
+    "original_name": "Pelipper",
+    "name": "Pelipper",
+    "move": "tesoura",
+    "description": "It can carry many items in its large beak. It is often used to transport mail."
+  },
+  {
+    "id": 280,
+    "original_name": "Ralts",
+    "name": "Ralts",
+    "move": "tesoura",
+    "description": "It senses the emotions of people and Pokémon using the horns on its head. It will hide if it senses hostility."
+  },
+  {
+    "id": 281,
+    "original_name": "Kirlia",
+    "name": "Kirlia",
+    "move": "corda",
+    "description": "The horns on its head allow it to sense the emotions of others. It dances joyfully when it encounters happy emotions."
+  },
+  {
+    "id": 282,
+    "original_name": "Gardevoir",
+    "name": "Gardevoir",
+    "move": "agua",
+    "description": "It can sense emotions. It will risk its life to protect its Trainer from danger."
+  },
+  {
+    "id": 283,
+    "original_name": "Surskit",
+    "name": "Surskit",
+    "move": "pedra",
+    "description": "It walks on water by secreting oil from its feet. It feeds on microscopic organisms."
+  },
+  {
+    "id": 284,
+    "original_name": "Masquerain",
+    "name": "Masquerain",
+    "move": "pedra",
+    "description": "Its antennae resemble large eyes, which it uses to intimidate predators. It is very skilled at flying."
+  },
+  {
+    "id": 285,
+    "original_name": "Shroomish",
+    "name": "Shroomish",
+    "move": "pedra",
+    "description": "It scatters spores from the top of its head. The spores can cause drowsiness or paralysis."
+  },
+  {
+    "id": 286,
+    "original_name": "Breloom",
+    "name": "Breloom",
+    "move": "tesoura",
+    "description": "Its arms stretch like rubber. It delivers a flurry of punches with its strong arms."
+  },
+  {
+    "id": 287,
+    "original_name": "Slakoth",
+    "name": "Slakoth",
+    "move": "corda",
+    "description": "It spends its entire day lying around and doing nothing. It only moves once every 10 minutes."
+  },
+  {
+    "id": 288,
+    "original_name": "Vigoroth",
+    "name": "Vigoroth",
+    "move": "papel",
+    "description": "It is always restless and can't stay still for a moment. It needs to keep moving to avoid stress."
+  },
+  {
+    "id": 289,
+    "original_name": "Slaking",
+    "name": "Slaking",
+    "move": "agua",
+    "description": "It is the laziest Pokémon. It only moves when it needs to eat. It is said to store energy for a whole day in one breath."
+  },
+  {
+    "id": 290,
+    "original_name": "Nincada",
+    "name": "Nincada",
+    "move": "agua",
+    "description": "It lives underground for many years, absorbing nutrients. It will only come out of the ground to evolve."
+  },
+  {
+    "id": 291,
+    "original_name": "Ninjask",
+    "name": "Ninjask",
+    "move": "corda",
+    "description": "It flies at such high speeds that it is almost invisible. It is said to be the fastest bug Pokémon."
+  },
+  {
+    "id": 292,
+    "original_name": "Shedinja",
+    "name": "Shedinja",
+    "move": "papel",
+    "description": "It is the discarded shell of a Nincada. It is said to steal the soul of anyone who looks into the hole in its back."
+  },
+  {
+    "id": 293,
+    "original_name": "Whismur",
+    "name": "Whismur",
+    "move": "tesoura",
+    "description": "It can make a loud cry that can be heard from a long distance. It is very timid and easily startled."
+  },
+  {
+    "id": 294,
+    "original_name": "Loudred",
+    "name": "Loudred",
+    "move": "pedra",
+    "description": "Its ears act like loudspeakers, amplifying its cries. It can generate powerful sound waves."
+  },
+  {
+    "id": 295,
+    "original_name": "Exploud",
+    "name": "Exploud",
+    "move": "tesoura",
+    "description": "It can generate powerful sound waves that can cause earthquakes. Its roar can be heard from miles away."
+  },
+  {
+    "id": 296,
+    "original_name": "Makuhita",
+    "name": "Makuhita",
+    "move": "tesoura",
+    "description": "It trains by constantly throwing itself against trees. It aims to become a strong Pokémon."
+  },
+  {
+    "id": 297,
+    "original_name": "Hariyama",
+    "name": "Hariyama",
+    "move": "papel",
+    "description": "It is a very strong Pokémon that can stop a train with a single blow. It trains by pushing giant boulders."
+  },
+  {
+    "id": 298,
+    "original_name": "Azurill",
+    "name": "Azurill",
+    "move": "tesoura",
+    "description": "The tail is filled with nutrients. It is said to swing its tail around like a lasso."
+  },
+  {
+    "id": 299,
+    "original_name": "Nosepass",
+    "name": "Nosepass",
+    "move": "agua",
+    "description": "Its nose always points north. It uses its nose to navigate and to attract metal objects."
+  },
+  {
+    "id": 300,
+    "original_name": "Skitty",
+    "name": "Skitty",
+    "move": "papel",
+    "description": "It is attracted to moving objects and will chase them. It can make itself dizzy from chasing its tail."
+  },
+  {
+    "id": 301,
+    "original_name": "Delcatty",
+    "name": "Delcatty",
+    "move": "papel",
+    "description": "It is a very elegant Pokémon that lives at its own pace. It is popular among Trainers for its graceful movements."
+  },
+  {
+    "id": 302,
+    "original_name": "Sableye",
+    "name": "Sableye",
+    "move": "corda",
+    "description": "It lives in caves and eats rocks. It is said to steal souls, so it is feared by many."
+  },
+  {
+    "id": 303,
+    "original_name": "Mawile",
+    "name": "Mawile",
+    "move": "tesoura",
+    "description": "Its large jaw-like horns are actually transformed steel horns. It uses them to trick and capture prey."
+  },
+  {
+    "id": 304,
+    "original_name": "Aron",
+    "name": "Aron",
+    "move": "pedra",
+    "description": "It eats iron ore. It can sometimes eat a whole car. It grows by consuming iron."
+  },
+  {
+    "id": 305,
+    "original_name": "Lairon",
+    "name": "Lairon",
+    "move": "pedra",
+    "description": "It patrols its territory. It is very protective and will attack anyone who enters its territory."
+  },
+  {
+    "id": 306,
+    "original_name": "Aggron",
+    "name": "Aggron",
+    "move": "pedra",
+    "description": "It claims a whole mountain as its territory. It is said to have the ability to reshape mountains."
+  },
+  {
+    "id": 307,
+    "original_name": "Meditite",
+    "name": "Meditite",
+    "move": "agua",
+    "description": "It meditates for hours. It can levitate in the air to train its mind."
+  },
+  {
+    "id": 308,
+    "original_name": "Medicham",
+    "name": "Medicham",
+    "move": "pedra",
+    "description": "It trains its body and mind through yoga. It can predict its opponent's moves by sensing their aura."
+  },
+  {
+    "id": 309,
+    "original_name": "Electrike",
+    "name": "Electrike",
+    "move": "papel",
+    "description": "It generates electricity by rubbing its fur. It can sometimes cause power outages."
+  },
+  {
+    "id": 310,
+    "original_name": "Manectric",
+    "name": "Manectric",
+    "move": "pedra",
+    "description": "It gathers electricity in its mane to create thunderclouds. It can also fire lightning bolts from its mane."
+  },
+  {
+    "id": 311,
+    "original_name": "Plusle",
+    "name": "Plusle",
+    "move": "papel",
+    "description": "It loves to cheer others on. It creates sparks from its cheeks to show its positive emotions."
+  },
+  {
+    "id": 312,
+    "original_name": "Minun",
+    "name": "Minun",
+    "move": "fogo",
+    "description": "It loves to cheer others on. It creates sparks from its cheeks to show its negative emotions."
+  },
+  {
+    "id": 313,
+    "original_name": "Volbeat",
+    "name": "Volbeat",
+    "move": "fogo",
+    "description": "It uses its tail to draw patterns of light in the night sky. It communicates with Illumise using these patterns."
+  },
+  {
+    "id": 314,
+    "original_name": "Illumise",
+    "name": "Illumise",
+    "move": "papel",
+    "description": "It uses its sweet aroma to attract Volbeat. It dances at night to attract its mates."
+  },
+  {
+    "id": 315,
+    "original_name": "Roselia",
+    "name": "Roselia",
+    "move": "agua",
+    "description": "It scatters fragrant pollen from its hands. It is said that the stronger the aroma, the more toxic it is."
+  },
+  {
+    "id": 316,
+    "original_name": "Gulpin",
+    "name": "Gulpin",
+    "move": "tesoura",
+    "description": "It has a large mouth that can swallow anything. It is always hungry and will eat anything in its path."
+  },
+  {
+    "id": 317,
+    "original_name": "Swalot",
+    "name": "Swalot",
+    "move": "papel",
+    "description": "It can swallow anything whole, even a car. Its stomach acid is very strong and can dissolve anything."
+  },
+  {
+    "id": 318,
+    "original_name": "Carvanha",
+    "name": "Carvanha",
+    "move": "tesoura",
+    "description": "It is a very aggressive Pokémon that will attack anything that enters its territory. Its fangs are very sharp."
+  },
+  {
+    "id": 319,
+    "original_name": "Sharpedo",
+    "name": "Sharpedo",
+    "move": "pedra",
+    "description": "It is known as the \"bully of the sea.\" It can swim at over 75 miles per hour. Its fangs can tear through steel."
+  },
+  {
+    "id": 320,
+    "original_name": "Wailmer",
+    "name": "Wailmer",
+    "move": "pedra",
+    "description": "It loves to play by bouncing around. It can shoot water from its blowhole."
+  },
+  {
+    "id": 321,
+    "original_name": "Wailord",
+    "name": "Wailord",
+    "move": "papel",
+    "description": "It is the largest Pokémon. It can dive to depths of 10,000 feet. It is a gentle giant."
+  },
+  {
+    "id": 322,
+    "original_name": "Numel",
+    "name": "Numel",
+    "move": "pedra",
+    "description": "Its humped back is filled with molten magma. It gets sluggish when it's cold."
+  },
+  {
+    "id": 323,
+    "original_name": "Camerupt",
+    "name": "Camerupt",
+    "move": "pedra",
+    "description": "The volcanoes on its back erupt when it gets angry. It can cause powerful explosions."
+  },
+  {
+    "id": 324,
+    "original_name": "Torkoal",
+    "name": "Torkoal",
+    "move": "pedra",
+    "description": "It burns coal inside its shell to generate energy. It can shoot hot smoke from its nostrils."
+  },
+  {
+    "id": 325,
+    "original_name": "Spoink",
+    "name": "Spoink",
+    "move": "fogo",
+    "description": "It bounces on its tail constantly. If it stops bouncing, its heart will stop beating."
+  },
+  {
+    "id": 326,
+    "original_name": "Grumpig",
+    "name": "Grumpig",
+    "move": "pedra",
+    "description": "It can manipulate its pearls to control its enemies. It performs a strange dance to increase its psychic power."
+  },
+  {
+    "id": 327,
+    "original_name": "Spinda",
+    "name": "Spinda",
+    "move": "tesoura",
+    "description": "Its dizzying movements are unique. No two Spinda have the same spot pattern."
+  },
+  {
+    "id": 328,
+    "original_name": "Trapinch",
+    "name": "Trapinch",
+    "move": "agua",
+    "description": "It lives in deserts. It digs a conical pit to trap its prey. Its jaws are very strong."
+  },
+  {
+    "id": 329,
+    "original_name": "Vibrava",
+    "name": "Vibrava",
+    "move": "tesoura",
+    "description": "It creates ultrasonic waves by flapping its wings. It uses these waves to disorient its prey."
+  },
+  {
+    "id": 330,
+    "original_name": "Flygon",
+    "name": "Flygon",
+    "move": "fogo",
+    "description": "It is known as the \"Spirit of the Desert.\" It creates sandstorms by flapping its wings."
+  },
+  {
+    "id": 331,
+    "original_name": "Cacnea",
+    "name": "Cacnea",
+    "move": "papel",
+    "description": "It lives in deserts. It can survive for a long time without water. It stores water in its body."
+  },
+  {
+    "id": 332,
+    "original_name": "Cacturne",
+    "name": "Cacturne",
+    "move": "pedra",
+    "description": "It is a nocturnal Pokémon that comes alive at night. It can hypnotize its prey with its gaze."
+  },
+  {
+    "id": 333,
+    "original_name": "Swablu",
+    "name": "Swablu",
+    "move": "papel",
+    "description": "Its wings are like fluffy clouds. It cleans dirty things by rubbing them with its wings."
+  },
+  {
+    "id": 334,
+    "original_name": "Altaria",
+    "name": "Altaria",
+    "move": "pedra",
+    "description": "It sings in a beautiful soprano voice. It can fly through the sky wrapped in its cloud-like wings."
+  },
+  {
+    "id": 335,
+    "original_name": "Zangoose",
+    "name": "Zangoose",
+    "move": "papel",
+    "description": "It has been hunting Seviper for generations. It is very agile and quick."
+  },
+  {
+    "id": 336,
+    "original_name": "Seviper",
+    "name": "Seviper",
+    "move": "tesoura",
+    "description": "It constantly battles with Zangoose. It injects poison from the sharp blade on its tail."
+  },
+  {
+    "id": 337,
+    "original_name": "Lunatone",
+    "name": "Lunatone",
+    "move": "corda",
+    "description": "It is said to be born from a meteorite. It glows in the dark and is active on nights with a full moon."
+  },
+  {
+    "id": 338,
+    "original_name": "Solrock",
+    "name": "Solrock",
+    "move": "fogo",
+    "description": "It absorbs sunlight to generate energy. It is active during the day and emits intense heat."
+  },
+  {
+    "id": 339,
+    "original_name": "Barboach",
+    "name": "Barboach",
+    "move": "corda",
+    "description": "It lives in muddy rivers. It can detect danger with its whiskers."
+  },
+  {
+    "id": 340,
+    "original_name": "Whiscash",
+    "name": "Whiscash",
+    "move": "papel",
+    "description": "It is said to cause earthquakes. It uses its long whiskers to detect vibrations in the ground."
+  },
+  {
+    "id": 341,
+    "original_name": "Corphish",
+    "name": "Corphish",
+    "move": "pedra",
+    "description": "It is a very aggressive Pokémon that lives in freshwater. It uses its large pincers to crush anything."
+  },
+  {
+    "id": 342,
+    "original_name": "Crawdaunt",
+    "name": "Crawdaunt",
+    "move": "fogo",
+    "description": "It is a vicious Pokémon that is known for its strong pincers. It can even crush steel."
+  },
+  {
+    "id": 343,
+    "original_name": "Baltoy",
+    "name": "Baltoy",
+    "move": "tesoura",
+    "description": "It is an ancient Pokémon that moves by spinning. It is said to have lived over 20,000 years ago."
+  },
+  {
+    "id": 344,
+    "original_name": "Claydol",
+    "name": "Claydol",
+    "move": "pedra",
+    "description": "It is an ancient Pokémon that was created by ancient people. It can fire beams from its arms."
+  },
+  {
+    "id": 345,
+    "original_name": "Lileep",
+    "name": "Lileep",
+    "move": "corda",
+    "description": "It is an ancient Pokémon that lived in the sea. It uses its tentacles to catch prey."
+  },
+  {
+    "id": 346,
+    "original_name": "Cradily",
+    "name": "Cradily",
+    "move": "papel",
+    "description": "It lived in the seas of ancient times. It can extend its neck to catch prey from afar."
+  },
+  {
+    "id": 347,
+    "original_name": "Anorith",
+    "name": "Anorith",
+    "move": "corda",
+    "description": "It is an ancient Pokémon that lived in the sea. It uses its claws to attack its prey."
+  },
+  {
+    "id": 348,
+    "original_name": "Armaldo",
+    "name": "Armaldo",
+    "move": "agua",
+    "description": "It is an ancient Pokémon that lived on land. Its claws can tear through steel. It is said to be the ancestor of bug Pokémon."
+  },
+  {
+    "id": 349,
+    "original_name": "Feebas",
+    "name": "Feebas",
+    "move": "tesoura",
+    "description": "It is a very plain-looking Pokémon that lives in muddy waters. It is said to be the ugliest Pokémon."
+  },
+  {
+    "id": 350,
+    "original_name": "Milotic",
+    "name": "Milotic",
+    "move": "papel",
+    "description": "It is said to be the most beautiful Pokémon. It has the power to calm anger and resolve conflicts."
+  },
+  {
+    "id": 351,
+    "original_name": "Castform",
+    "name": "Castform",
+    "move": "tesoura",
+    "description": "Its form changes depending on the weather. It is said to be a weather Pokémon."
+  },
+  {
+    "id": 352,
+    "original_name": "Kecleon",
+    "name": "Kecleon",
+    "move": "corda",
+    "description": "It can change its body color to blend in with its surroundings. It has a long, sticky tongue."
+  },
+  {
+    "id": 353,
+    "original_name": "Shuppet",
+    "name": "Shuppet",
+    "move": "tesoura",
+    "description": "It lives on people's resentment. It becomes stronger by feeding on negative emotions."
+  },
+  {
+    "id": 354,
+    "original_name": "Banette",
+    "name": "Banette",
+    "move": "corda",
+    "description": "It was once a doll that was discarded. It is said to curse its Trainer out of vengeance."
+  },
+  {
+    "id": 355,
+    "original_name": "Duskull",
+    "name": "Duskull",
+    "move": "agua",
+    "description": "It can pass through walls. It loves to scare people and steal their emotions."
+  },
+  {
+    "id": 356,
+    "original_name": "Dusclops",
+    "name": "Dusclops",
+    "move": "pedra",
+    "description": "Its body is hollow. It can absorb anything into its body, but nothing ever comes out."
+  },
+  {
+    "id": 357,
+    "original_name": "Tropius",
+    "name": "Tropius",
+    "move": "papel",
+    "description": "It has grown delicious fruit on its neck. It can fly by flapping its large leaves."
+  },
+  {
+    "id": 358,
+    "original_name": "Chimecho",
+    "name": "Chimecho",
+    "move": "tesoura",
+    "description": "It uses its suction cup to attach itself to things. It creates various cries by shaking its tail."
+  },
+  {
+    "id": 359,
+    "original_name": "Absol",
+    "name": "Absol",
+    "move": "fogo",
+    "description": "It senses disasters by sensing minute shifts in the air. It appears before disasters strike."
+  },
+  {
+    "id": 360,
+    "original_name": "Wynaut",
+    "name": "Wynaut",
+    "move": "papel",
+    "description": "It communicates with its tail. It will cry loudly if it is attacked."
+  },
+  {
+    "id": 361,
+    "original_name": "Snorunt",
+    "name": "Snorunt",
+    "move": "agua",
+    "description": "It lives in snowy regions. It is said that homes visited by Snorunt will be blessed with good fortune."
+  },
+  {
+    "id": 362,
+    "original_name": "Glalie",
+    "name": "Glalie",
+    "move": "agua",
+    "description": "It can freeze moisture in the air to create a spherical ice shield. It is said to have a very cold body."
+  },
+  {
+    "id": 363,
+    "original_name": "Spheal",
+    "name": "Spheal",
+    "move": "corda",
+    "description": "It rolls around on ice. It can swim at high speeds in icy waters."
+  },
+  {
+    "id": 364,
+    "original_name": "Sealeo",
+    "name": "Sealeo",
+    "move": "corda",
+    "description": "It can balance a ball on its nose. It is very playful and loves to play with ice balls."
+  },
+  {
+    "id": 365,
+    "original_name": "Walrein",
+    "name": "Walrein",
+    "move": "papel",
+    "description": "It can break ice with its powerful tusks. It is a very strong Pokémon that can withstand harsh blizzards."
+  },
+  {
+    "id": 366,
+    "original_name": "Clamperl",
+    "name": "Clamperl",
+    "move": "corda",
+    "description": "It lives in the deep sea. It collects pearls to grow its shell. It is said to have a beautiful pearl inside."
+  },
+  {
+    "id": 367,
+    "original_name": "Huntail",
+    "name": "Huntail",
+    "move": "tesoura",
+    "description": "It lives in the deep sea. It uses its luminous tail to lure prey. It is very aggressive."
+  },
+  {
+    "id": 368,
+    "original_name": "Gorebyss",
+    "name": "Gorebyss",
+    "move": "fogo",
+    "description": "It lives in the deep sea. It sucks the body fluids of its prey. Its scales are very beautiful."
+  },
+  {
+    "id": 369,
+    "original_name": "Relicanth",
+    "name": "Relicanth",
+    "move": "tesoura",
+    "description": "It is an ancient Pokémon that has lived for 100 million years. It is said to be unchanged since prehistoric times."
+  },
+  {
+    "id": 370,
+    "original_name": "Luvdisc",
+    "name": "Luvdisc",
+    "move": "papel",
+    "description": "It swims in warm seas. It is said that a couple who sees a Luvdisc will be blessed with eternal love."
+  },
+  {
+    "id": 371,
+    "original_name": "Bagon",
+    "name": "Bagon",
+    "move": "tesoura",
+    "description": "It dreams of flying. It constantly headbutts rocks in an effort to make itself fly."
+  },
+  {
+    "id": 372,
+    "original_name": "Shelgon",
+    "name": "Shelgon",
+    "move": "corda",
+    "description": "It wraps its body in a hard shell. It is enduring the time until it can fly."
+  },
+  {
+    "id": 373,
+    "original_name": "Salamence",
+    "name": "Salamence",
+    "move": "pedra",
+    "description": "It is finally able to fly. It is said to have gained wings from its strong desire to fly."
+  },
+  {
+    "id": 374,
+    "original_name": "Beldum",
+    "name": "Beldum",
+    "move": "fogo",
+    "description": "Its body is made of magnetic cells. It communicates with others by sending magnetic pulses."
+  },
+  {
+    "id": 375,
+    "original_name": "Metang",
+    "name": "Metang",
+    "move": "tesoura",
+    "description": "It has four brains and can process information at an incredible speed. It can fly at high speeds."
+  },
+  {
+    "id": 376,
+    "original_name": "Metagross",
+    "name": "Metagross",
+    "move": "fogo",
+    "description": "It has four brains, which allow it to think with the speed of a supercomputer. It is a very intelligent Pokémon."
+  },
+  {
+    "id": 377,
+    "original_name": "Regirock",
+    "name": "Regirock",
+    "move": "corda",
+    "description": "It is made of rocks from all over the world. It can rebuild its body by adding new rocks."
+  },
+  {
+    "id": 378,
+    "original_name": "Regice",
+    "name": "Regice",
+    "move": "tesoura",
+    "description": "Its body is made of ice that is -328 degrees Fahrenheit. It can survive even in volcanic eruptions."
+  },
+  {
+    "id": 379,
+    "original_name": "Registeel",
+    "name": "Registeel",
+    "move": "papel",
+    "description": "Its body is harder than any known metal. It is said to have lived for thousands of years."
+  },
+  {
+    "id": 380,
+    "original_name": "Latias",
+    "name": "Latias",
+    "move": "fogo",
+    "description": "It can make itself invisible by refracting light. It can also communicate telepathically."
+  },
+  {
+    "id": 381,
+    "original_name": "Latios",
+    "name": "Latios",
+    "move": "papel",
+    "description": "It can fly faster than a jet plane. It can also communicate telepathically and understand human speech."
+  },
+  {
+    "id": 382,
+    "original_name": "Kyogre",
+    "name": "Kyogre",
+    "move": "papel",
+    "description": "It is said to have expanded the seas. It can create heavy rainfall and tsunamis."
+  },
+  {
+    "id": 383,
+    "original_name": "Groudon",
+    "name": "Groudon",
+    "move": "corda",
+    "description": "It is said to have expanded the land. It can evaporate water and cause volcanic eruptions."
+  },
+  {
+    "id": 384,
+    "original_name": "Rayquaza",
+    "name": "Rayquaza",
+    "move": "papel",
+    "description": "It lives in the ozone layer. It descends to the land to stop the clashes between Kyogre and Groudon."
+  },
+  {
+    "id": 385,
+    "original_name": "Jirachi",
+    "name": "Jirachi",
+    "move": "corda",
+    "description": "It grants wishes to those who awaken it. It sleeps for a thousand years and awakens for seven days."
+  },
+  {
+    "id": 386,
+    "original_name": "Deoxys",
+    "name": "Deoxys",
+    "move": "papel",
+    "description": "It is a Pokémon that came from outer space. Its body is composed of a virus from space."
+  }
+]
