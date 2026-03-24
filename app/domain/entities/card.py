@@ -15,5 +15,5 @@ class Card:
         return self.pokemon.name
 
     @property
-    def element(self) -> str:
+    def move(self) -> str:
         return self.pokemon.move
