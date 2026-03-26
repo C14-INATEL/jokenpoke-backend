@@ -2,19 +2,20 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
 from app.infrastructure.db.session import get_db
-from app.infrastructure.repositories.user_repository import UserRepository
-from app.infrastructure.security.password import hash_password
-from app.infrastructure.security.jwt_handler import create_token
+from app.application.use_cases.register_user import RegisterUserUseCase
+from app.schemas.auth_schema import RegisterUserRequest, RegisterUserResponse
 
 router = APIRouter(prefix="/auth", tags=["Auth"])
 
-
-@router.post("/register")
-def register(username: str, password: str, db: Session = Depends(get_db)):
-    repo = UserRepository(db)
-
-    user = repo.create(username, hash_password(password))
-
-    token = create_token(user.id)
-
-    return {"access_token": token}
+@router.post("/register", response_model=RegisterUserResponse)
+def register(payload: RegisterUserRequest, db: Session = Depends(get_db)):
+    # O Router delega a responsabilidade para o Use Case
+    use_case = RegisterUserUseCase(db)
+    
+    # Executa a regra de negócio e recebe o token
+    token = use_case.execute(username=payload.username, password=payload.password)
+    
+    return {
+        "message": "Usuário registrado com sucesso", 
+        "access_token": token
+    }

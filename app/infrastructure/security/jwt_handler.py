@@ -8,4 +8,4 @@ def create_token(user_id: int):
         "sub": str(user_id),
         "exp": datetime.utcnow() + timedelta(hours=2)
     }
-    return jwt.encode(payload, settings.secret_key, algorithm=settings.algorithm)
+    return jwt.encode(payload, settings.jwt_secret_key, algorithm=settings.jwt_algorithm)

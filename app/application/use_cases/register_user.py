@@ -1,19 +1,33 @@
-from app.domain.entities.user import User
+from sqlalchemy.orm import Session
+from sqlalchemy.exc import IntegrityError
 from app.domain.factories.card_factory import CardFactory
-
+from app.infrastructure.repositories.user_repository import UserRepository
+from app.infrastructure.repositories.card_repository import CardRepository
+from app.infrastructure.security.password import hash_password
+from app.infrastructure.security.jwt_handler import create_token
+from app.shared.exceptions.domain_exception import DomainException 
 
 class RegisterUserUseCase:
+    def __init__(self, db: Session):
+        self.db = db
+        self.user_repo = UserRepository(db)
+        self.card_repo = CardRepository(db)
+        self.card_factory = CardFactory(db)
 
-    def __init__(self):
-        self.card_factory = CardFactory()
+    def execute(self, username: str, password: str) -> str:
+        try:
+            hashed_password = hash_password(password)
+            user = self.user_repo.create(username, hashed_password)
 
-    def execute(self, user_id: int, username: str) -> tuple[User, list]:
+            cards = self.card_factory.create_random_cards(
+                owner_id=user.id,
+                quantity=6
+            )
 
-        user = User(id=user_id, username=username)
+            self.card_repo.create_many(cards)
 
-        cards = self.card_factory.create_random_cards(
-            owner_id=user_id,
-            quantity=6
-        )
-
-        return user, cards
+            token = create_token(user.id)
+            return token
+        except IntegrityError:
+            self.db.rollback()
+            raise DomainException("Usuário já existe.")

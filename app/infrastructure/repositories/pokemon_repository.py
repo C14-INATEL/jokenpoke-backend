@@ -1,12 +1,14 @@
 import json
 from pathlib import Path
+from sqlalchemy.orm import Session
 
 from app.domain.entities.pokemon import Pokemon
 
 
 class PokemonRepository:
 
-    def __init__(self):
+    def __init__(self, db: Session):
+        self.db = db
         self.file_path = Path("app/infrastructure/data/pokemons.json")
         self._cache = None
 

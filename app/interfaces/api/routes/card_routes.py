@@ -1,15 +1,17 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
+from sqlalchemy.orm import Session
 
 from app.infrastructure.repositories.pokemon_repository import PokemonRepository
 from app.schemas.pokemon_schema import PokemonResponse
-
+from app.infrastructure.db.session import get_db
 router = APIRouter(prefix="/pokemons", tags=["Pokemons"])
-
-repository = PokemonRepository()
 
 
 @router.get("/", response_model=list[PokemonResponse])
-def get_all_pokemons():
+def get_all_pokemons(db: Session = Depends(get_db)): # <-- 1. Injete a sessão do banco aqui
+    
+    # 2. Instancie o repositório DENTRO da rota, repassando o db
+    repository = PokemonRepository(db)
 
     pokemons = repository.get_all()
 
