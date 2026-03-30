@@ -1,4 +1,4 @@
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, selectinload
 from app.infrastructure.db.models.user_model import UserModel
 from app.domain.entities.user import User
 
@@ -22,3 +22,14 @@ class UserRepository:
         self.db.refresh(user)
 
         return User(id=user.id, username=user.username)
+    
+    def get_all_with_relations(self) -> list[UserModel]:
+        users = (
+            self.db.query(UserModel)
+            .options(
+                selectinload(UserModel.cards),
+                selectinload(UserModel.deck)
+            )
+            .all()
+        )
+        return users
