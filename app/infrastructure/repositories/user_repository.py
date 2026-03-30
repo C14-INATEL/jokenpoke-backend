@@ -33,3 +33,15 @@ class UserRepository:
             .all()
         )
         return users
+    
+    def get_by_id_with_relations(self, user_id: int) -> UserModel | None:
+        user = (
+            self.db.query(UserModel)
+            .filter(UserModel.id == user_id)
+            .options(
+                selectinload(UserModel.cards),
+                selectinload(UserModel.deck)
+            )
+            .first()
+        )
+        return user
