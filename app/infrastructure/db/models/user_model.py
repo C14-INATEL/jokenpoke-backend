@@ -11,5 +11,5 @@ class UserModel(Base):
     password = Column(String, nullable=False)
 
     # Relações virtuais para puxar os dados anexados
-    cards = relationship("CardModel", back_populates="owner")
-    deck = relationship("DeckModel", back_populates="user")
+    cards = relationship("CardModel", back_populates="owner", cascade="all, delete-orphan")
+    deck = relationship("DeckModel", back_populates="user", cascade="all, delete-orphan")
