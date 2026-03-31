@@ -45,3 +45,9 @@ class UserRepository:
             .first()
         )
         return user
+    
+    def delete(self, user_id: int) -> None:
+        user = self.db.query(UserModel).filter_by(id=user_id).first()
+        if user:
+            self.db.delete(user)
+            self.db.commit()
