@@ -26,3 +26,16 @@ def test_deck_get_card_primeira_posicao(valid_cards_list):
     
     assert primeira_carta_buscada == valid_cards_list[0]
     assert primeira_carta_buscada.pokemon.id == 6
+
+def test_deck_get_random_card_pertence_ao_deck(valid_cards_list):
+    meu_deck = Deck(cards=valid_cards_list)
+    
+    carta_aleatoria = meu_deck.get_random_card()
+    
+    assert carta_aleatoria in meu_deck.cards
+
+def test_deck_get_card_fora_do_limite(valid_cards_list):
+    meu_deck = Deck(cards=valid_cards_list)
+    
+    with pytest.raises(IndexError):
+        meu_deck.get_card(5)
