@@ -27,3 +27,26 @@ def test_user_has_deck_verdadeiro():
     user = User(id=1, username="christian", deck=deck)
 
     assert user.has_deck() == True
+
+
+def test_user_propriedades_basicas():
+
+    user = User(id=1, username="maria")
+
+    assert user.id == 1
+    assert user.username == "maria"
+    assert user.deck is None
+    assert user.has_deck() is False
+
+
+def test_user_adicionar_deck_posteriormente(valid_cards_list):
+    
+    user = User(id=2, username="joao")
+    
+    assert user.has_deck() is False
+
+    deck = Deck(valid_cards_list)
+    user.deck = deck
+    
+    assert user.deck == deck
+    assert user.has_deck() is True
