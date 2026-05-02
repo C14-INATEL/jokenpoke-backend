@@ -46,6 +46,9 @@ class UserRepository:
         )
         return user
     
+    def get_by_username(self, username: str) -> UserModel | None:
+        return self.db.query(UserModel).filter_by(username=username).first()
+
     def update(self, user_id: int, username: str) -> User:
         user = self.db.query(UserModel).filter_by(id=user_id).first()
         if user:
