@@ -46,6 +46,15 @@ class UserRepository:
         )
         return user
     
+    def update(self, user_id: int, username: str) -> User:
+        user = self.db.query(UserModel).filter_by(id=user_id).first()
+        if user:
+            user.username = username
+            self.db.commit()
+            self.db.refresh(user)
+            return User(id=user.id, username=user.username)
+        return None
+
     def delete(self, user_id: int) -> None:
         user = self.db.query(UserModel).filter_by(id=user_id).first()
         if user:
