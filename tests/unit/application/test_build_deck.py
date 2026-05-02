@@ -4,6 +4,7 @@ from sqlalchemy.orm import Session
 
 from app.application.use_cases.build_deck import BuildDeckUseCase
 from app.shared.exceptions.domain_exception import DomainException
+from app.shared.exceptions.not_found_exception import NotFoundException
 
 class TestBuildDeckUseCase:
 
@@ -57,4 +58,20 @@ class TestBuildDeckUseCase:
         with pytest.raises(DomainException, match="Você não possui o pokémon de ID 6."):
             use_case.execute(user_id=2, pokemon_ids=[6, 7, 54])
             
+        use_case.deck_repo.save_deck.assert_not_called()
+
+    def test_build_deck_user_not_found_mock(self):
+        db_mock = MagicMock(spec=Session)
+        use_case = BuildDeckUseCase(db=db_mock)
+        
+        use_case.user_repo = MagicMock()
+        use_case.deck_repo = MagicMock()
+
+        use_case.user_repo.get_by_id_with_relations.return_value = None
+
+        with pytest.raises(NotFoundException, match="Usuário com ID 999 não encontrado."):
+            use_case.execute(user_id=999, pokemon_ids=[1, 4, 7])
+
+        use_case.user_repo.get_by_id_with_relations.assert_called_once_with(999)
+        use_case.deck_repo.clear_user_deck.assert_not_called()
         use_case.deck_repo.save_deck.assert_not_called()
