@@ -84,3 +84,51 @@ class TestGetUserByIdUseCase:
         assert resultado["deck"][0]["description"] == "Pokémon planta"
 
         use_case.user_repo.get_by_id_with_relations.assert_called_once_with(10)
+        
+    def test_get_user_by_id_not_found_mock(self):
+        db_mock = MagicMock(spec=Session)
+        use_case = GetUserByIdUseCase(db=db_mock)
+        use_case.user_repo = MagicMock()
+        
+        # Mock: Repositório retornando None para um ID inexistente
+        use_case.user_repo.get_by_id_with_relations.return_value = None
+
+        # Act & Assert: Garante que a exceção NotFoundException é lançada
+        with pytest.raises(NotFoundException):
+            use_case.execute(user_id=999)
+
+class TestGetAllUsersUseCase:
+
+    def test_get_all_users_mock(self):
+        db_mock = MagicMock(spec=Session)
+        use_case = GetAllUsersUseCase(db=db_mock)
+        use_case.user_repo = MagicMock()
+
+        u1 = MagicMock()
+        u1.id = 1
+        u1.username = "Red"
+        u1.cards = []
+        u1.deck = []
+
+        u2 = MagicMock()
+        u2.id = 2
+        u2.username = "Blue"
+        u2.cards = []
+        u2.deck = []
+
+        use_case.user_repo.get_all_with_relations.return_value = [u1, u2]
+
+        resultado = use_case.execute()
+
+        assert isinstance(resultado, list)
+        assert len(resultado) == 2
+        
+        # Verifica formatação do primeiro usuário
+        assert resultado[0]["id"] == 1
+        assert resultado[0]["username"] == "Red"
+        
+        # Verifica formatação do segundo usuário
+        assert resultado[1]["id"] == 2
+        assert resultado[1]["username"] == "Blue"
+
+        use_case.user_repo.get_all_with_relations.assert_called_once()
