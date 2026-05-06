@@ -1,12 +1,4 @@
-MOVE_WEAKNESS = {
-    "pedra": ["papel", "fogo", "corda"],
-    "papel": ["tesoura", "agua", "fogo"],
-    "tesoura": ["pedra", "agua", "fogo"],
-    "corda": ["tesoura", "agua", "fogo", "papel"],
-    "agua": ["pedra"],
-    "fogo": ["agua"],
-}
-
+from app.domain.rules.element_advantage import MOVE_WEAKNESS
 
 def resolve_move(move1: str, move2: str) -> int:
     if move2 in MOVE_WEAKNESS.get(move1, []):
