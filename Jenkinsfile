@@ -20,10 +20,11 @@ pipeline {
             steps {
                 echo 'Instalando dependências com Poetry...'
                 sh '''
-                    python3 -m pip install --upgrade pip --quiet
-                    python3 -m pip install poetry --quiet
-                    poetry config virtualenvs.in-project true
-                    poetry install --no-interaction --no-ansi
+                    python3 -m venv .venv
+                    .venv/bin/pip install --upgrade pip --quiet
+                    .venv/bin/pip install poetry --quiet
+                    .venv/bin/poetry config virtualenvs.in-project true
+                    .venv/bin/poetry install --no-interaction --no-ansi
                 '''
             }
         }
@@ -39,7 +40,7 @@ pipeline {
                 echo 'Executando testes com pytest...'
                 sh '''
                     mkdir -p reports
-                    poetry run pytest tests/ \
+                    .venv/bin/poetry run pytest tests/ \
                         --tb=short \
                         --junitxml=reports/test-results.xml \
                         --cov=app \
