@@ -17,8 +17,14 @@ async def not_found_exception_handler(request: Request, exc: NotFoundException):
         content={"detail": exc.message},
     )
 
+async def unauthorized_exception_handler(request: Request, exc: UnauthorizedException):
+    return JSONResponse(
+        status_code=401,
+        content={"detail": exc.message},
+    )
+
 # Função auxiliar para registrar todos de uma vez
 def register_exception_handlers(app: FastAPI):
     app.add_exception_handler(DomainException, domain_exception_handler)
     app.add_exception_handler(NotFoundException, not_found_exception_handler)
-    #app.add_exception_handler(UnauthorizedException, unauthorized_exception_handler)
+    app.add_exception_handler(UnauthorizedException, unauthorized_exception_handler)
