@@ -1,17 +1,9 @@
 pipeline {
-    agent {
-        docker {
-            image 'python:3.12-slim'
-            args '-v /var/run/docker.sock:/var/run/docker.sock -u root'
-        }
-    }
+    agent any
 
     environment {
-        PYTHON_VERSION    = '3.12'
-        IMAGE_NAME        = 'jokenpoke-backend'
-        IMAGE_TAG         = "${env.BRANCH_NAME}-${env.BUILD_NUMBER}"
-        DOCKER_REGISTRY   = credentials('docker-registry-url')
-        DOCKER_CREDENTIALS = 'docker-hub-credentials'
+        IMAGE_NAME         = 'jokenpoke-backend'
+        IMAGE_TAG          = "${env.BRANCH_NAME ?: 'local'}-${env.BUILD_NUMBER}"
         COVERAGE_THRESHOLD = '80'
     }
 
@@ -23,20 +15,20 @@ pipeline {
 
     stages {
 
-        // BUILD
+        // 1. BUILD
         stage('Build') {
             steps {
                 echo 'Instalando dependências com Poetry...'
                 sh '''
-                    pip install --upgrade pip
-                    pip install poetry
+                    python3 -m pip install --upgrade pip --quiet
+                    python3 -m pip install poetry --quiet
                     poetry config virtualenvs.in-project true
                     poetry install --no-interaction --no-ansi
                 '''
             }
         }
 
-        // TESTES UNITÁRIOS + COBERTURA
+        // 2. TEST
         stage('Test') {
             environment {
                 DATABASE_URL = 'sqlite:///./test.db'
@@ -46,6 +38,7 @@ pipeline {
             steps {
                 echo 'Executando testes com pytest...'
                 sh '''
+                    mkdir -p reports
                     poetry run pytest tests/ \
                         --tb=short \
                         --junitxml=reports/test-results.xml \
@@ -58,7 +51,7 @@ pipeline {
             }
             post {
                 always {
-                    junit 'reports/test-results.xml'
+                    junit allowEmptyResults: true, testResults: 'reports/test-results.xml'
                     publishHTML(target: [
                         reportDir  : 'reports/coverage-html',
                         reportFiles: 'index.html',
@@ -73,20 +66,17 @@ pipeline {
     post {
         always {
             echo 'Limpando artefatos temporários...'
-            sh '''
-                docker image prune -f || true
-                rm -rf .venv test.db || true
-            '''
+            sh 'rm -rf .venv test.db || true'
             cleanWs()
         }
         success {
-            echo "Pipeline concluído com sucesso! Branch: ${env.BRANCH_NAME} | Build: #${env.BUILD_NUMBER}"
+            echo "Pipeline concluído com sucesso! Branch: ${env.BRANCH_NAME ?: 'local'} | Build: #${env.BUILD_NUMBER}"
         }
         failure {
-            echo "Pipeline falhou! Verifique os logs. Branch: ${env.BRANCH_NAME} | Build: #${env.BUILD_NUMBER}"
+            echo "Pipeline falhou! Branch: ${env.BRANCH_NAME ?: 'local'} | Build: #${env.BUILD_NUMBER}"
         }
         unstable {
-            echo "Pipeline instável (testes com falhas não-críticas)."
+            echo 'Pipeline instável (testes com falhas não-críticas).'
         }
     }
 }
