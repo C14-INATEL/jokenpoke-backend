@@ -5,6 +5,9 @@ pipeline {
         IMAGE_NAME         = 'jokenpoke-backend'
         IMAGE_TAG          = "${env.BRANCH_NAME ?: 'local'}-${env.BUILD_NUMBER}"
         COVERAGE_THRESHOLD = '80'
+        DOCKER_CREDENTIALS = 'docker-hub-credentials'
+        DOCKER_REGISTRY    = credentials('docker-registry-url')
+        SUPABASE_DATABASE_URL = credentials('supabase-database-url')
     }
 
     options {
