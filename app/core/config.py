@@ -1,4 +1,4 @@
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
@@ -13,11 +13,7 @@ class Settings(BaseSettings):
     api_port: int
 
     # DB
-    db_host: str
-    db_port: int
-    db_name: str
-    db_user: str
-    db_password: str
+    database_url: str
 
     # JWT
     jwt_secret_key: str
@@ -34,12 +30,6 @@ class Settings(BaseSettings):
     ranking_loss_points: int
     ranking_draw_points: int
 
-    @property
-    def database_url(self) -> str:
-        return (
-            f"postgresql://{self.db_user}:{self.db_password}"
-            f"@{self.db_host}:{self.db_port}/{self.db_name}"
-        )
-
+    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
 
 settings = Settings()
