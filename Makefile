@@ -91,6 +91,18 @@ test-unit:
 test-integration:
 	$(POETRY) $(PYTEST) tests/integration -v
 
+watch-test:
+	$(POETRY) ptw \
+		--ignore .venv \
+		--ignore htmlcov \
+		--ignore .pytest_cache
+
+watch-unit:
+	$(POETRY) ptw tests/unit
+
+watch-integration:
+	$(POETRY) ptw tests/integration
+
 test-cov:
 	$(POETRY) $(PYTEST) tests/ \
 		--cov=app \
@@ -118,9 +130,20 @@ lint:
 lint-fix:
 	$(POETRY) ruff check . --fix
 
+pre-commit:
+	$(MAKE) format
+	$(MAKE) lint-fix
+	$(MAKE) test
+
 check:
 	$(MAKE) lint
 	$(MAKE) test
+
+check-all:
+	$(MAKE) env-check
+	$(MAKE) format
+	$(MAKE) lint
+	$(MAKE) test-cov
 
 ci:
 	$(MAKE) lint
@@ -163,8 +186,15 @@ env-check:
 freeze:
 	poetry lock
 
+stats:
+	find app tests -name "*.py" | xargs wc -l
+
 tree:
 	tree -I "__pycache__|.pytest_cache|.ruff_cache|.venv"
+
+# =========================================================
+# CLEANERS
+# =========================================================
 
 clean-cache:
 	find . -type d -name "__pycache__" -exec rm -rf {} +
@@ -181,3 +211,6 @@ reset:
 	$(MAKE) clean
 	$(MAKE) clean-cache
 	$(MAKE) clean-venv
+
+docker-prune:
+	docker system prune -af
