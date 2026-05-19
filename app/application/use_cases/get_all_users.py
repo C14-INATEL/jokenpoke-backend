@@ -1,7 +1,8 @@
 from sqlalchemy.orm import Session
+
 from app.infrastructure.repositories.pokemon_repository import PokemonRepository
 from app.infrastructure.repositories.user_repository import UserRepository
-from app.infrastructure.db.models.user_model import UserModel
+
 
 class GetAllUsersUseCase:
     def __init__(self, db: Session):
@@ -19,30 +20,38 @@ class GetAllUsersUseCase:
             for card in user.cards:
                 poke = self.pokemon_repo.get_by_id(card.pokemon_id)
                 if poke:
-                    enriched_collection.append({
-                        "id": poke.id,
-                        "name": poke.name,
-                        "move": poke.move,
-                        "description": poke.description 
-                    })
-
-            for deck_item in user.deck:
-                card_obj = next((c for c in user.cards if c.id == deck_item.card_id), None)
-                if card_obj:
-                    poke = self.pokemon_repo.get_by_id(card_obj.pokemon_id)
-                    if poke:
-                        enriched_deck.append({
+                    enriched_collection.append(
+                        {
                             "id": poke.id,
                             "name": poke.name,
                             "move": poke.move,
-                            "description": poke.description
-                        })
+                            "description": poke.description,
+                        }
+                    )
 
-            result.append({
-                "id": user.id,
-                "username": user.username,
-                "collection": enriched_collection,
-                "deck": enriched_deck
-            })
+            for deck_item in user.deck:
+                card_obj = next(
+                    (c for c in user.cards if c.id == deck_item.card_id), None
+                )
+                if card_obj:
+                    poke = self.pokemon_repo.get_by_id(card_obj.pokemon_id)
+                    if poke:
+                        enriched_deck.append(
+                            {
+                                "id": poke.id,
+                                "name": poke.name,
+                                "move": poke.move,
+                                "description": poke.description,
+                            }
+                        )
+
+            result.append(
+                {
+                    "id": user.id,
+                    "username": user.username,
+                    "collection": enriched_collection,
+                    "deck": enriched_deck,
+                }
+            )
 
         return result

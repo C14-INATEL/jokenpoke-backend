@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
-from app.infrastructure.db.session import get_db
-from app.infrastructure.repositories.user_repository import UserRepository
-from app.infrastructure.repositories.deck_repository import DeckRepository
 from app.application.use_cases.start_battle import StartBattleUseCase
+from app.infrastructure.db.session import get_db
+from app.infrastructure.repositories.deck_repository import DeckRepository
+from app.infrastructure.repositories.user_repository import UserRepository
 
 router = APIRouter(prefix="/battle", tags=["Battle"])
 

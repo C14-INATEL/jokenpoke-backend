@@ -1,8 +1,7 @@
-import pytest
 from app.application.use_cases.update_ranking import Ranking
 
-class TestRanking:
 
+class TestRanking:
     def test_vitoria_sem_subir_de_rank(self):
         resultado = Ranking.calcular_novo_rank(
             rank_atual="Beginner", pontos_atuais=50, resultado_partida="vitoria"

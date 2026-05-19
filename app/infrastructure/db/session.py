@@ -4,17 +4,14 @@ from sqlalchemy.orm import sessionmaker
 from app.core.config import settings
 
 engine = create_engine(
-    settings.database_url, 
-    connect_args={"sslmode": "require"}, 
+    settings.database_url,
+    connect_args={"sslmode": "require"},
     pool_pre_ping=True,
-    echo=True
+    echo=True,
 )
 
-SessionLocal = sessionmaker(
-    autocommit=False,
-    autoflush=False,
-    bind=engine
-)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
 
 def get_db():
     db = SessionLocal()

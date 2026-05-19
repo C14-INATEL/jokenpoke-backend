@@ -1,7 +1,8 @@
 from sqlalchemy.orm import Session
+
 from app.infrastructure.repositories.user_repository import UserRepository
-from app.infrastructure.security.password import verify_password
 from app.infrastructure.security.jwt_handler import create_token
+from app.infrastructure.security.password import verify_password
 from app.shared.exceptions.unauthorized_exception import UnauthorizedException
 
 

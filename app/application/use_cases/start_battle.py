@@ -1,10 +1,9 @@
-from app.domain.entities.user import User
 from app.domain.entities.battle import BattleResult, RoundResult
+from app.domain.entities.user import User
 from app.domain.rules.battle_rules import resolve_move
 
 
 class StartBattleUseCase:
-
     def execute(
         self,
         attacker: User,
@@ -20,17 +19,13 @@ class StartBattleUseCase:
         rounds = []
 
         for i in range(3):
-
             if attacker_wins == 2 or defender_wins == 2:
                 break
 
             attacker_card = attacker.deck.get_card(i)
             defender_card = defender.deck.get_random_card()
 
-            result = resolve_move(
-                attacker_card.move,
-                defender_card.move
-            )
+            result = resolve_move(attacker_card.move, defender_card.move)
 
             if result == 1:
                 attacker_wins += 1
@@ -48,7 +43,7 @@ class StartBattleUseCase:
                     round_number=i + 1,
                     attacker_card=attacker_card.name,
                     defender_card=defender_card.name,
-                    winner=winner
+                    winner=winner,
                 )
             )
 
@@ -59,7 +54,4 @@ class StartBattleUseCase:
         else:
             final_winner = "draw"
 
-        return BattleResult(
-            rounds=rounds,
-            winner=final_winner
-        )
+        return BattleResult(rounds=rounds, winner=final_winner)

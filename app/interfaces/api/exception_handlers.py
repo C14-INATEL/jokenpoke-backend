@@ -5,11 +5,13 @@ from app.shared.exceptions.domain_exception import DomainException
 from app.shared.exceptions.not_found_exception import NotFoundException
 from app.shared.exceptions.unauthorized_exception import UnauthorizedException
 
+
 async def domain_exception_handler(request: Request, exc: DomainException):
     return JSONResponse(
         status_code=400,
         content={"detail": exc.message},
     )
+
 
 async def not_found_exception_handler(request: Request, exc: NotFoundException):
     return JSONResponse(
@@ -17,11 +19,13 @@ async def not_found_exception_handler(request: Request, exc: NotFoundException):
         content={"detail": exc.message},
     )
 
+
 async def unauthorized_exception_handler(request: Request, exc: UnauthorizedException):
     return JSONResponse(
         status_code=401,
         content={"detail": exc.message},
     )
+
 
 # Função auxiliar para registrar todos de uma vez
 def register_exception_handlers(app: FastAPI):

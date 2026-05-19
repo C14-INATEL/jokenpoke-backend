@@ -1,6 +1,7 @@
 from fastapi import FastAPI
-from app.infrastructure.db.session import engine
+
 from app.infrastructure.db.base import Base
+from app.infrastructure.db.session import engine
 from app.interfaces.api.exception_handlers import register_exception_handlers
 from app.interfaces.api.router import router
 

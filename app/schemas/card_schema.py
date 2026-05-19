@@ -1,5 +1,6 @@
 from pydantic import BaseModel, ConfigDict
 
+
 class CardResponse(BaseModel):
     id: int
     pokemon_id: int

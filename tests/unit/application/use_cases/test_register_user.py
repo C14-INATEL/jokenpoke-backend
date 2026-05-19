@@ -1,5 +1,6 @@
+from unittest.mock import MagicMock, call, patch
+
 import pytest
-from unittest.mock import MagicMock, patch, call
 from sqlalchemy.exc import IntegrityError
 
 from app.application.use_cases.register_user import RegisterUserUseCase
@@ -7,7 +8,7 @@ from app.shared.exceptions.domain_exception import DomainException
 
 
 def test_register_user_success_mock():
-    
+
     db_mock = MagicMock()
     use_case = RegisterUserUseCase(db_mock)
 
@@ -16,9 +17,10 @@ def test_register_user_success_mock():
 
     cards_mock = ["card1", "card2", "card3", "card4", "card5", "card6"]
 
-    with patch("app.application.use_cases.register_user.hash_password") as mock_hash, \
-        patch("app.application.use_cases.register_user.create_token") as mock_token:
-
+    with (
+        patch("app.application.use_cases.register_user.hash_password") as mock_hash,
+        patch("app.application.use_cases.register_user.create_token") as mock_token,
+    ):
         use_case.user_repo = MagicMock()
         use_case.card_repo = MagicMock()
         use_case.card_factory = MagicMock()
@@ -39,7 +41,9 @@ def test_register_user_success_mock():
             return user_mock
 
         def cards_side_effect(owner_id, quantity):
-            tracker.card_factory.create_random_cards(owner_id=owner_id, quantity=quantity)
+            tracker.card_factory.create_random_cards(
+                owner_id=owner_id, quantity=quantity
+            )
             return cards_mock
 
         def create_many_side_effect(cards):
@@ -53,7 +57,7 @@ def test_register_user_success_mock():
         def token_side_effect(user_id):
             tracker.create_token(user_id)
             return "fake_jwt_token"
-        
+
         mock_token.side_effect = token_side_effect
 
         result = use_case.execute("maria", "123456")
@@ -65,7 +69,7 @@ def test_register_user_success_mock():
             call.user_repo.create("maria", "hashed_password"),
             call.card_factory.create_random_cards(owner_id=123, quantity=6),
             call.card_repo.create_many(cards_mock),
-            call.create_token(123)
+            call.create_token(123),
         ]
 
         assert tracker.mock_calls == expected_calls
@@ -77,14 +81,11 @@ def test_register_user_duplicate_mock():
     use_case = RegisterUserUseCase(db_mock)
 
     with patch("app.application.use_cases.register_user.hash_password") as mock_hash:
-
         use_case.user_repo = MagicMock()
 
         mock_hash.return_value = "hashed_password"
         use_case.user_repo.create.side_effect = IntegrityError(
-            statement=None,
-            params=None,
-            orig=None
+            statement=None, params=None, orig=None
         )
 
         with pytest.raises(DomainException) as exc:

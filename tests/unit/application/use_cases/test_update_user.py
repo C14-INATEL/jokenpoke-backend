@@ -1,5 +1,5 @@
-import pytest
 from unittest.mock import MagicMock
+
 from sqlalchemy.orm import Session
 
 from app.application.use_cases.update_user import UpdateUserUseCase

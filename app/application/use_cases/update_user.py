@@ -1,4 +1,5 @@
 from sqlalchemy.orm import Session
+
 from app.infrastructure.repositories.user_repository import UserRepository
 from app.shared.exceptions.not_found_exception import NotFoundException
 
