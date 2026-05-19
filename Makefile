@@ -150,6 +150,7 @@ shell:
 
 clean:
 	$(DC) down -v --remove-orphans
+	$(MAKE) clean-cache
 
 # =========================================================
 # UTILITIES
@@ -164,3 +165,19 @@ freeze:
 
 tree:
 	tree -I "__pycache__|.pytest_cache|.ruff_cache|.venv"
+
+clean-cache:
+	find . -type d -name "__pycache__" -exec rm -rf {} +
+	find . -type d -name ".pytest_cache" -exec rm -rf {} +
+	find . -type d -name ".ruff_cache" -exec rm -rf {} +
+	find . -type d -name ".mypy_cache" -exec rm -rf {} +
+	find . -type f -name "*.pyc" -delete
+	rm -rf .coverage htmlcov reports
+
+clean-venv:
+	rm -rf .venv
+
+reset:
+	$(MAKE) clean
+	$(MAKE) clean-cache
+	$(MAKE) clean-venv
