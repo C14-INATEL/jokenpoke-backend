@@ -13,16 +13,14 @@ RUN apt-get update && apt-get install -y \
 
 RUN pip install --no-cache-dir poetry
 
-RUN poetry config virtualenvs.create false
+ENV POETRY_VIRTUALENVS_CREATE=false
 
-# cache de dependências
-COPY pyproject.toml poetry.lock* README.md ./
+COPY pyproject.toml poetry.lock ./
 
-RUN poetry install --no-interaction --no-ansi --no-root
+RUN poetry install --no-interaction --no-ansi
 
-# código da aplicação
 COPY . .
 
 EXPOSE 8000
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
