@@ -23,42 +23,58 @@ POETRY = poetry run
 # HELP
 # =========================================================
 
+# =========================================================
+# HELP
+# =========================================================
+
 help:
 	@echo ""
 	@echo "Available commands:"
 	@echo ""
 	@echo "Development:"
 	@echo "  make install              Install dependencies"
-	@echo "  make local-run            Run API locally"
-	@echo "  make dev                  Run API with Docker"
+	@echo "  make local-run            Run API locally with hot reload"
+	@echo "  make dev                  Run API with Docker Compose"
 	@echo ""
 	@echo "Testing:"
 	@echo "  make test                 Run all tests"
 	@echo "  make test-unit            Run unit tests"
 	@echo "  make test-integration     Run integration tests"
-	@echo "  make test-cov             Run tests with coverage"
-	@echo "  make test-ci              Run CI-style tests"
+	@echo "  make watch-test           Run tests in watch mode"
+	@echo "  make watch-unit           Run unit tests in watch mode"
+	@echo "  make watch-integration    Run integration tests in watch mode"
+	@echo "  make test-cov             Run tests with coverage report"
+	@echo "  make test-ci              Run CI-style tests with reports"
 	@echo ""
 	@echo "Code Quality:"
-	@echo "  make format               Format code"
-	@echo "  make lint                 Run linter"
+	@echo "  make format               Format code with Ruff"
+	@echo "  make lint                 Run Ruff linter"
 	@echo "  make lint-fix             Auto-fix lint issues"
+	@echo "  make pre-commit           Run format + lint-fix + tests"
 	@echo "  make check                Run lint + tests"
-	@echo "  make ci                   Full CI validation"
+	@echo "  make check-all            Run full local validation"
+	@echo "  make ci                   Run CI validation pipeline"
 	@echo ""
 	@echo "Docker:"
 	@echo "  make build                Build containers"
-	@echo "  make up                   Start containers"
+	@echo "  make up                   Start containers in detached mode"
 	@echo "  make down                 Stop containers"
 	@echo "  make restart              Restart containers"
 	@echo "  make logs                 Show API logs"
-	@echo "  make shell                Access API container"
-	@echo "  make clean                Remove containers/volumes"
+	@echo "  make shell                Access API container shell"
+	@echo "  make clean                Remove containers and volumes"
+	@echo "  make docker-prune         Remove unused Docker resources"
 	@echo ""
 	@echo "Utilities:"
 	@echo "  make env-check            Validate .env file"
 	@echo "  make freeze               Update poetry.lock"
+	@echo "  make stats                Show Python code statistics"
 	@echo "  make tree                 Show project structure"
+	@echo ""
+	@echo "Cleanup:"
+	@echo "  make clean-cache          Remove cache and temporary files"
+	@echo "  make clean-venv           Remove virtual environment"
+	@echo "  make reset                Full project reset"
 	@echo ""
 
 # =========================================================
@@ -193,7 +209,7 @@ tree:
 	tree -I "__pycache__|.pytest_cache|.ruff_cache|.venv"
 
 # =========================================================
-# CLEANERS
+# CLEANUP
 # =========================================================
 
 clean-cache:
