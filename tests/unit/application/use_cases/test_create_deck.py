@@ -1,10 +1,11 @@
 # tests/unit/application/test_create_deck.py
 import pytest
+
 from app.application.use_cases.create_deck import CreateDeckUseCase
 from app.domain.entities.deck import Deck
 
-class TestCreateDeckUseCase:
 
+class TestCreateDeckUseCase:
     def test_create_deck_use_case_success(self, valid_cards_list):
         use_case = CreateDeckUseCase()
 
@@ -20,7 +21,9 @@ class TestCreateDeckUseCase:
         with pytest.raises(ValueError, match="O deck deve ter exatamente 3 cartas."):
             use_case.execute(insufficient_cards)
 
-    def test_execute_with_exactly_three_cards_should_create_deck(self, valid_cards_list):
+    def test_execute_with_exactly_three_cards_should_create_deck(
+        self, valid_cards_list
+    ):
         use_case = CreateDeckUseCase()
 
         deck = use_case.execute(valid_cards_list)

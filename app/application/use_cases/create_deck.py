@@ -1,9 +1,8 @@
-from app.domain.entities.deck import Deck
 from app.domain.entities.card import Card
+from app.domain.entities.deck import Deck
 
 
 class CreateDeckUseCase:
-
     def execute(self, selected_cards: list[Card]) -> Deck:
 
         if len(selected_cards) != 3:

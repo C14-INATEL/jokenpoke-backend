@@ -1,10 +1,10 @@
 # tests/unit/infrastructure/test_pokemon_repository.py
 import json
+
 from app.infrastructure.repositories.pokemon_repository import PokemonRepository
 
 
 class TestPokemonRepository:
-
     def test_pokemon_repository_leitura_json(self, tmp_path):
         data = [
             {
@@ -12,15 +12,15 @@ class TestPokemonRepository:
                 "original_name": "Bulbasaur",
                 "name": "Bulbasaur",
                 "move": "vine whip",
-                "description": "A strange seed was planted on its back at birth."
+                "description": "A strange seed was planted on its back at birth.",
             },
             {
                 "id": 4,
                 "original_name": "Charmander",
                 "name": "Charmander",
                 "move": "ember",
-                "description": "Obviously prefers hot places."
-            }
+                "description": "Obviously prefers hot places.",
+            },
         ]
 
         file_path = tmp_path / "pokemons.json"
@@ -42,7 +42,7 @@ class TestPokemonRepository:
                 "original_name": "Pikachu",
                 "name": "Pikachu",
                 "move": "thunderbolt",
-                "description": "Electric mouse."
+                "description": "Electric mouse.",
             }
         ]
 
@@ -57,7 +57,7 @@ class TestPokemonRepository:
 
         assert repo._cache is not None
         assert first_call is second_call
-    
+
     def test_get_by_id_should_return_pokemon(self, tmp_path):
         data = [
             {
@@ -65,7 +65,7 @@ class TestPokemonRepository:
                 "original_name": "Mewtwo",
                 "name": "Mewtwo",
                 "move": "psychic",
-                "description": "Genetic Pokémon."
+                "description": "Genetic Pokémon.",
             }
         ]
 
@@ -100,7 +100,7 @@ class TestPokemonRepository:
                 "original_name": "Bulbasaur",
                 "name": "Bulbasaur",
                 "move": "vine whip",
-                "description": "Grass Pokémon"
+                "description": "Grass Pokémon",
             }
         ]
 

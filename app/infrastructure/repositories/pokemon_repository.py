@@ -1,12 +1,12 @@
 import json
 from pathlib import Path
+
 from sqlalchemy.orm import Session
 
 from app.domain.entities.pokemon import Pokemon
 
 
 class PokemonRepository:
-
     def __init__(self, db: Session):
         self.db = db
         self.file_path = Path("app/infrastructure/data/pokemons.json")
@@ -23,7 +23,4 @@ class PokemonRepository:
         return self._cache
 
     def get_by_id(self, pokemon_id: int) -> Pokemon | None:
-        return next(
-            (p for p in self.get_all() if p.id == pokemon_id),
-            None
-        )
+        return next((p for p in self.get_all() if p.id == pokemon_id), None)

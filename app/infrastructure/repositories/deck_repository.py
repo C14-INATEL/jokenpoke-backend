@@ -1,13 +1,13 @@
 from sqlalchemy.orm import Session
-from app.infrastructure.db.models.deck_model import DeckModel
-from app.infrastructure.db.models.card_model import CardModel
-from app.domain.entities.deck import Deck
+
 from app.domain.entities.card import Card
+from app.domain.entities.deck import Deck
+from app.infrastructure.db.models.card_model import CardModel
+from app.infrastructure.db.models.deck_model import DeckModel
 from app.infrastructure.repositories.pokemon_repository import PokemonRepository
 
 
 class DeckRepository:
-
     def __init__(self, db: Session):
         self.db = db
         self.pokemon_repo = PokemonRepository(db)
@@ -27,7 +27,7 @@ class DeckRepository:
             cards.append(Card(pokemon=pokemon, owner_id=user_id))
 
         return Deck(cards)
-        
+
     def clear_user_deck(self, user_id: int) -> None:
         self.db.query(DeckModel).filter_by(user_id=user_id).delete()
         self.db.commit()

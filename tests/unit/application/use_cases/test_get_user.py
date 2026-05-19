@@ -1,14 +1,14 @@
-import pytest
 from unittest.mock import MagicMock
+
+import pytest
 from sqlalchemy.orm import Session
 
-from app.application.use_cases.get_user_by_id import GetUserByIdUseCase
 from app.application.use_cases.get_all_users import GetAllUsersUseCase
+from app.application.use_cases.get_user_by_id import GetUserByIdUseCase
 from app.shared.exceptions.not_found_exception import NotFoundException
 
 
 class TestGetUserByIdUseCase:
-
     def test_get_user_by_id_mock_success(self):
         # Arrange: Criação dos mocks da sessão de banco e do caso de uso
         db_mock = MagicMock(spec=Session)
@@ -84,12 +84,12 @@ class TestGetUserByIdUseCase:
         assert resultado["deck"][0]["description"] == "Pokémon planta"
 
         use_case.user_repo.get_by_id_with_relations.assert_called_once_with(10)
-        
+
     def test_get_user_by_id_not_found_mock(self):
         db_mock = MagicMock(spec=Session)
         use_case = GetUserByIdUseCase(db=db_mock)
         use_case.user_repo = MagicMock()
-        
+
         # Mock: Repositório retornando None para um ID inexistente
         use_case.user_repo.get_by_id_with_relations.return_value = None
 
@@ -97,8 +97,8 @@ class TestGetUserByIdUseCase:
         with pytest.raises(NotFoundException):
             use_case.execute(user_id=999)
 
-class TestGetAllUsersUseCase:
 
+class TestGetAllUsersUseCase:
     def test_get_all_users_mock(self):
         db_mock = MagicMock(spec=Session)
         use_case = GetAllUsersUseCase(db=db_mock)
@@ -122,11 +122,11 @@ class TestGetAllUsersUseCase:
 
         assert isinstance(resultado, list)
         assert len(resultado) == 2
-        
+
         # Verifica formatação do primeiro usuário
         assert resultado[0]["id"] == 1
         assert resultado[0]["username"] == "Red"
-        
+
         # Verifica formatação do segundo usuário
         assert resultado[1]["id"] == 2
         assert resultado[1]["username"] == "Blue"

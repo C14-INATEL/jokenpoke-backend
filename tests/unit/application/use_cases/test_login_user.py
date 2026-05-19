@@ -1,5 +1,6 @@
-import pytest
 from unittest.mock import MagicMock, patch
+
+import pytest
 from sqlalchemy.orm import Session
 
 from app.application.use_cases.login_user import LoginUserUseCase
@@ -19,9 +20,12 @@ def test_login_user_invalid_password_mock():
     usuario_mock.password = "hashed_password"
     use_case.user_repo.get_by_username.return_value = usuario_mock
 
-    with patch("app.application.use_cases.login_user.verify_password", return_value=False), \
-         patch("app.application.use_cases.login_user.create_token") as mock_create_token:
-
+    with (
+        patch(
+            "app.application.use_cases.login_user.verify_password", return_value=False
+        ),
+        patch("app.application.use_cases.login_user.create_token") as mock_create_token,
+    ):
         # Verifica que levanta exceção de acesso negado
         with pytest.raises(UnauthorizedException, match="Credenciais inválidas"):
             use_case.execute("Ash Ketchum", "senha_errada")

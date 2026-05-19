@@ -1,12 +1,8 @@
 from app.domain.entities.pokemon import Pokemon
 
-class Card:
 
-    def __init__(
-        self,
-        pokemon: Pokemon,
-        owner_id: int
-    ):
+class Card:
+    def __init__(self, pokemon: Pokemon, owner_id: int):
         self.pokemon = pokemon
         self.owner_id = owner_id
 
