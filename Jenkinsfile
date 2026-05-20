@@ -116,7 +116,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 echo 'Executando análise estática com SonarQube...'
-
+ 
                 withSonarQubeEnv('SonarQube') {
                     sh '''
                         sonar-scanner \
@@ -127,8 +127,6 @@ pipeline {
                             -Dsonar.language=py \
                             -Dsonar.python.coverage.reportPaths=reports/coverage.xml \
                             -Dsonar.python.xunit.reportPath=reports/test-results.xml \
-                            -Dsonar.host.url=${SONAR_HOST_URL} \
-                            -Dsonar.token=${SONAR_TOKEN} \
                             -Dsonar.exclusions=**/__pycache__/**,**/*.pyc,**/migrations/**
                     '''
                 }
