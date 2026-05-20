@@ -1,5 +1,3 @@
-from typing import List
-
 from pydantic import BaseModel, ConfigDict, Field
 
 
@@ -12,7 +10,7 @@ class DeckResponse(BaseModel):
 
 
 class BuildDeckRequest(BaseModel):
-    pokemon_ids: List[int] = Field(
+    pokemon_ids: list[int] = Field(
         ...,
         min_length=3,
         max_length=3,

@@ -29,4 +29,4 @@ class RegisterUserUseCase:
             return token
         except IntegrityError:
             self.db.rollback()
-            raise DomainException("Usuário já existe.")
+            raise DomainException("Usuário já existe.") from None

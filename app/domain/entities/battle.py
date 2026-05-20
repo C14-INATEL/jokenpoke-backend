@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-from typing import List
 
 
 @dataclass
@@ -12,5 +11,5 @@ class RoundResult:
 
 @dataclass
 class BattleResult:
-    rounds: List[RoundResult]
+    rounds: list[RoundResult]
     winner: str  # "attacker" | "defender" | "draw"

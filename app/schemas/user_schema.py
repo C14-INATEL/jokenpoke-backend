@@ -1,5 +1,3 @@
-from typing import List
-
 from pydantic import BaseModel, ConfigDict
 
 from app.schemas.deck_schema import DeckResponse
@@ -10,7 +8,7 @@ class UserResponse(BaseModel):
     id: int
     username: str
 
-    cards: List[PokemonResponse] = []
-    deck: List[DeckResponse] = []
+    cards: list[PokemonResponse] = []
+    deck: list[DeckResponse] = []
 
     model_config = ConfigDict(from_attributes=True)

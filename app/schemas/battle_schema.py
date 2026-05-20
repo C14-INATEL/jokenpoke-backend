@@ -1,5 +1,3 @@
-from typing import List
-
 from pydantic import BaseModel
 
 
@@ -11,5 +9,5 @@ class RoundResponse(BaseModel):
 
 
 class BattleResponse(BaseModel):
-    rounds: List[RoundResponse]
+    rounds: list[RoundResponse]
     winner: str
