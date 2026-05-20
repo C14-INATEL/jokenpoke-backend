@@ -15,6 +15,9 @@ pipeline {
         DATABASE_URL            = 'sqlite:///./test.db'
         SECRET_KEY              = 'test-secret-key-for-ci'
         ALGORITHM               = 'HS256'
+
+        SONAR_HOST_URL          = 'http://sonarqube:9000'
+        SONAR_TOKEN             = credentials('sonarqube-token')
     }
 
     options {
@@ -105,6 +108,42 @@ pipeline {
                 }
             }
         }
+
+        // =====================================================
+        // SONARQUBE
+        // =====================================================
+
+        stage('SonarQube Analysis') {
+            steps {
+                echo 'Executando análise estática com SonarQube...'
+
+                withSonarQubeEnv('SonarQube') {
+                    sh '''
+                        sonar-scanner \
+                            -Dsonar.projectKey=jokenpoke-backend \
+                            -Dsonar.projectName="JokenPoke Backend" \
+                            -Dsonar.sources=app \
+                            -Dsonar.tests=tests \
+                            -Dsonar.language=py \
+                            -Dsonar.python.coverage.reportPaths=reports/coverage.xml \
+                            -Dsonar.python.xunit.reportPath=reports/test-results.xml \
+                            -Dsonar.host.url=${SONAR_HOST_URL} \
+                            -Dsonar.token=${SONAR_TOKEN} \
+                            -Dsonar.exclusions=**/__pycache__/**,**/*.pyc,**/migrations/**
+                    '''
+                }
+            }
+        }
+
+        stage('Quality Gate') {
+            steps {
+                echo 'Aguardando resultado do Quality Gate...'
+
+                timeout(time: 5, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
     }
 
     // =========================================================
@@ -129,8 +168,9 @@ pipeline {
             echo """
             Pipeline concluída com sucesso!
 
-            Branch: ${env.BRANCH_NAME ?: 'local'}
-            Build : #${env.BUILD_NUMBER}
+            Branch   : ${env.BRANCH_NAME ?: 'local'}
+            Build    : #${env.BUILD_NUMBER}
+            SonarQube: ${SONAR_HOST_URL}/dashboard?id=jokenpoke-backend
             """
         }
 
