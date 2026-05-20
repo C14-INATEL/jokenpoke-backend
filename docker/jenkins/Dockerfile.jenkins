@@ -1,0 +1,48 @@
+FROM jenkins/jenkins:lts
+ 
+USER root
+ 
+# Instala dependências do sistema e Docker CLI
+RUN apt-get update && apt-get install -y \
+    curl \
+    gnupg \
+    lsb-release \
+    python3 \
+    python3-pip \
+    python3-venv \
+&& curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg \
+&& echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] \
+https://download.docker.com/linux/debian $(lsb_release -cs) stable" \
+> /etc/apt/sources.list.d/docker.list \
+&& apt-get update && apt-get install -y docker-ce-cli \
+&& apt-get clean && rm -rf /var/lib/apt/lists/*
+
+RUN groupadd -f docker && usermod -aG docker jenkins
+ 
+# Instala o sonar-scanner CLI para análise
+RUN curl -sSLo /tmp/sonar-scanner.zip \
+https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip \
+&& apt-get install -y unzip \
+&& unzip /tmp/sonar-scanner.zip -d /opt \
+&& ln -s /opt/sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner /usr/local/bin/sonar-scanner \
+&& rm /tmp/sonar-scanner.zip
+ 
+USER jenkins
+ 
+# Plugins essenciais
+RUN jenkins-plugin-cli --plugins \
+    git \
+    workflow-aggregator \
+    pipeline-stage-view \
+    docker-workflow \
+    docker-plugin \
+    credentials-binding \
+    blue-ocean \
+    junit \
+    cobertura \
+    sonar \
+    quality-gates \
+    github \
+    ssh-slaves \
+    matrix-auth \
+    role-strategy
