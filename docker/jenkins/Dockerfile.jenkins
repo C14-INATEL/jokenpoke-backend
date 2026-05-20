@@ -30,19 +30,16 @@ https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cl
 USER jenkins
  
 # Plugins essenciais
-RUN jenkins-plugin-cli --plugins \
+RUN jenkins-plugin-cli --verbose --plugins \
     git \
     workflow-aggregator \
     pipeline-stage-view \
     docker-workflow \
     docker-plugin \
     credentials-binding \
-    blue-ocean \
     junit \
     cobertura \
     sonar \
-    quality-gates \
     github \
-    ssh-slaves \
     matrix-auth \
     role-strategy
