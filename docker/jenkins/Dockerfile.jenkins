@@ -42,4 +42,6 @@ RUN jenkins-plugin-cli --verbose --plugins \
     sonar \
     github \
     matrix-auth \
-    role-strategy
+    role-strategy \
+    htmlpublisher \
+    ws-cleanup
