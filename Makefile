@@ -60,6 +60,7 @@ help:
 	@echo "  make shell                Access API container shell"
 	@echo "  make clean                Remove containers and volumes"
 	@echo "  make docker-prune         Remove unused Docker resources"
+	@echo "  make jenkins-rebuild      Rebuild Jenkins container without cache"
 	@echo ""
 	@echo "Utilities:"
 	@echo "  make env-check            Validate .env file"
@@ -71,6 +72,7 @@ help:
 	@echo "  make clean-cache          Remove cache and temporary files"
 	@echo "  make clean-venv           Remove virtual environment"
 	@echo "  make reset                Full project reset"
+	@echo "  make docker-prune         Remove unused Docker resources"
 	@echo ""
 
 # =========================================================
@@ -186,6 +188,11 @@ shell:
 clean:
 	$(DC) down -v --remove-orphans
 	$(MAKE) clean-cache
+
+jenkins-rebuild:
+	$(DC) down jenkins
+	$(DC) build --no-cache jenkins
+	$(DC) up -d jenkins
 
 # =========================================================
 # UTILITIES
