@@ -45,4 +45,5 @@ RUN jenkins-plugin-cli --verbose --plugins \
     role-strategy \
     htmlpublisher \
     ws-cleanup \
-    embeddable-build-status
+    embeddable-build-status \
+    github-pullrequest-builder
