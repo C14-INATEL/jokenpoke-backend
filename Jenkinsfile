@@ -18,6 +18,8 @@ pipeline {
 
         SONAR_HOST_URL          = 'http://sonarqube:9000'
         SONAR_TOKEN             = credentials('sonarqube-token')
+
+        GITHUB_TOKEN            = credentials('github-token')
     }
 
     options {
@@ -170,6 +172,14 @@ pipeline {
             Build    : #${env.BUILD_NUMBER}
             SonarQube: ${SONAR_HOST_URL}/dashboard?id=jokenpoke-backend
             """
+
+            githubNotify(
+                credentialsId : 'github-token',
+                sha           : "${GIT_COMMIT}",
+                status        : 'SUCCESS',
+                description   : 'Pipeline passou — build, lint, testes e quality gate OK',
+                context       : 'ci/jenkins'
+            )
         }
 
         failure {
