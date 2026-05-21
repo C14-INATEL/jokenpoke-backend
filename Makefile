@@ -59,7 +59,6 @@ help:
 	@echo "  make logs                 Show API logs"
 	@echo "  make shell                Access API container shell"
 	@echo "  make clean                Remove containers and volumes"
-	@echo "  make docker-prune         Remove unused Docker resources"
 	@echo "  make jenkins-rebuild      Rebuild Jenkins container without cache"
 	@echo ""
 	@echo "Utilities:"
