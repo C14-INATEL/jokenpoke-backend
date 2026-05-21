@@ -18,6 +18,9 @@ pipeline {
 
         SONAR_HOST_URL          = 'http://sonarqube:9000'
         SONAR_TOKEN             = credentials('sonarqube-token')
+
+        GITHUB_TOKEN            = credentials('github-token')
+        GITHUB_REPO             = 'C14-INATEL/jokenpoke-backend'
     }
 
     options {
@@ -116,7 +119,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 echo 'Executando análise estática com SonarQube...'
- 
+
                 withSonarQubeEnv('SonarQube') {
                     sh '''
                         sonar-scanner \
@@ -170,6 +173,18 @@ pipeline {
             Build    : #${env.BUILD_NUMBER}
             SonarQube: ${SONAR_HOST_URL}/dashboard?id=jokenpoke-backend
             """
+
+            sh '''
+                curl -s -X POST \
+                    -H "Authorization: token ${GITHUB_TOKEN}" \
+                    -H "Accept: application/vnd.github.v3+json" \
+                    https://api.github.com/repos/${GITHUB_REPO}/statuses/${GIT_COMMIT} \
+                    -d "{
+                        \\"state\\": \\"success\\",
+                        \\"description\\": \\"Pipeline passou — build, lint, testes e quality gate OK\\",
+                        \\"context\\": \\"ci/jenkins\\"
+                    }"
+            '''
         }
 
         failure {
@@ -179,10 +194,34 @@ pipeline {
             Branch: ${env.BRANCH_NAME ?: 'local'}
             Build : #${env.BUILD_NUMBER}
             """
+
+            sh '''
+                curl -s -X POST \
+                    -H "Authorization: token ${GITHUB_TOKEN}" \
+                    -H "Accept: application/vnd.github.v3+json" \
+                    https://api.github.com/repos/${GITHUB_REPO}/statuses/${GIT_COMMIT} \
+                    -d "{
+                        \\"state\\": \\"failure\\",
+                        \\"description\\": \\"Pipeline falhou — verifique os logs no Jenkins\\",
+                        \\"context\\": \\"ci/jenkins\\"
+                    }"
+            '''
         }
 
         unstable {
             echo 'Pipeline instável (falhas não críticas detectadas).'
+
+            sh '''
+                curl -s -X POST \
+                    -H "Authorization: token ${GITHUB_TOKEN}" \
+                    -H "Accept: application/vnd.github.v3+json" \
+                    https://api.github.com/repos/${GITHUB_REPO}/statuses/${GIT_COMMIT} \
+                    -d "{
+                        \\"state\\": \\"failure\\",
+                        \\"description\\": \\"Pipeline instável — falhas não críticas detectadas\\",
+                        \\"context\\": \\"ci/jenkins\\"
+                    }"
+            '''
         }
     }
 }

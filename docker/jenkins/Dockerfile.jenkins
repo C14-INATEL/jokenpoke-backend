@@ -44,4 +44,5 @@ RUN jenkins-plugin-cli --verbose --plugins \
     matrix-auth \
     role-strategy \
     htmlpublisher \
-    ws-cleanup
+    ws-cleanup \
+    embeddable-build-status
