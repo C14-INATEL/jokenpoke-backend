@@ -43,12 +43,6 @@ pipeline {
         // =====================================================
 
         stage('Build') {
-            when {
-                anyOf {
-                    branch 'main'
-                    triggeredBy 'TimerTrigger'
-                }
-            }
             steps {
                 echo 'Configurando ambiente Python...'
 
