@@ -30,7 +30,10 @@ pipeline {
     }
 
     triggers {
-        cron('0 6 * * *')
+        // Execução diária às 18h
+        cron('0 18 * * *')
+        // Webhook para push
+        githubPush()
     }
 
     stages {
@@ -40,6 +43,12 @@ pipeline {
         // =====================================================
 
         stage('Build') {
+            when {
+                anyOf {
+                    branch 'main'
+                    triggeredBy 'TimerTrigger'
+                }
+            }
             steps {
                 echo 'Configurando ambiente Python...'
 
