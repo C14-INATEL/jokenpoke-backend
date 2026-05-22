@@ -84,7 +84,8 @@ jobs:
           fi
 
       - name: Run MyPy Static Analysis
-        run: poetry run mypy app/ --ignore-missing-imports || echo "Dica: Adicione o mypy no seu pyproject.toml para travar tipagens incorretas."
+        run: |
+          poetry run mypy app/ --ignore-missing-imports || echo "Dica: Adicione o mypy no seu pyproject.toml para travar tipagens incorretas."
 
   # ==========================================
   # JOB 3: Security Scans (Vulnerabilidades)
@@ -118,7 +119,8 @@ jobs:
           fi
 
       - name: Check Dependency Vulnerabilities
-        run: poetry run pip audit || echo "Alerta de dependências vulneráveis encontrado."
+        run: |
+          poetry run pip audit || echo "Alerta de dependências vulneráveis encontrado."
 
   # ==========================================
   # JOB 4: Test Automation
