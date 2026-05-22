@@ -86,6 +86,24 @@ services:
         soft: 65536
         hard: 65536
     restart: always
+
+  # ========================================
+  # TUNNEL
+  # ========================================
+  ngrok:
+    image: ngrok/ngrok:latest
+    container_name: jokenpoke-ngrok
+    command: start --all --config /etc/ngrok/ngrok.yml
+    volumes:
+      - ./docker/ngrok/ngrok.yml:/etc/ngrok/ngrok.yml:ro
+    environment:
+      NGROK_AUTHTOKEN: ${NGROK_AUTHTOKEN}
+      NGROK_DOMAIN: ${NGROK_DOMAIN}
+    ports:
+      - "4040:4040"
+    depends_on:
+      - jenkins
+    restart: always
  
 volumes:
   jenkins_data:
