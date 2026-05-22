@@ -93,12 +93,9 @@ services:
   ngrok:
     image: ngrok/ngrok:latest
     container_name: jokenpoke-ngrok
-    command: start --all --config /etc/ngrok/ngrok.yml
-    volumes:
-      - ./docker/ngrok/ngrok.yml:/etc/ngrok/ngrok.yml:ro
     environment:
       NGROK_AUTHTOKEN: ${NGROK_AUTHTOKEN}
-      NGROK_DOMAIN: ${NGROK_DOMAIN}
+    command: "http --domain=${NGROK_DOMAIN} jenkins:8080"
     ports:
       - "4040:4040"
     depends_on:
