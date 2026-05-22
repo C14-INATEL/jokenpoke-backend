@@ -12,3 +12,8 @@ app = FastAPI(title="Jokenpoke API")
 register_exception_handlers(app)
 
 app.include_router(router)
+
+# Health check endpoint
+@app.get("/health")
+async def health():
+    return {"status": "ok"}
