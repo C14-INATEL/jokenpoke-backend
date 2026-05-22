@@ -4,37 +4,130 @@ on:
   push:
     branches:
       - develop
-      - 'feature/**'
-      - 'bugfix/**'
+      # Padrão estrito: {iniciais}/{tipo}/{descricao-em-ingles}
+      - '{mn,gs,ep,mc,cs,ra}/feature/**'
+      - '{mn,gs,ep,mc,cs,ra}/fix/**'
+      - '{mn,gs,ep,mc,cs,ra}/docs/**'
+      - '{mn,gs,ep,mc,cs,ra}/refactor/**'
+      - '{mn,gs,ep,mc,cs,ra}/test/**'
+      - '{mn,gs,ep,mc,cs,ra}/hotfix/**'
+      - '{mn,gs,ep,mc,cs,ra}/chore/**'
 
   pull_request:
     branches:
       - develop
 
 jobs:
-  ci:
+  # ==========================================
+  # JOB 1: Code Quality (Linter & Formatter)
+  # ==========================================
+  lint:
+    name: Code Quality (Ruff)
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout
+      - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Setup Python
+      - name: Set up Python 3.12
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
-      - name: Install Poetry
-        run: pip install poetry
+      - name: Load Cached Packages
+        uses: actions/cache@v4
+        id: cached-poetry-dependencies
+        with:
+          path: ~/.cache/pypoetry
+          key: ${{ runner.os }}-poetry-${{ hashFiles('**/pyproject.toml') }}-${{ hashFiles('**/poetry.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-poetry-
 
-      - name: Install dependencies
-        run: poetry install
+      - name: Install Poetry & Dependencies
+        run: |
+          pip install poetry
+          if [ "${{ steps.cached-poetry-dependencies.outputs.cache-hit }}" != "true" ]; then
+            poetry install --no-interaction
+          fi
 
-      - name: Ruff Lint
-        run: poetry run ruff check .
+      - name: Run Ruff Lint & Format
+        run: make lint
 
-      - name: Ruff Format Check
-        run: poetry run ruff format --check .
+  # ==========================================
+  # JOB 2: Security Scans (Vulnerabilidades)
+  # ==========================================
+  security:
+    name: Security Scans
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-      - name: Run Tests
-        run: poetry run pytest
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Load Cached Packages
+        uses: actions/cache@v4
+        id: cached-poetry-dependencies
+        with:
+          path: ~/.cache/pypoetry
+          key: ${{ runner.os }}-poetry-${{ hashFiles('**/pyproject.toml') }}-${{ hashFiles('**/poetry.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-poetry-
+
+      - name: Install Poetry & Dependencies
+        run: |
+          pip install poetry
+          if [ "${{ steps.cached-poetry-dependencies.outputs.cache-hit }}" != "true" ]; then
+            poetry install --no-interaction
+          fi
+
+      - name: Check Dependency Vulnerabilities
+        run: poetry run pip audit || echo "Considere adicionar pip-audit no seu grupo de dev se quiser travar a pipeline em falhas de segurança externa"
+
+  # ==========================================
+  # JOB 3: Test Automation
+  # ==========================================
+  tests:
+    name: Test Suite & Coverage
+    runs-on: ubuntu-latest
+    # needs: lint 
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Load Cached Packages
+        uses: actions/cache@v4
+        id: cached-poetry-dependencies
+        with:
+          path: ~/.cache/pypoetry
+          key: ${{ runner.os }}-poetry-${{ hashFiles('**/pyproject.toml') }}-${{ hashFiles('**/poetry.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-poetry-
+
+      - name: Install Poetry & Dependencies
+        run: |
+          pip install poetry
+          if [ "${{ steps.cached-poetry-dependencies.outputs.cache-hit }}" != "true" ]; then
+            poetry install --no-interaction
+          fi
+
+      - name: Run CI Tests
+        run: poetry run pytest tests/ --junitxml=reports/test-results.xml --cov=app --cov-report=xml:reports/coverage.xml --cov-report=html:reports/coverage-html --cov-report=term-missing
+
+      - name: Upload Test and Coverage Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dev-ci-reports
+          path: |
+            reports/test-results.xml
+            reports/coverage.xml
+            reports/coverage-html/
+          retention-days: 7
