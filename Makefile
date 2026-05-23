@@ -52,8 +52,13 @@ DOCKER_RUN = $(DC) exec api poetry run
 # =========================================================
 
 ensure-up:
-	@$(DC) ps | grep api > /dev/null || \
-	(echo "$(ERROR) API container is not running. Run 'make up' first." && exit 1)
+	@echo ""
+	@if $(DC) ps | grep api > /dev/null; then \
+		echo "$(SUCCESS) API container is running perfectly!"; \
+	else \
+		echo "$(ERROR) API container is not running. Run 'make up' first."; \
+		exit 1; \
+	fi
 
 # =========================================================
 # HELP
@@ -63,12 +68,13 @@ help:
 	@echo ""
 	@echo "$(BOLD)Available commands:$(NC)"
 	@echo ""
-	@echo "$(BLUE)LOCAL DEVELOPMENT:"
+	@echo "$(BLUE)Local Development:"
 	@echo ""
 	@printf "  $(GREEN)%-30s$(NC) %s\n" "make install" "Install dependencies locally"
 	@printf "  $(GREEN)%-30s$(NC) %s\n" "make local-run" "Run API locally with hot reload"
 	@echo ""
-	@echo "$(BLUE)LOCAL TESTING:$(NC)"
+	@echo ""
+	@echo "$(BLUE)Local Testing:$(NC)"
 	@echo ""
 	@printf "  $(GREEN)%-30s$(NC) %s\n" "make test" "Run all tests locally"
 	@printf "  $(GREEN)%-30s$(NC) %s\n" "make test-unit" "Run unit tests locally"
@@ -80,7 +86,7 @@ help:
 	@printf "  $(GREEN)%-30s$(NC) %s\n" "make test-ci" "Run CI-style tests locally"
 	@echo ""
 	@echo ""
-	@echo "$(BLUE)LOCAL CODE QUALITY$(NC)"
+	@echo "$(BLUE)Local Code Quality:$(NC)"
 	@echo ""
 	@printf "  $(GREEN)%-30s$(NC) %s\n" "make format" "Format code locally with Ruff"
 	@printf "  $(GREEN)%-30s$(NC) %s\n" "make lint" "Run Ruff linter locally"
@@ -91,7 +97,7 @@ help:
 	@printf "  $(GREEN)%-30s$(NC) %s\n" "make ci" "Run local CI validation pipeline"
 	@echo ""
 	@echo ""
-	@echo "$(BLUE)DOCKER DEVELOPMENT$(NC)"
+	@echo "$(BLUE)Docker Development:$(NC)"
 	@echo ""
 	@printf "  $(GREEN)%-30s$(NC) %s\n" "make dev" "Run API with Docker Compose"
 	@printf "  $(GREEN)%-30s$(NC) %s\n" "make build" "Build containers"
@@ -104,7 +110,7 @@ help:
 	@printf "  $(GREEN)%-30s$(NC) %s\n" "make jenkins-rebuild" "Rebuild Jenkins container"
 	@echo ""
 	@echo ""
-	@echo "$(BLUE)DOCKER TESTING$(NC)"
+	@echo "$(BLUE)Docker Testing:$(NC)"
 	@echo ""
 	@printf "  $(GREEN)%-30s$(NC) %s\n" "make docker-test" "Run all tests in Docker"
 	@printf "  $(GREEN)%-30s$(NC) %s\n" "make docker-test-unit" "Run unit tests in Docker"
@@ -113,7 +119,7 @@ help:
 	@printf "  $(GREEN)%-30s$(NC) %s\n" "make docker-test-ci" "Run CI-style tests in Docker"
 	@echo ""
 	@echo ""
-	@echo "$(BLUE)DOCKER CODE QUALITY$(NC)"
+	@echo "$(BLUE)Docker Code Quality:$(NC)"
 	@echo ""
 	@printf "  $(GREEN)%-30s$(NC) %s\n" "make docker-format" "Format code in Docker"
 	@printf "  $(GREEN)%-30s$(NC) %s\n" "make docker-lint" "Run Ruff linter in Docker"
@@ -122,7 +128,7 @@ help:
 	@printf "  $(GREEN)%-30s$(NC) %s\n" "make docker-check-all" "Run full Docker validation"
 	@echo ""
 	@echo ""
-	@echo "$(BLUE)UTILITIES$(NC)"
+	@echo "$(BLUE)Utilities:$(NC)"
 	@echo ""
 	@printf "  $(GREEN)%-30s$(NC) %s\n" "make env-check" "Validate .env file"
 	@printf "  $(GREEN)%-30s$(NC) %s\n" "make freeze" "Update poetry.lock locally"
@@ -131,7 +137,7 @@ help:
 	@printf "  $(GREEN)%-30s$(NC) %s\n" "make tree" "Show project structure"
 	@echo ""
 	@echo ""
-	@echo "$(BLUE)CLEANUP$(NC)"
+	@echo "$(BLUE)Cleanup:$(NC)"
 	@echo ""
 	@printf "  $(GREEN)%-30s$(NC) %s\n" "make clean-cache" "Remove cache and temp files"
 	@printf "  $(GREEN)%-30s$(NC) %s\n" "make clean-venv" "Remove local virtual environment"
@@ -139,7 +145,7 @@ help:
 	@printf "  $(GREEN)%-30s$(NC) %s\n" "make docker-prune" "Remove unused Docker resources"
 	@echo ""
 	@echo ""
-	@echo "$(BLUE)SHORTCUTS$(NC)"
+	@echo "$(BLUE)Shortcuts:$(NC)"
 	@echo ""
 	@printf "  $(GREEN)%-30s$(NC) %s\n" "make dtest" "Alias for docker-test"
 	@printf "  $(GREEN)%-30s$(NC) %s\n" "make dlint" "Alias for docker-lint"
@@ -448,15 +454,14 @@ tree:
 # =========================================================
 
 clean-cache:
-	@echo "$(WARNING) Removing cache and temporary files..."
 	@echo ""
+	@echo "$(WARNING) Removing cache and temporary files..."
 	@find . -type d -name "__pycache__" -exec rm -rf {} +
 	@find . -type d -name ".pytest_cache" -exec rm -rf {} +
 	@find . -type d -name ".ruff_cache" -exec rm -rf {} +
 	@find . -type d -name ".mypy_cache" -exec rm -rf {} +
 	@find . -type f -name "*.pyc" -delete
 	@rm -rf .coverage htmlcov reports
-	@echo ""
 	@echo "$(SUCCESS) Cache and temporary files removed."
 
 clean-venv:
