@@ -13,7 +13,6 @@ pipeline {
         SUPABASE_DATABASE_URL   = credentials('supabase-database-url')
 
         DATABASE_URL            = 'sqlite:///./test.db'
-        SECRET_KEY              = 'test-secret-key-for-ci'
         ALGORITHM               = 'HS256'
 
         SONAR_HOST_URL          = 'http://sonarqube:9000'
@@ -124,32 +123,21 @@ pipeline {
         // =====================================================
 
         stage('SonarQube Analysis') {
-            steps {
-                echo 'Executando análise estática com SonarQube...'
+        steps {
+            echo 'Executando análise estática com SonarQube...'
 
-                withSonarQubeEnv('SonarQube') {
-                    sh '''
-                        sonar-scanner \
-                            -Dsonar.projectKey=jokenpoke-backend \
-                            -Dsonar.projectName="JokenPoke Backend" \
-                            -Dsonar.sources=app \
-                            -Dsonar.tests=tests \
-                            -Dsonar.language=py \
-                            -Dsonar.python.coverage.reportPaths=reports/coverage.xml \
-                            -Dsonar.python.xunit.reportPath=reports/test-results.xml \
-                            -Dsonar.exclusions=**/__pycache__/**,**/*.pyc,**/migrations/**
-                    '''
-                }
+            withSonarQubeEnv('SonarQube') {
+                sh 'sonar-scanner'
             }
         }
+    }
 
-        stage('Quality Gate') {
-            steps {
-                echo 'Aguardando resultado do Quality Gate...'
+    stage('Quality Gate') {
+        steps {
+            echo 'Aguardando resultado do Quality Gate...'
 
-                timeout(time: 5, unit: 'MINUTES') {
-                    waitForQualityGate abortPipeline: true
-                }
+            timeout(time: 5, unit: 'MINUTES') {
+                waitForQualityGate abortPipeline: true
             }
         }
     }
