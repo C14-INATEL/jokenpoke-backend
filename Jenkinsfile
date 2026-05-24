@@ -46,14 +46,9 @@ pipeline {
                 echo 'Configurando ambiente Python...'
 
                 sh '''
-                    python3 -m venv .venv
+                    poetry config virtualenvs.in-project true
 
-                    .venv/bin/pip install --upgrade pip --quiet
-                    .venv/bin/pip install poetry --quiet
-
-                    .venv/bin/poetry config virtualenvs.in-project true
-
-                    .venv/bin/poetry install \
+                    poetry install \
                         --no-interaction \
                         --no-ansi
                 '''
@@ -66,11 +61,9 @@ pipeline {
 
         stage('Lint') {
             steps {
-                echo 'Executando verificações de lint com Ruff...'
-
                 sh '''
-                    .venv/bin/poetry run ruff check .
-                    .venv/bin/poetry run ruff format --check .
+                    poetry run ruff check .
+                    poetry run ruff format --check .
                 '''
             }
         }
@@ -86,7 +79,7 @@ pipeline {
                 sh '''
                     mkdir -p reports
 
-                    .venv/bin/poetry run pytest tests/ \
+                    poetry run pytest tests/ \
                         --tb=short \
                         --junitxml=reports/test-results.xml \
                         --cov=app \
