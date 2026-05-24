@@ -123,24 +123,24 @@ pipeline {
         // =====================================================
 
         stage('SonarQube Analysis') {
-        steps {
-            echo 'Executando análise estática com SonarQube...'
+            steps {
+                echo 'Executando análise estática com SonarQube...'
 
-            withSonarQubeEnv('SonarQube') {
-                sh 'sonar-scanner'
+                withSonarQubeEnv('SonarQube') {
+                    sh 'sonar-scanner'
+                }
             }
         }
-    }
 
-    stage('Quality Gate') {
-        steps {
-            echo 'Aguardando resultado do Quality Gate...'
+        stage('Quality Gate') {
+            steps {
+                echo 'Aguardando resultado do Quality Gate...'
 
-            timeout(time: 5, unit: 'MINUTES') {
-                waitForQualityGate abortPipeline: true
+                timeout(time: 5, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
+                }
             }
         }
-    }
 
     // =========================================================
     // POST ACTIONS
