@@ -16,8 +16,8 @@ class LoginUserUseCase:
         if not user:
             raise UnauthorizedException("Credenciais inválidas")
 
-        if not verify_password(password, user.password):
+        if not verify_password(password, str(user.password)):
             raise UnauthorizedException("Credenciais inválidas")
 
-        token = create_token(user.id)
+        token = create_token(int(user.id))
         return token

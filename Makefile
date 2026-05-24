@@ -60,6 +60,11 @@ ensure-up:
 		exit 1; \
 	fi
 
+security:
+	@echo "$(INFO) Running security analysis..."
+	@$(POETRY) pip-audit || \
+		echo "$(WARNING) Vulnerabilities detected."
+
 # =========================================================
 # HELP
 # =========================================================
@@ -327,6 +332,12 @@ docker-test-ci: ensure-up
 # CODE QUALITY (LOCAL)
 # =========================================================
 
+quality:
+	@echo ""
+	@$(MAKE) lint
+	@$(POETRY) ruff format . --check
+	@$(POETRY) mypy app/ --ignore-missing-imports || true
+
 format:
 	@echo "$(INFO) Formatting code locally..."
 	@echo ""
@@ -376,6 +387,32 @@ ci:
 	@$(MAKE) test-ci
 	@echo ""
 	@echo "$(SUCCESS) Local CI pipeline completed."
+
+dev-pipeline:
+	@echo "$(INFO) Running full development pipeline..."
+
+	@$(MAKE) format
+
+	@$(MAKE) lint
+
+	@echo "$(INFO) Checking code formatting..."
+	@$(POETRY) ruff format . --check
+
+	@echo "$(INFO) Running MyPy static analysis..."
+	@$(POETRY) mypy app/ --ignore-missing-imports || \
+		echo "$(WARNING) MyPy found typing issues."
+
+	@echo "$(INFO) Running dependency vulnerability scan..."
+	@$(POETRY) pip-audit || \
+		echo "$(WARNING) Vulnerabilities detected by pip-audit."
+
+	@echo "$(INFO) Running test suite..."
+	@$(MAKE) test-ci
+
+	@echo "$(INFO) Validating Docker build..."
+	@$(DC) build
+
+	@echo "$(SUCCESS) Development pipeline completed."
 
 # =========================================================
 # CODE QUALITY (DOCKER)
