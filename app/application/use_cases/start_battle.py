@@ -1,6 +1,7 @@
 from app.domain.entities.battle import BattleResult, RoundResult
 from app.domain.entities.user import User
 from app.domain.rules.battle_rules import resolve_move
+from app.shared.exceptions.domain_exception import DomainException
 
 
 class StartBattleUseCase:
@@ -13,9 +14,11 @@ class StartBattleUseCase:
         if not attacker.has_deck() or not defender.has_deck():
             raise ValueError("Ambos os jogadores precisam ter deck.")
 
+        if attacker.deck is None or defender.deck is None:
+            raise DomainException("Deck não encontrado.")
+
         attacker_wins = 0
         defender_wins = 0
-
         rounds = []
 
         for i in range(3):
@@ -30,11 +33,9 @@ class StartBattleUseCase:
             if result == 1:
                 attacker_wins += 1
                 winner = "attacker"
-
             elif result == 2:
                 defender_wins += 1
                 winner = "defender"
-
             else:
                 winner = "draw"
 
