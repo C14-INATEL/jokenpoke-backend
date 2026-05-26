@@ -11,6 +11,10 @@ class UserModel(Base):
     username = Column(String, unique=True, nullable=False)
     password = Column(String, nullable=False)
 
+    # NOVAS COLUNAS PARA RANKING
+    points = Column(Integer, default=0, nullable=False)
+    position = Column(Integer, nullable=True)
+
     # Relações virtuais para puxar os dados anexados
     cards = relationship(
         "CardModel", back_populates="owner", cascade="all, delete-orphan"
