@@ -17,7 +17,7 @@ https://download.docker.com/linux/debian $(lsb_release -cs) stable" \
 && apt-get update && apt-get install -y docker-ce-cli \
 && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-RUN groupadd -f -g 999 docker && usermod -aG Docker jenkins
+RUN groupadd -f -g 999 docker && usermod -aG docker jenkins
  
 # Instala o sonar-scanner CLI para análise
 RUN curl -sSLo /tmp/sonar-scanner.zip \
