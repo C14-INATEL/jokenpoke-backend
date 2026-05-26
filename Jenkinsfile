@@ -151,14 +151,6 @@ pipeline {
         // =====================================================
  
         stage('Docker Build & Push Jenkins Image') {
-            // Só executa na branch main/master para evitar publicações acidentais
-            when {
-                anyOf {
-                    branch 'main'
-                    branch 'master'
-                }
-            }
- 
             steps {
                 echo 'Construindo imagem Docker customizada do Jenkins...'
  
