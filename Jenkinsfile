@@ -153,60 +153,62 @@ pipeline {
         stage('Docker Build & Push Jenkins Image') {
             steps {
                 echo 'Construindo imagem Docker customizada do Jenkins...'
- 
+
                 script {
-                    def fullImageName = "${DOCKER_HUB_USER}/${JENKINS_IMAGE_NAME}:${JENKINS_IMAGE_TAG}"
-                    def taggedImageName = "${DOCKER_HUB_USER}/${JENKINS_IMAGE_NAME}:${env.BUILD_NUMBER}"
- 
-                    // Constrói a imagem a partir do Dockerfile na raiz do repositório
-                    sh """
+                    def buildNumber   = env.BUILD_NUMBER
+                    def branch        = env.BRANCH_NAME ?: 'local'
+                    def commit        = env.GIT_COMMIT
+                    def imageName     = env.JENKINS_IMAGE_NAME
+                    def imageTag      = env.JENKINS_IMAGE_TAG
+                    
+                    // constroi imagem a partir do Dockerfile
+                    sh '''
                         docker build \
                             --no-cache \
-                            --label "build.number=${env.BUILD_NUMBER}" \
-                            --label "build.branch=${env.BRANCH_NAME ?: 'local'}" \
-                            --label "build.commit=${env.GIT_COMMIT}" \
-                            -t ${fullImageName} \
-                            -t ${taggedImageName} \
+                            --label "build.number=''' + buildNumber + '''" \
+                            --label "build.branch=''' + branch + '''" \
+                            --label "build.commit=''' + commit + '''" \
+                            -t $DOCKER_HUB_USER/$JENKINS_IMAGE_NAME:$JENKINS_IMAGE_TAG \
+                            -t $DOCKER_HUB_USER/$JENKINS_IMAGE_NAME:''' + buildNumber + ''' \
                             -f docker/jenkins/Dockerfile.jenkins \
                             .
-                    """
- 
+                    '''
+
                     echo 'Publicando imagem no Docker Hub...'
- 
+
                     withCredentials([usernamePassword(
-                        credentialsId: "${DOCKER_CREDENTIALS}",
+                        credentialsId: env.DOCKER_CREDENTIALS,
                         usernameVariable: 'DOCKER_USER',
                         passwordVariable: 'DOCKER_PASS'
                     )]) {
-                        sh """
-                            echo "\${DOCKER_PASS}" | docker login -u "\${DOCKER_USER}" --password-stdin
- 
-                            docker push ${fullImageName}
-                            docker push ${taggedImageName}
- 
+                        sh '''
+                            echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+
+                            docker push $DOCKER_HUB_USER/$JENKINS_IMAGE_NAME:$JENKINS_IMAGE_TAG
+                            docker push $DOCKER_HUB_USER/$JENKINS_IMAGE_NAME:''' + buildNumber + '''
+
                             docker logout
-                        """
+                        '''
                     }
- 
+
                     echo """
                     Imagem publicada com sucesso!
- 
+
                     Tags publicadas:
-                      - ${fullImageName}
-                      - ${taggedImageName}
+                    - ${imageName}:${imageTag}
+                    - ${imageName}:${buildNumber}
                     """
                 }
             }
- 
+
             post {
                 always {
-                    // Remove imagens locais para não lotar o disco do agente
-                    sh """
-                        docker rmi ${DOCKER_HUB_USER}/${JENKINS_IMAGE_NAME}:${JENKINS_IMAGE_TAG} || true
-                        docker rmi ${DOCKER_HUB_USER}/${JENKINS_IMAGE_NAME}:${env.BUILD_NUMBER} || true
-                    """
+                    sh '''
+                        docker rmi $DOCKER_HUB_USER/$JENKINS_IMAGE_NAME:$JENKINS_IMAGE_TAG || true
+                        docker rmi $DOCKER_HUB_USER/$JENKINS_IMAGE_NAME:$BUILD_NUMBER      || true
+                    '''
                 }
- 
+
                 failure {
                     echo 'Falha ao construir ou publicar a imagem Jenkins.'
                 }
