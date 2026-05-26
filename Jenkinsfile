@@ -20,6 +20,10 @@ pipeline {
 
         GITHUB_TOKEN            = credentials('github-token')
         GITHUB_REPO             = 'C14-INATEL/jokenpoke-backend'
+
+        JENKINS_IMAGE_NAME      = 'jokenpoke-jenkins'
+        JENKINS_IMAGE_TAG       = "latest"
+        DOCKER_HUB_USER         = credentials('docker-hub-username')
     }
 
     options {
@@ -138,6 +142,81 @@ pipeline {
 
                 timeout(time: 5, unit: 'MINUTES') {
                     waitForQualityGate abortPipeline: true
+                }
+            }
+        }
+
+        // =====================================================
+        // DOCKER BUILD & PUSH — IMAGEM JENKINS CUSTOMIZADA
+        // =====================================================
+ 
+        stage('Docker Build & Push Jenkins Image') {
+            // Só executa na branch main/master para evitar publicações acidentais
+            when {
+                anyOf {
+                    branch 'main'
+                    branch 'master'
+                }
+            }
+ 
+            steps {
+                echo 'Construindo imagem Docker customizada do Jenkins...'
+ 
+                script {
+                    def fullImageName = "${DOCKER_HUB_USER}/${JENKINS_IMAGE_NAME}:${JENKINS_IMAGE_TAG}"
+                    def taggedImageName = "${DOCKER_HUB_USER}/${JENKINS_IMAGE_NAME}:${env.BUILD_NUMBER}"
+ 
+                    // Constrói a imagem a partir do Dockerfile na raiz do repositório
+                    sh """
+                        docker build \
+                            --no-cache \
+                            --label "build.number=${env.BUILD_NUMBER}" \
+                            --label "build.branch=${env.BRANCH_NAME ?: 'local'}" \
+                            --label "build.commit=${env.GIT_COMMIT}" \
+                            -t ${fullImageName} \
+                            -t ${taggedImageName} \
+                            -f docker/jenkins/Dockerfile.jenkins \
+                            .
+                    """
+ 
+                    echo 'Publicando imagem no Docker Hub...'
+ 
+                    withCredentials([usernamePassword(
+                        credentialsId: "${DOCKER_CREDENTIALS}",
+                        usernameVariable: 'DOCKER_USER',
+                        passwordVariable: 'DOCKER_PASS'
+                    )]) {
+                        sh """
+                            echo "\${DOCKER_PASS}" | docker login -u "\${DOCKER_USER}" --password-stdin
+ 
+                            docker push ${fullImageName}
+                            docker push ${taggedImageName}
+ 
+                            docker logout
+                        """
+                    }
+ 
+                    echo """
+                    Imagem publicada com sucesso!
+ 
+                    Tags publicadas:
+                      - ${fullImageName}
+                      - ${taggedImageName}
+                    """
+                }
+            }
+ 
+            post {
+                always {
+                    // Remove imagens locais para não lotar o disco do agente
+                    sh """
+                        docker rmi ${DOCKER_HUB_USER}/${JENKINS_IMAGE_NAME}:${JENKINS_IMAGE_TAG} || true
+                        docker rmi ${DOCKER_HUB_USER}/${JENKINS_IMAGE_NAME}:${env.BUILD_NUMBER} || true
+                    """
+                }
+ 
+                failure {
+                    echo 'Falha ao construir ou publicar a imagem Jenkins.'
                 }
             }
         }
