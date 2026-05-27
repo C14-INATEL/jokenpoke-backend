@@ -115,7 +115,7 @@ pipeline {
                     ])
 
                     archiveArtifacts(
-                        artifacts: 'reports/coverage.xml',
+                        artifacts: 'reports/test-results.xml, reports/coverage.xml, reports/coverage-html/**',
                         allowEmptyArchive: true
                     )
                 }
