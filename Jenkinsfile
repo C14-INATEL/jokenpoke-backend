@@ -163,7 +163,7 @@ pipeline {
 
                 script {
                     def buildNumber   = env.BUILD_NUMBER
-                    def branch        = env.BRANCH_NAME ?: 'local'
+                    def branch        = env.BRANCH_NAME ?: 'main'
                     def commit        = env.GIT_COMMIT
                     def imageName     = env.JENKINS_IMAGE_NAME
                     def imageTag      = env.JENKINS_IMAGE_TAG
