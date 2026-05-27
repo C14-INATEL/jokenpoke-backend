@@ -24,6 +24,8 @@ pipeline {
         JENKINS_IMAGE_NAME      = 'jokenpoke-jenkins'
         JENKINS_IMAGE_TAG       = "latest"
         DOCKER_HUB_USER         = credentials('docker-hub-username')
+        
+        NOTIFY_EMAILS = credentials('pipeline-notify-emails')
     }
 
     options {
@@ -253,6 +255,27 @@ pipeline {
                         \\"context\\": \\"ci/jenkins\\"
                     }"
             '''
+
+            emailext(
+                subject: "[Jenkins] ✅ Pipeline OK — ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: """
+                    <h3>Pipeline concluída com sucesso</h3>
+                    <ul>
+                        <li><b>Job:</b> ${env.JOB_NAME}</li>
+                        <li><b>Build:</b> #${env.BUILD_NUMBER}</li>
+                        <li><b>Branch:</b> ${env.BRANCH_NAME ?: 'local'}</li>
+                        <li><b>Commit:</b> ${env.GIT_COMMIT}</li>
+                        <li><b>Duração:</b> ${currentBuild.durationString}</li>
+                    </ul>
+                    <p>
+                        🔍 <a href="${env.BUILD_URL}">Ver build no Jenkins</a>
+
+                        📊 <a href="${SONAR_HOST_URL}/dashboard?id=jokenpoke-backend">Ver análise no SonarQube</a>
+                    </p>
+                """,
+                mimeType: 'text/html',
+                to: "${env.PIPELINE_NOTIFY_EMAIL}"
+            )
         }
 
         failure {
@@ -274,6 +297,23 @@ pipeline {
                         \\"context\\": \\"ci/jenkins\\"
                     }"
             '''
+
+            emailext(
+                subject: "[Jenkins] ❌ Pipeline FALHOU — ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: """
+                    <h3>Pipeline falhou</h3>
+                    <ul>
+                        <li><b>Job:</b> ${env.JOB_NAME}</li>
+                        <li><b>Build:</b> #${env.BUILD_NUMBER}</li>
+                        <li><b>Branch:</b> ${env.BRANCH_NAME ?: 'local'}</li>
+                        <li><b>Commit:</b> ${env.GIT_COMMIT}</li>
+                        <li><b>Duração:</b> ${currentBuild.durationString}</li>
+                    </ul>
+                    <p>🔍 <a href="${env.BUILD_URL}console">Ver logs no Jenkins</a></p>
+                """,
+                mimeType: 'text/html',
+                to: "${env.PIPELINE_NOTIFY_EMAIL}"
+            )
         }
 
         unstable {
@@ -290,6 +330,23 @@ pipeline {
                         \\"context\\": \\"ci/jenkins\\"
                     }"
             '''
+
+            emailext(
+                subject: "[Jenkins] ⚠️ Pipeline INSTÁVEL — ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: """
+                    <h3>Pipeline instável — falhas não críticas detectadas</h3>
+                    <ul>
+                        <li><b>Job:</b> ${env.JOB_NAME}</li>
+                        <li><b>Build:</b> #${env.BUILD_NUMBER}</li>
+                        <li><b>Branch:</b> ${env.BRANCH_NAME ?: 'local'}</li>
+                        <li><b>Commit:</b> ${env.GIT_COMMIT}</li>
+                        <li><b>Duração:</b> ${currentBuild.durationString}</li>
+                    </ul>
+                    <p>🔍 <a href="${env.BUILD_URL}console">Ver logs no Jenkins</a></p>
+                """,
+                mimeType: 'text/html',
+                to: "${env.PIPELINE_NOTIFY_EMAIL}"
+            )
         }
     }
 }
