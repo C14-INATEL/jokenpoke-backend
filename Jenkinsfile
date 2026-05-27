@@ -152,6 +152,27 @@ pipeline {
                 }
             }
         }
+    
+        // =====================================================
+        // PACKAGE
+        // =====================================================
+
+        stage('Package') {
+            when {
+                anyOf {
+                    branch 'main'
+                    branch 'develop'
+                }
+            }
+            steps {
+                sh '.venv/bin/poetry build'
+            }
+            post {
+                always {
+                    archiveArtifacts(artifacts: 'dist/*.whl, dist/*.tar.gz')
+                }
+            }
+        }
 
         // =====================================================
         // DOCKER BUILD & PUSH — IMAGEM JENKINS CUSTOMIZADA
