@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image "${env.DOCKER_HUB_USER}/jokenpoke-jenkins:latest"
-            args  '--network jokenpoke-backend_jokenpoke-net -v /var/run/docker.sock:/var/run/docker.sock'
+            args  '--network jokenpoke-backend_jokenpoke-net -v /var/run/docker.sock:/var/run/docker.sock --group-add 0'
             alwaysPull true
         }
     }
