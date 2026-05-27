@@ -274,7 +274,7 @@ pipeline {
                     </p>
                 """,
                 mimeType: 'text/html',
-                to: "${env.PIPELINE_NOTIFY_EMAIL}"
+                to: "${PIPELINE_NOTIFY_EMAIL}"
             )
         }
 
@@ -312,7 +312,7 @@ pipeline {
                     <p>🔍 <a href="${env.BUILD_URL}console">Ver logs no Jenkins</a></p>
                 """,
                 mimeType: 'text/html',
-                to: "${env.PIPELINE_NOTIFY_EMAIL}"
+                to: "${PIPELINE_NOTIFY_EMAIL}"
             )
         }
 
@@ -345,7 +345,7 @@ pipeline {
                     <p>🔍 <a href="${env.BUILD_URL}console">Ver logs no Jenkins</a></p>
                 """,
                 mimeType: 'text/html',
-                to: "${env.PIPELINE_NOTIFY_EMAIL}"
+                to: "${PIPELINE_NOTIFY_EMAIL}"
             )
         }
     }
