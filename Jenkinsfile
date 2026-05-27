@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image "${DOCKER_HUB_USER}/jokenpoke-jenkins:latest"
+            image "${env.DOCKER_HUB_USER}/jokenpoke-jenkins:latest"
             args  '-v /var/run/docker.sock:/var/run/docker.sock'
             alwaysPull true   // equivalente ao pull_policy: always
         }
