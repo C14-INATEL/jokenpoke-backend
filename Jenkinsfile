@@ -158,12 +158,6 @@ pipeline {
         // =====================================================
 
         stage('Package') {
-            when {
-                anyOf {
-                    branch 'main'
-                    branch 'develop'
-                }
-            }
             steps {
                 sh '.venv/bin/poetry build'
             }
