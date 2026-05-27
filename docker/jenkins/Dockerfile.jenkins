@@ -46,4 +46,4 @@ RUN jenkins-plugin-cli --verbose --plugins \
     htmlpublisher \
     ws-cleanup \
     embeddable-build-status \
-    emailext 
+    email-ext
