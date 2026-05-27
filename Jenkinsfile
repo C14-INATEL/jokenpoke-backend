@@ -24,8 +24,8 @@ pipeline {
         JENKINS_IMAGE_NAME      = 'jokenpoke-jenkins'
         JENKINS_IMAGE_TAG       = "latest"
         DOCKER_HUB_USER         = credentials('docker-hub-username')
-        
-        NOTIFY_EMAILS = credentials('pipeline-notify-emails')
+
+        PIPELINE_NOTIFY_EMAIL = credentials('pipeline-notify-emails')
     }
 
     options {
