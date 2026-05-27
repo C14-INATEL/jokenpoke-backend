@@ -41,9 +41,8 @@ services:
   # CI/CD
   # ========================================
   jenkins:
-    build:
-      context: ./docker/jenkins
-      dockerfile: Dockerfile.jenkins
+    image: ${DOCKER_HUB_USER}/jokenpoke-jenkins:latest
+    pull_policy: always   # força pull mesmo se já existe localmente
     container_name: jokenpoke-jenkins
     # Acesso direto ainda disponível caso necessário
     ports:
