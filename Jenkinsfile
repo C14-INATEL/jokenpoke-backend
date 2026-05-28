@@ -158,28 +158,28 @@ pipeline {
         // =====================================================
 
         stage('Package') {
-        steps {
-            sh '''
-                mkdir -p dist
-                tar -czf dist/jokenpoke-backend-${BUILD_NUMBER}.tar.gz \
-                    --exclude='.venv' \
-                    --exclude='dist' \
-                    --exclude='reports' \
-                    --exclude='.git' \
-                    --exclude='__pycache__' \
-                    --exclude='*.pyc' \
-                    .
-            '''
-        }
-        post {
-            always {
-                archiveArtifacts(
-                    artifacts: 'dist/*.tar.gz',
-                    allowEmptyArchive: false
-                )
+            steps {
+                sh '''
+                    mkdir -p dist
+                    tar -czf dist/jokenpoke-backend-${BUILD_NUMBER}.tar.gz \
+                        --exclude='.venv' \
+                        --exclude='dist' \
+                        --exclude='reports' \
+                        --exclude='.git' \
+                        --exclude='__pycache__' \
+                        --exclude='*.pyc' \
+                        .
+                '''
+            }
+            post {
+                always {
+                    archiveArtifacts(
+                        artifacts: 'dist/*.tar.gz',
+                        allowEmptyArchive: false
+                    )
+                }
             }
         }
-    }
 
         // =====================================================
         // DOCKER BUILD & PUSH — IMAGEM JENKINS CUSTOMIZADA
