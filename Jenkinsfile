@@ -28,11 +28,10 @@ pipeline {
         GITHUB_REPO             = 'C14-INATEL/jokenpoke-backend'
 
         JENKINS_IMAGE_NAME      = 'jokenpoke-jenkins'
-        JENKINS_IMAGE_TAG       = "latest"
+        JENKINS_IMAGE_TAG       = 'latest'
 
-        PIPELINE_NOTIFY_EMAIL = credentials('pipeline-notify-emails')
+        PIPELINE_NOTIFY_EMAIL   = credentials('pipeline-notify-emails')
         SMTP_HOST               = credentials('smtp-host')
-        SMTP_PORT               = credentials('smtp-port')
         SMTP_USER               = credentials('smtp-user')
         SMTP_PASSWORD           = credentials('smtp-password')
     }
@@ -156,7 +155,7 @@ pipeline {
                 }
             }
         }
-    
+
         // =====================================================
         // PACKAGE
         // =====================================================
@@ -188,7 +187,7 @@ pipeline {
         // =====================================================
         // DOCKER BUILD & PUSH — IMAGEM JENKINS CUSTOMIZADA
         // =====================================================
- 
+
         stage('Docker Build & Push Jenkins Image') {
             steps {
                 echo 'Construindo imagem Docker customizada do Jenkins...'
@@ -199,8 +198,7 @@ pipeline {
                     def commit        = env.GIT_COMMIT
                     def imageName     = env.JENKINS_IMAGE_NAME
                     def imageTag      = env.JENKINS_IMAGE_TAG
-                    
-                    // constroi imagem a partir do Dockerfile
+
                     sh '''
                         docker build \
                             --no-cache \
@@ -254,33 +252,31 @@ pipeline {
             }
         }
     }
+
     // =========================================================
     // POST ACTIONS
     // =========================================================
 
     post {
- 
+
         always {
             echo 'Limpando arquivos temporários...'
- 
-            sh '''
-                rm -rf .venv
-                rm -rf reports
-                rm -f test.db
-            '''
- 
-            cleanWs()
+
+            node('built-in') {
+                checkout scm
+                sh "python3 scripts/notify.py ${currentBuild.currentResult}"
+            }
         }
- 
+
         success {
             echo """
             Pipeline concluída com sucesso!
- 
+
             Branch   : ${env.BRANCH_NAME ?: 'local'}
             Build    : #${env.BUILD_NUMBER}
             SonarQube: ${SONAR_HOST_URL}/dashboard?id=jokenpoke-backend
             """
- 
+
             sh '''
                 curl -s -X POST \
                     -H "Authorization: token ${GITHUB_TOKEN}" \
@@ -292,18 +288,16 @@ pipeline {
                         \\"context\\": \\"ci/jenkins\\"
                     }"
             '''
- 
-            sh 'python3 scripts/notify.py SUCCESS'
         }
- 
+
         failure {
             echo """
             Pipeline falhou!
- 
+
             Branch: ${env.BRANCH_NAME ?: 'local'}
             Build : #${env.BUILD_NUMBER}
             """
- 
+
             sh '''
                 curl -s -X POST \
                     -H "Authorization: token ${GITHUB_TOKEN}" \
@@ -315,13 +309,11 @@ pipeline {
                         \\"context\\": \\"ci/jenkins\\"
                     }"
             '''
- 
-            sh 'python3 scripts/notify.py FAILURE'
         }
- 
+
         unstable {
             echo 'Pipeline instável (falhas não críticas detectadas).'
- 
+
             sh '''
                 curl -s -X POST \
                     -H "Authorization: token ${GITHUB_TOKEN}" \
@@ -333,8 +325,6 @@ pipeline {
                         \\"context\\": \\"ci/jenkins\\"
                     }"
             '''
- 
-            sh 'python3 scripts/notify.py UNSTABLE'
         }
     }
 }
