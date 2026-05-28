@@ -1,6 +1,6 @@
 import os
-import sys
 import smtplib
+import sys
 from email.mime.text import MIMEText
 
 STATUS = sys.argv[1].upper() if len(sys.argv) > 1 else "UNKNOWN"
