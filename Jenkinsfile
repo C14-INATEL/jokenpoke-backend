@@ -31,6 +31,10 @@ pipeline {
         JENKINS_IMAGE_TAG       = "latest"
 
         PIPELINE_NOTIFY_EMAIL = credentials('pipeline-notify-emails')
+        SMTP_HOST               = credentials('smtp-host')
+        SMTP_PORT               = credentials('smtp-port')
+        SMTP_USER               = credentials('smtp-user')
+        SMTP_PASSWORD           = credentials('smtp-password')
     }
 
     options {
@@ -255,28 +259,28 @@ pipeline {
     // =========================================================
 
     post {
-
+ 
         always {
             echo 'Limpando arquivos temporários...'
-
+ 
             sh '''
                 rm -rf .venv
                 rm -rf reports
                 rm -f test.db
             '''
-
+ 
             cleanWs()
         }
-
+ 
         success {
             echo """
             Pipeline concluída com sucesso!
-
+ 
             Branch   : ${env.BRANCH_NAME ?: 'local'}
             Build    : #${env.BUILD_NUMBER}
             SonarQube: ${SONAR_HOST_URL}/dashboard?id=jokenpoke-backend
             """
-
+ 
             sh '''
                 curl -s -X POST \
                     -H "Authorization: token ${GITHUB_TOKEN}" \
@@ -288,37 +292,18 @@ pipeline {
                         \\"context\\": \\"ci/jenkins\\"
                     }"
             '''
-
-            emailext(
-                subject: "[Jenkins] ✅ Pipeline OK — ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                body: """
-                    <h3>Pipeline concluída com sucesso</h3>
-                    <ul>
-                        <li><b>Job:</b> ${env.JOB_NAME}</li>
-                        <li><b>Build:</b> #${env.BUILD_NUMBER}</li>
-                        <li><b>Branch:</b> ${env.BRANCH_NAME ?: 'local'}</li>
-                        <li><b>Commit:</b> ${env.GIT_COMMIT}</li>
-                        <li><b>Duração:</b> ${currentBuild.durationString}</li>
-                    </ul>
-                    <p>
-                        🔍 <a href="${env.BUILD_URL}">Ver build no Jenkins</a>
-
-                        📊 <a href="${SONAR_HOST_URL}/dashboard?id=jokenpoke-backend">Ver análise no SonarQube</a>
-                    </p>
-                """,
-                mimeType: 'text/html',
-                to: "${PIPELINE_NOTIFY_EMAIL}"
-            )
+ 
+            sh 'python3 scripts/notify.py SUCCESS'
         }
-
+ 
         failure {
             echo """
             Pipeline falhou!
-
+ 
             Branch: ${env.BRANCH_NAME ?: 'local'}
             Build : #${env.BUILD_NUMBER}
             """
-
+ 
             sh '''
                 curl -s -X POST \
                     -H "Authorization: token ${GITHUB_TOKEN}" \
@@ -330,28 +315,13 @@ pipeline {
                         \\"context\\": \\"ci/jenkins\\"
                     }"
             '''
-
-            emailext(
-                subject: "[Jenkins] ❌ Pipeline FALHOU — ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                body: """
-                    <h3>Pipeline falhou</h3>
-                    <ul>
-                        <li><b>Job:</b> ${env.JOB_NAME}</li>
-                        <li><b>Build:</b> #${env.BUILD_NUMBER}</li>
-                        <li><b>Branch:</b> ${env.BRANCH_NAME ?: 'local'}</li>
-                        <li><b>Commit:</b> ${env.GIT_COMMIT}</li>
-                        <li><b>Duração:</b> ${currentBuild.durationString}</li>
-                    </ul>
-                    <p>🔍 <a href="${env.BUILD_URL}console">Ver logs no Jenkins</a></p>
-                """,
-                mimeType: 'text/html',
-                to: "${PIPELINE_NOTIFY_EMAIL}"
-            )
+ 
+            sh 'python3 scripts/notify.py FAILURE'
         }
-
+ 
         unstable {
             echo 'Pipeline instável (falhas não críticas detectadas).'
-
+ 
             sh '''
                 curl -s -X POST \
                     -H "Authorization: token ${GITHUB_TOKEN}" \
@@ -363,23 +333,8 @@ pipeline {
                         \\"context\\": \\"ci/jenkins\\"
                     }"
             '''
-
-            emailext(
-                subject: "[Jenkins] ⚠️ Pipeline INSTÁVEL — ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                body: """
-                    <h3>Pipeline instável — falhas não críticas detectadas</h3>
-                    <ul>
-                        <li><b>Job:</b> ${env.JOB_NAME}</li>
-                        <li><b>Build:</b> #${env.BUILD_NUMBER}</li>
-                        <li><b>Branch:</b> ${env.BRANCH_NAME ?: 'local'}</li>
-                        <li><b>Commit:</b> ${env.GIT_COMMIT}</li>
-                        <li><b>Duração:</b> ${currentBuild.durationString}</li>
-                    </ul>
-                    <p>🔍 <a href="${env.BUILD_URL}console">Ver logs no Jenkins</a></p>
-                """,
-                mimeType: 'text/html',
-                to: "${PIPELINE_NOTIFY_EMAIL}"
-            )
+ 
+            sh 'python3 scripts/notify.py UNSTABLE'
         }
     }
 }
