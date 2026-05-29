@@ -10,6 +10,7 @@ WINNER_LABELS = {
     DRAW: "draw",
 }
 
+
 def normalize_move(move: str) -> str:
     return move.strip().lower()
 
