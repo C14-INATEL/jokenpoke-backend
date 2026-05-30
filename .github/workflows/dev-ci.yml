@@ -1,0 +1,241 @@
+name: Dev CI
+
+on:
+  push:
+    branches:
+      - develop
+      # {initials}/{type}/{description-in-english}
+      - '{mn,gs,ep,mc,cs,ra}/feature/**'
+      - '{mn,gs,ep,mc,cs,ra}/fix/**'
+      - '{mn,gs,ep,mc,cs,ra}/docs/**'
+      - '{mn,gs,ep,mc,cs,ra}/refactor/**'
+      - '{mn,gs,ep,mc,cs,ra}/test/**'
+      - '{mn,gs,ep,mc,cs,ra}/hotfix/**'
+      - '{mn,gs,ep,mc,cs,ra}/chore/**'
+
+  pull_request:
+    branches:
+      - develop
+
+# ==========================================================
+# CONCURRENCY CONTROL
+# ==========================================================
+
+concurrency:
+  group: dev-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+
+  # ==========================================================
+  # JOB 1: Code Quality
+  # ==========================================================
+
+  lint:
+    name: Code Quality (Ruff)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Cache Poetry & Pip
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/pypoetry
+            ~/.cache/pip
+          key: >
+            ${{ runner.os }}-poetry-
+            ${{ hashFiles('**/poetry.lock') }}
+
+          restore-keys: |
+            ${{ runner.os }}-poetry-
+
+      - name: Install Poetry
+        run: pip install poetry
+
+      - name: Install Dependencies
+        run: poetry install --no-interaction
+
+      - name: Run Ruff Lint
+        run: make lint
+
+      - name: Run Ruff Format Check
+        run: poetry run ruff format . --check
+
+  # ==========================================================
+  # JOB 2: Static Typing
+  # ==========================================================
+
+  type-check:
+    name: Type Checking (MyPy)
+    runs-on: ubuntu-latest
+
+    continue-on-error: true
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Cache Poetry & Pip
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/pypoetry
+            ~/.cache/pip
+          key: >
+            ${{ runner.os }}-poetry-
+            ${{ hashFiles('**/poetry.lock') }}
+
+          restore-keys: |
+            ${{ runner.os }}-poetry-
+
+      - name: Install Poetry
+        run: pip install poetry
+
+      - name: Install Dependencies
+        run: poetry install --no-interaction
+
+      - name: Run MyPy Static Analysis
+        run: |
+          poetry run mypy app/ --ignore-missing-imports \
+          || echo "MyPy found typing issues."
+
+  # ==========================================================
+  # JOB 3: Security Scan
+  # ==========================================================
+
+  security:
+    name: Security Scan (pip-audit)
+    runs-on: ubuntu-latest
+
+    continue-on-error: true
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Cache Poetry & Pip
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/pypoetry
+            ~/.cache/pip
+          key: >
+            ${{ runner.os }}-poetry-
+            ${{ hashFiles('**/poetry.lock') }}
+
+          restore-keys: |
+            ${{ runner.os }}-poetry-
+
+      - name: Install Poetry
+        run: pip install poetry
+
+      - name: Install Dependencies
+        run: poetry install --no-interaction
+
+      - name: Run pip-audit
+        run: |
+          poetry run pip-audit \
+          || echo "Known vulnerabilities detected."
+
+  # ==========================================================
+  # JOB 4: Tests
+  # ==========================================================
+
+  tests:
+    name: Test Suite & Coverage
+    runs-on: ubuntu-latest
+
+    needs:
+      - lint
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Cache Poetry & Pip
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/pypoetry
+            ~/.cache/pip
+          key: >
+            ${{ runner.os }}-poetry-
+            ${{ hashFiles('**/poetry.lock') }}
+
+          restore-keys: |
+            ${{ runner.os }}-poetry-
+
+      - name: Install Poetry
+        run: pip install poetry
+
+      - name: Install Dependencies
+        run: poetry install --no-interaction
+
+      - name: Create Reports Directory
+        run: mkdir -p reports
+
+      - name: Run Test Suite
+        run: |
+          poetry run pytest tests/ \
+            --tb=short \
+            --junitxml=reports/test-results.xml \
+            --cov=app \
+            --cov-report=xml:reports/coverage.xml \
+            --cov-report=html:reports/coverage-html \
+            --cov-report=term-missing
+
+      - name: Upload Reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dev-ci-reports
+          path: |
+            reports/test-results.xml
+            reports/coverage.xml
+            reports/coverage-html/
+          retention-days: 7
+
+  # ==========================================================
+  # JOB 5: Docker Validation
+  # ==========================================================
+
+  docker-build:
+    name: Docker Sanity Check
+    runs-on: ubuntu-latest
+
+    needs:
+      - lint
+      - tests
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Create .env for CI
+        run: cp .env.example .env
+
+      - name: Validate Docker Build
+        run: make build

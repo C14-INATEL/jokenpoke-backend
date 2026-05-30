@@ -1,6 +1,15 @@
+from app.core.config import settings
 from app.domain.entities.battle import BattleResult, RoundResult
 from app.domain.entities.user import User
-from app.domain.rules.battle_rules import resolve_move
+from app.domain.rules.battle_rules import (
+    ATTACKER_WINS,
+    DEFENDER_WINS,
+    resolve_move,
+    resolve_winner_label,
+)
+from app.shared.exceptions.domain_exception import DomainException
+
+WINS_TO_FINISH = 2
 
 
 class StartBattleUseCase:
@@ -9,49 +18,57 @@ class StartBattleUseCase:
         attacker: User,
         defender: User,
     ) -> BattleResult:
+        self._validate_players(attacker, defender)
 
-        if not attacker.has_deck() or not defender.has_deck():
-            raise ValueError("Ambos os jogadores precisam ter deck.")
+        attacker_deck = attacker.deck
+        defender_deck = defender.deck
 
         attacker_wins = 0
         defender_wins = 0
+        rounds: list[RoundResult] = []
 
-        rounds = []
-
-        for i in range(3):
-            if attacker_wins == 2 or defender_wins == 2:
+        for index in range(min(settings.battle_rounds, len(attacker_deck.cards))):
+            if attacker_wins == WINS_TO_FINISH or defender_wins == WINS_TO_FINISH:
                 break
 
-            attacker_card = attacker.deck.get_card(i)
-            defender_card = defender.deck.get_random_card()
+            attacker_card = attacker_deck.get_card(index)
+            defender_card = defender_deck.get_random_card()
 
             result = resolve_move(attacker_card.move, defender_card.move)
 
-            if result == 1:
+            if result == ATTACKER_WINS:
                 attacker_wins += 1
-                winner = "attacker"
-
-            elif result == 2:
+            elif result == DEFENDER_WINS:
                 defender_wins += 1
-                winner = "defender"
-
-            else:
-                winner = "draw"
 
             rounds.append(
                 RoundResult(
-                    round_number=i + 1,
+                    round_number=index + 1,
                     attacker_card=attacker_card.name,
                     defender_card=defender_card.name,
-                    winner=winner,
+                    winner=resolve_winner_label(result),
                 )
             )
 
-        if attacker_wins > defender_wins:
-            final_winner = "attacker"
-        elif defender_wins > attacker_wins:
-            final_winner = "defender"
-        else:
-            final_winner = "draw"
+        final_winner = self._resolve_final_winner(attacker_wins, defender_wins)
 
         return BattleResult(rounds=rounds, winner=final_winner)
+
+    def _validate_players(self, attacker: User, defender: User) -> None:
+        if attacker.id == defender.id:
+            raise DomainException("Um jogador nao pode batalhar contra si mesmo.")
+
+        if not attacker.has_deck():
+            raise DomainException("O atacante precisa ter deck.")
+
+        if not defender.has_deck():
+            raise DomainException("O defensor precisa ter deck.")
+
+    def _resolve_final_winner(self, attacker_wins: int, defender_wins: int) -> str:
+        if attacker_wins > defender_wins:
+            return "attacker"
+
+        if defender_wins > attacker_wins:
+            return "defender"
+
+        return "draw"

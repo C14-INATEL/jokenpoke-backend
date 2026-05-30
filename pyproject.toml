@@ -19,11 +19,12 @@ dependencies = [
     "uvicorn (>=0.42.0,<0.43.0)",
     "sqlalchemy (>=2.0.48,<3.0.0)",
     "psycopg2-binary (>=2.9.11,<3.0.0)",
-    "python-jose (>=3.5.0,<4.0.0)",
+    "python-jose[cryptography] (>=3.5.0,<4.0.0)",
     "passlib (>=1.7.4,<2.0.0)",
     "bcrypt (<4.0.0)",
     "python-dotenv (>=1.2.2,<2.0.0)",
-    "pydantic-settings (>=2.0.0,<3.0.0)"
+    "pydantic-settings (>=2.0.0,<3.0.0)",
+    "alembic (>=1.18.4,<2.0.0)",
 ]
 
 [build-system]
@@ -32,12 +33,42 @@ build-backend = "poetry.core.masonry.api"
 
 [dependency-groups]
 dev = [
-    "pytest (>=9.0.2,<10.0.0)",
+    "pytest (>=9.0.3,<10.0.0)",
     "pytest-cov (>=7.1.0,<8.0.0)",
     "httpx (>=0.28.1,<0.29.0)",
     "ruff (>=0.15.13,<0.16.0)",
-    "pytest-watch (>=4.2.0,<5.0.0)"
+    "pytest-watch (>=4.2.0,<5.0.0)",
+    "mypy (>=2.1.0,<3.0.0)",
+    "pip-audit (>=2.10.0,<3.0.0)",
 ]
+
+# =========================================================
+# MYPY
+# =========================================================
+
+[tool.mypy]
+python_version = "3.12"
+
+explicit_package_bases = true
+ignore_missing_imports = true
+
+exclude = [
+    "tests/",
+]
+
+warn_return_any = false
+warn_unused_configs = true
+
+disallow_untyped_defs = false
+check_untyped_defs = false
+
+[[tool.mypy.overrides]]
+module = [
+    "app.infrastructure.*",
+    "app.interfaces.*",
+    "app.core.config",
+]
+ignore_errors = true
 
 # =========================================================
 # RUFF

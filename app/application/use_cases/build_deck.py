@@ -33,4 +33,4 @@ class BuildDeckUseCase:
         self.deck_repo.clear_user_deck(user_id)
         self.deck_repo.save_deck(user_id, selected_card_ids)
 
-        return user.username
+        return str(user.username)
