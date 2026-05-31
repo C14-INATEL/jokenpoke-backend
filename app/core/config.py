@@ -29,7 +29,7 @@ class Settings(BaseSettings):
     ranking_loss_points: int
     ranking_draw_points: int
 
-    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
+    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore",)
 
 
 settings = Settings()
