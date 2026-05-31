@@ -10,11 +10,15 @@ def domain_exception_handler(request: Request, exc: DomainException) -> JSONResp
     return JSONResponse(status_code=400, content={"detail": exc.message})
 
 
-def not_found_exception_handler(request: Request, exc: NotFoundException) -> JSONResponse:
+def not_found_exception_handler(
+    request: Request, exc: NotFoundException
+) -> JSONResponse:
     return JSONResponse(status_code=404, content={"detail": exc.message})
 
 
-def unauthorized_exception_handler(request: Request, exc: UnauthorizedException) -> JSONResponse:
+def unauthorized_exception_handler(
+    request: Request, exc: UnauthorizedException
+) -> JSONResponse:
     return JSONResponse(status_code=401, content={"detail": exc.message})
 
 
