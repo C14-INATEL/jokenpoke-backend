@@ -6,29 +6,19 @@ from app.shared.exceptions.not_found_exception import NotFoundException
 from app.shared.exceptions.unauthorized_exception import UnauthorizedException
 
 
-async def domain_exception_handler(request: Request, exc: DomainException):
-    return JSONResponse(
-        status_code=400,
-        content={"detail": exc.message},
-    )
+def domain_exception_handler(request: Request, exc: DomainException) -> JSONResponse:
+    return JSONResponse(status_code=400, content={"detail": exc.message})
 
 
-async def not_found_exception_handler(request: Request, exc: NotFoundException):
-    return JSONResponse(
-        status_code=404,
-        content={"detail": exc.message},
-    )
+def not_found_exception_handler(request: Request, exc: NotFoundException) -> JSONResponse:
+    return JSONResponse(status_code=404, content={"detail": exc.message})
 
 
-async def unauthorized_exception_handler(request: Request, exc: UnauthorizedException):
-    return JSONResponse(
-        status_code=401,
-        content={"detail": exc.message},
-    )
+def unauthorized_exception_handler(request: Request, exc: UnauthorizedException) -> JSONResponse:
+    return JSONResponse(status_code=401, content={"detail": exc.message})
 
 
-# Função auxiliar para registrar todos de uma vez
-def register_exception_handlers(app: FastAPI):
-    app.add_exception_handler(DomainException, domain_exception_handler)
-    app.add_exception_handler(NotFoundException, not_found_exception_handler)
-    app.add_exception_handler(UnauthorizedException, unauthorized_exception_handler)
+def register_exception_handlers(app: FastAPI) -> None:
+    app.add_exception_handler(DomainException, domain_exception_handler)  # type: ignore[arg-type]
+    app.add_exception_handler(NotFoundException, not_found_exception_handler)  # type: ignore[arg-type]
+    app.add_exception_handler(UnauthorizedException, unauthorized_exception_handler)  # type: ignore[arg-type]
