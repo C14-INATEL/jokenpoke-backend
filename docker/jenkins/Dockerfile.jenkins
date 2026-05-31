@@ -26,7 +26,11 @@ https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cl
 && unzip /tmp/sonar-scanner.zip -d /opt \
 && ln -s /opt/sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner /usr/local/bin/sonar-scanner \
 && rm /tmp/sonar-scanner.zip
- 
+
+# Instala o Trivy para varredura de vulnerabilidades em imagens Docker
+RUN curl -sSfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh \
+    | sh -s -- -b /usr/local/bin
+
 USER jenkins
  
 # Plugins essenciais

@@ -251,6 +251,63 @@ pipeline {
                 }
             }
         }
+
+        // =====================================================
+        // SECURITY SCAN
+        // =====================================================
+
+        stage('Security Scan') {
+            steps {
+                echo 'Executando varreduras de segurança...'
+
+                sh '''
+                    mkdir -p reports/security
+
+                    # Dependências Python (CVEs conhecidas)
+                    .venv/bin/poetry run pip-audit \
+                        --output reports/security/pip-audit.json \
+                        --format json \
+                        || true
+
+                    # Secrets e credenciais expostas no código
+                    .venv/bin/poetry run detect-secrets scan \
+                        --baseline .secrets.baseline \
+                        > reports/security/secrets-report.json \
+                        || true
+
+                    # Análise estática de segurança (SAST)
+                    .venv/bin/poetry run bandit \
+                        -r app/ \
+                        -f json \
+                        -o reports/security/bandit-report.json \
+                        --severity-level medium \
+                        --confidence-level medium
+                '''
+
+                // Varredura da imagem Docker construída
+                sh '''
+                    trivy image \
+                        --format json \
+                        --output reports/security/trivy-report.json \
+                        --severity HIGH,CRITICAL \
+                        --exit-code 1 \
+                        $DOCKER_HUB_USER/$IMAGE_NAME:$IMAGE_TAG
+                '''
+            }
+
+            post {
+                always {
+                    archiveArtifacts(
+                        artifacts: 'reports/security/**',
+                        allowEmptyArchive: true
+                    )
+                }
+
+                failure {
+                    echo 'Vulnerabilidades críticas encontradas — verifique reports/security/'
+                }
+            }
+        }
     }
 
     // =========================================================
