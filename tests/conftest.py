@@ -6,6 +6,7 @@ pytest_plugins = [
     "tests.fixtures.cards",
     "tests.fixtures.users",
     "tests.fixtures.database",
+    "tests.fixtures.battles",
 ]
 
 # para test_register_user.py
