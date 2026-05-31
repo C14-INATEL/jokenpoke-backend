@@ -9,10 +9,6 @@ from app.domain.entities.pokemon import Pokemon
 from app.domain.entities.user import User
 
 
-# ---------------------------------------------------------------------------
-# Helpers (funções livres — não são fixtures, mas são usadas por elas)
-# ---------------------------------------------------------------------------
-
 def make_pokemon(name: str, move: str, pid: int = 1) -> Pokemon:
     return Pokemon(id=pid, original_name=name, name=name, move=move, description="")
 
@@ -23,8 +19,7 @@ def make_card(name: str, move: str, owner_id: int = 1, pid: int = 1) -> Card:
 
 def make_deck(moves: list[str], owner_id: int = 1) -> Deck:
     cards = [
-        make_card(f"Pokemon{i}", move, owner_id, i)
-        for i, move in enumerate(moves, 1)
+        make_card(f"Pokemon{i}", move, owner_id, i) for i, move in enumerate(moves, 1)
     ]
     return Deck(cards=cards)
 
@@ -36,10 +31,6 @@ def make_user(uid: int, has_deck: bool = True, deck: Deck | None = None) -> Magi
     user.deck = deck
     return user
 
-
-# ---------------------------------------------------------------------------
-# Fixtures
-# ---------------------------------------------------------------------------
 
 @pytest.fixture
 def attacker_deck():

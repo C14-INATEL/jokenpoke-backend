@@ -1,13 +1,13 @@
 from unittest.mock import MagicMock, patch
- 
+
 import pytest
- 
+
 from app.application.use_cases.start_battle import WINS_TO_FINISH, StartBattleUseCase
 from app.domain.entities.battle import BattleResult, RoundResult
 from app.shared.exceptions.domain_exception import DomainException
 from tests.fixtures.battles import make_deck, make_user
- 
- 
+
+
 @pytest.fixture
 def use_case():
     return StartBattleUseCase()
