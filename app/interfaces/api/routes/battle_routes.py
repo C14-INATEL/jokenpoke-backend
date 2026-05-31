@@ -5,6 +5,7 @@ from app.application.use_cases.start_battle import StartBattleUseCase
 from app.infrastructure.db.session import get_db
 from app.infrastructure.repositories.deck_repository import DeckRepository
 from app.infrastructure.repositories.user_repository import UserRepository
+from app.infrastructure.security.auth_dependencies import get_current_user_id
 from app.schemas.battle_schema import BattleResponse
 from app.shared.exceptions.not_found_exception import NotFoundException
 
@@ -12,8 +13,11 @@ router = APIRouter(prefix="/battle", tags=["Battle"])
 
 
 @router.post("/{defender_id}", response_model=BattleResponse)
-def battle(defender_id: int, db: Session = Depends(get_db)):
-    attacker_id = 1  # depois recebe jwt
+def battle(
+    defender_id: int,
+    attacker_id: int = Depends(get_current_user_id),
+    db: Session = Depends(get_db),
+):
 
     user_repo = UserRepository(db)
     deck_repo = DeckRepository(db)
