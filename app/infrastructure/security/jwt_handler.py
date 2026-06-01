@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import UTC, datetime, timedelta
 
 from jose import JWTError, jwt
 
@@ -7,7 +7,10 @@ from app.shared.exceptions.unauthorized_exception import UnauthorizedException
 
 
 def create_token(user_id: int):
-    payload = {"sub": str(user_id), "exp": datetime.utcnow() + timedelta(hours=2)}
+    payload = {
+        "sub": str(user_id),
+        "exp": datetime.now(UTC) + timedelta(hours=2),
+    }
     return jwt.encode(
         payload, settings.jwt_secret_key, algorithm=settings.jwt_algorithm
     )

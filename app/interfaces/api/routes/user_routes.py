@@ -1,10 +1,9 @@
-from fastapi import APIRouter, Depends
-from sqlalchemy.orm import Session
+from fastapi import APIRouter
 
 from app.application.use_cases.delete_user import DeleteUserUseCase
 from app.application.use_cases.get_all_users import GetAllUsersUseCase
 from app.application.use_cases.get_user_by_id import GetUserByIdUseCase
-from app.infrastructure.db.session import get_db
+from app.interfaces.api.dependencies import DbSession
 
 router = APIRouter(prefix="/users", tags=["Users"])
 
@@ -18,11 +17,9 @@ router = APIRouter(prefix="/users", tags=["Users"])
         }
     },
 )
-def get_all_users(db: Session = Depends(get_db)):
+def get_all_users(db: DbSession):
     use_case = GetAllUsersUseCase(db)
-    users = use_case.execute()
-
-    return users
+    return use_case.execute()
 
 
 @router.get(
@@ -32,13 +29,13 @@ def get_all_users(db: Session = Depends(get_db)):
         "deck": {"__all__": {"description"}},
     },
 )
-def get_user_by_id(user_id: int, db: Session = Depends(get_db)):
+def get_user_by_id(user_id: int, db: DbSession):
     use_case = GetUserByIdUseCase(db)
     return use_case.execute(user_id)
 
 
 @router.delete("/{user_id}")
-def delete_user(user_id: int, db: Session = Depends(get_db)):
+def delete_user(user_id: int, db: DbSession):
     use_case = DeleteUserUseCase(db)
     deleted_username = use_case.execute(user_id)
 
