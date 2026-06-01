@@ -286,13 +286,13 @@ pipeline {
 
                 // Varredura da imagem Docker construída
                 sh '''
-                trivy image \
-                    --format json \
-                    --output reports/security/trivy-report.json \
-                    --severity HIGH,CRITICAL \
-                    --exit-code 1 \
-                    $DOCKER_HUB_USER/$JENKINS_IMAGE_NAME:$BUILD_NUMBER
-            '''
+                    trivy image \
+                        --format json \
+                        --output reports/security/trivy-report.json \
+                        --severity HIGH,CRITICAL \
+                        --exit-code 1 \
+                        $DOCKER_HUB_USER/$JENKINS_IMAGE_NAME:$BUILD_NUMBER
+                '''
             }
 
             post {
