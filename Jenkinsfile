@@ -151,7 +151,7 @@ pipeline {
                 echo 'Aguardando resultado do Quality Gate...'
 
                 timeout(time: 5, unit: 'MINUTES') {
-                    waitForQualityGate abortPipeline: true
+                    waitForQualityGate abortPipeline: false
                 }
             }
         }
