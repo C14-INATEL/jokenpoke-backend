@@ -49,7 +49,9 @@ class GetAllUsersUseCase:
                 {
                     "id": user.id,
                     "username": user.username,
-                    "collection": enriched_collection,
+                    "points": user.points,
+                    "position": user.position,
+                    "cards": enriched_collection,
                     "deck": enriched_deck,
                 }
             )
