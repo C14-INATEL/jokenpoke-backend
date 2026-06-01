@@ -7,7 +7,8 @@ from app.schemas.pokemon_schema import PokemonResponse
 class UserResponse(BaseModel):
     id: int
     username: str
-
+    points: int = 0
+    position: int | None = None
     cards: list[PokemonResponse] = []
     deck: list[DeckResponse] = []
 
