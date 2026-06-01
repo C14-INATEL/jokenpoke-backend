@@ -9,3 +9,13 @@ class RegisterUserRequest(BaseModel):
 class RegisterUserResponse(BaseModel):
     message: str
     access_token: str
+
+
+class LoginUserRequest(BaseModel):
+    username: str
+    password: str
+
+
+class LoginUserResponse(BaseModel):
+    message: str
+    access_token: str
