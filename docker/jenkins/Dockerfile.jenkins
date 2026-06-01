@@ -1,8 +1,8 @@
 FROM jenkins/jenkins:lts
- 
+
 USER root
- 
-# Instala dependências do sistema e Docker CLI
+
+# Dependências do sistema e Docker CLI
 RUN apt-get update && apt-get install -y \
     curl \
     gnupg \
@@ -10,30 +10,31 @@ RUN apt-get update && apt-get install -y \
     python3 \
     python3-pip \
     python3-venv \
-&& curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg \
+    unzip \
+&& curl -fsSL https://download.docker.com/linux/debian/gpg \
+    | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg \
 && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] \
-https://download.docker.com/linux/debian $(lsb_release -cs) stable" \
-> /etc/apt/sources.list.d/docker.list \
+    https://download.docker.com/linux/debian $(lsb_release -cs) stable" \
+    > /etc/apt/sources.list.d/docker.list \
 && apt-get update && apt-get install -y docker-ce-cli \
 && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN usermod -aG root jenkins
- 
-# Instala o sonar-scanner CLI para análise
+
+# Sonar Scanner
 RUN curl -sSLo /tmp/sonar-scanner.zip \
-https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip \
-&& apt-get install -y unzip \
+    https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip \
 && unzip /tmp/sonar-scanner.zip -d /opt \
 && ln -s /opt/sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner /usr/local/bin/sonar-scanner \
 && rm /tmp/sonar-scanner.zip
 
-# Instala o Trivy para varredura de vulnerabilidades em imagens Docker
+# Trivy — deve ser root para escrever em /usr/local/bin
 RUN curl -sSfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh \
     | sh -s -- -b /usr/local/bin
 
 USER jenkins
- 
-# Plugins essenciais
+
+# Plugins
 RUN jenkins-plugin-cli --verbose --plugins \
     git \
     workflow-aggregator \
