@@ -3,7 +3,6 @@ from fastapi import APIRouter
 from app.application.use_cases.login_user import LoginUserUseCase
 from app.application.use_cases.register_user import RegisterUserUseCase
 from app.interfaces.api.dependencies import DbSession
-from app.infrastructure.db.session import get_db
 from app.schemas.auth_schema import (
     LoginUserRequest,
     LoginUserResponse,
