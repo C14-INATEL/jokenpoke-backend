@@ -1,20 +1,27 @@
-from fastapi import APIRouter, Depends
-from sqlalchemy.orm import Session
+from fastapi import APIRouter
 
 from app.application.use_cases.start_battle import StartBattleUseCase
-from app.infrastructure.db.session import get_db
 from app.infrastructure.repositories.deck_repository import DeckRepository
 from app.infrastructure.repositories.user_repository import UserRepository
+from app.interfaces.api.dependencies import CurrentUser, DbSession
 from app.schemas.battle_schema import BattleResponse
 from app.shared.exceptions.not_found_exception import NotFoundException
 
 router = APIRouter(prefix="/battle", tags=["Battle"])
 
 
-@router.post("/{defender_id}", response_model=BattleResponse)
-def battle(defender_id: int, db: Session = Depends(get_db)):
-    attacker_id = 1  # depois recebe jwt
-
+@router.post(
+    "/{defender_id}",
+    response_model=BattleResponse,
+    responses={
+        404: {"description": "Atacante ou defensor não encontrado"},
+    },
+)
+def battle(
+    defender_id: int,
+    attacker_id: CurrentUser,
+    db: DbSession,
+):
     user_repo = UserRepository(db)
     deck_repo = DeckRepository(db)
 
@@ -30,6 +37,4 @@ def battle(defender_id: int, db: Session = Depends(get_db)):
     attacker.deck = deck_repo.get_user_deck(attacker.id)
     defender.deck = deck_repo.get_user_deck(defender.id)
 
-    result = StartBattleUseCase().execute(attacker, defender)
-
-    return result
+    return StartBattleUseCase().execute(attacker, defender)
