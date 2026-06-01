@@ -2520,6 +2520,18 @@ pycryptodome = ["pycryptodome (>=3.3.1,<4.0.0)"]
 test = ["pytest", "pytest-cov"]
 
 [[package]]
+name = "python-multipart"
+version = "0.0.30"
+description = "A streaming multipart parser for Python"
+optional = false
+python-versions = ">=3.10"
+groups = ["main"]
+files = [
+    {file = "python_multipart-0.0.30-py3-none-any.whl", hash = "sha256:830964def8c90607ac5daa00514e3987815865713ade8d20febc9177ac0c3c5b"},
+    {file = "python_multipart-0.0.30.tar.gz", hash = "sha256:0edfe0475c1f46ddd3ff7785a626f6118af32bdcf359bb21260367313bb32118"},
+]
+
+[[package]]
 name = "python-socketio"
 version = "5.16.2"
 description = "Socket.IO server and client for Python"
@@ -3319,4 +3331,4 @@ testing = ["coverage[toml]", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.11,<4.0"
-content-hash = "0aafe5c83116400eb75a6efb07547501c73e0e5c72885507fbaf17888dd0ad8d"
+content-hash = "7e28fe3e738a02a965192882a041bea9e8a85bb7f0000ee6a99f13862342617e"

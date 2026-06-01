@@ -1,10 +1,10 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
+from fastapi.security import OAuth2PasswordRequestForm
 
 from app.application.use_cases.login_user import LoginUserUseCase
 from app.application.use_cases.register_user import RegisterUserUseCase
 from app.interfaces.api.dependencies import DbSession
 from app.schemas.auth_schema import (
-    LoginUserRequest,
     LoginUserResponse,
     RegisterUserRequest,
     RegisterUserResponse,
@@ -23,8 +23,8 @@ def register(payload: RegisterUserRequest, db: DbSession):
 
 
 @router.post("/login", response_model=LoginUserResponse)
-def login(payload: LoginUserRequest, db: DbSession):
+def login(db: DbSession, form_data: OAuth2PasswordRequestForm = Depends()):
     use_case = LoginUserUseCase(db)
-    token = use_case.execute(username=payload.username, password=payload.password)
+    token = use_case.execute(username=form_data.username, password=form_data.password)
 
     return {"message": "Login realizado com sucesso", "access_token": token}
