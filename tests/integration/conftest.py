@@ -38,7 +38,6 @@ from app.main import app  # noqa: E402
 
 @pytest.fixture(scope="function")
 def db():
-    """Cria todas as tabelas antes de cada teste e derruba ao final."""
     Base.metadata.create_all(bind=engine)
     session = TestingSessionLocal()
     try:
@@ -50,7 +49,6 @@ def db():
 
 @pytest.fixture(scope="function")
 def client(db):
-    """TestClient com get_db substituído pela sessão de teste."""
 
     def override_get_db():
         session = TestingSessionLocal()
