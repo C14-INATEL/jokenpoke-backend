@@ -93,7 +93,7 @@ pipeline {
         // TESTS
         // =====================================================
 
-        stage('Test') {
+        stage('Unit Tests') {
             steps {
                 echo 'Executando testes com pytest...'
 
@@ -126,6 +126,36 @@ pipeline {
 
                     archiveArtifacts(
                         artifacts: 'reports/test-results.xml, reports/coverage.xml, reports/coverage-html/**',
+                        allowEmptyArchive: true
+                    )
+                }
+            }
+        }
+
+        stage('Integration Test') {
+            steps {
+                echo 'Executando testes de integração...'
+                sh '''
+                    mkdir -p reports
+                    .venv/bin/poetry run pytest tests/integration/ \
+                    --tb=short \
+                    --junitxml=reports/integration-results.xml \
+                    --cov=app \
+                    --cov-append \
+                    --cov-report=xml:reports/coverage.xml \
+                    --cov-report=html:reports/coverage-html \
+                    --cov-report=term-missing \
+                    -v
+                '''
+            }
+            post {
+                always {
+                    junit(
+                        allowEmptyResults: true,
+                        testResults: 'reports/integration-results.xml'
+                    )
+                    archiveArtifacts(
+                        artifacts: 'reports/integration-results.xml',
                         allowEmptyArchive: true
                     )
                 }
@@ -317,6 +347,8 @@ pipeline {
 
         always {
             echo 'Limpando arquivos temporários...'
+
+            sh 'rm -f test_integration.db || true'
 
             node('built-in') {
                 checkout scm
