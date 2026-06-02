@@ -138,15 +138,14 @@ pipeline {
                 sh '''
                     mkdir -p reports
                     .venv/bin/poetry run pytest tests/integration/ \
-                        --tb=short \
-                        --junitxml=reports/integration-results.xml \
-                        --cov=app \
-                        --cov-append \
-                        --cov-report=xml:reports/coverage.xml \
-                        --cov-report=html:reports/coverage-html \
-                        --cov-report=term-missing \
-                        -v \
-                        -m integration
+                    --tb=short \
+                    --junitxml=reports/integration-results.xml \
+                    --cov=app \
+                    --cov-append \
+                    --cov-report=xml:reports/coverage.xml \
+                    --cov-report=html:reports/coverage-html \
+                    --cov-report=term-missing \
+                    -v
                 '''
             }
             post {
