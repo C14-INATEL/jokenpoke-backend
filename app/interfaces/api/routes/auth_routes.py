@@ -1,9 +1,8 @@
-from fastapi import APIRouter, Depends
-from fastapi.security import OAuth2PasswordRequestForm
+from fastapi import APIRouter
 
 from app.application.use_cases.login_user import LoginUserUseCase
 from app.application.use_cases.register_user import RegisterUserUseCase
-from app.interfaces.api.dependencies import DbSession
+from app.interfaces.api.dependencies import DbSession, OAuth2Form
 from app.schemas.auth_schema import (
     LoginUserResponse,
     RegisterUserRequest,
@@ -23,7 +22,7 @@ def register(payload: RegisterUserRequest, db: DbSession):
 
 
 @router.post("/login", response_model=LoginUserResponse)
-def login(db: DbSession, form_data: OAuth2PasswordRequestForm = Depends()):
+def login(db: DbSession, form_data: OAuth2Form):
     use_case = LoginUserUseCase(db)
     token = use_case.execute(username=form_data.username, password=form_data.password)
 
