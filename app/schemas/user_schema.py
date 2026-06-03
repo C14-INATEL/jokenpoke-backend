@@ -8,7 +8,8 @@ class UserResponse(BaseModel):
     id: int
     username: str
     points: int = 0
-    position: int | None = None
+    rank: str
+
     cards: list[PokemonResponse] = []
     deck: list[DeckResponse] = []
 

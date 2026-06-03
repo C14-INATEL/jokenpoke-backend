@@ -14,9 +14,4 @@ class RankingRepository:
             .all()
         )
 
-        for index, user in enumerate(users, start=1):
-            user.position = index
-
-        self.db.commit()
-
         return users

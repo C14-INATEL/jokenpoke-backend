@@ -13,7 +13,7 @@ class UserModel(Base):
 
     # NOVAS COLUNAS PARA RANKING
     points = Column(Integer, default=0, nullable=False)
-    position = Column(Integer, nullable=True)
+    rank = Column(String, default="Beginner", nullable=False)
 
     # Relações virtuais para puxar os dados anexados
     cards = relationship(

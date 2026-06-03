@@ -8,13 +8,13 @@ class User:
         username: str,
         deck: Deck | None = None,
         points: int = 0,
-        position: int | None = None,
+        rank: str = "Beginner",
     ):
         self.id = id
         self.username = username
         self.deck = deck
         self.points = points
-        self.position = position
+        self.rank = rank
 
     def has_deck(self) -> bool:
         return self.deck is not None

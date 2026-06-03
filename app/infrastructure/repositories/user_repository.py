@@ -13,7 +13,9 @@ class UserRepository:
         if not user:
             return None
 
-        return User(id=user.id, username=user.username)
+        return User(
+            id=user.id, username=user.username, points=user.points, rank=user.rank
+        )
 
     def create(self, username: str, password: str) -> User:
         user = UserModel(username=username, password=password)
@@ -21,7 +23,9 @@ class UserRepository:
         self.db.commit()
         self.db.refresh(user)
 
-        return User(id=user.id, username=user.username)
+        return User(
+            id=user.id, username=user.username, points=user.points, rank=user.rank
+        )
 
     def get_all_with_relations(self) -> list[UserModel]:
         users = (
@@ -49,7 +53,9 @@ class UserRepository:
             user.username = username
             self.db.commit()
             self.db.refresh(user)
-            return User(id=user.id, username=user.username)
+            return User(
+                id=user.id, username=user.username, points=user.points, rank=user.rank
+            )
         return None
 
     def delete(self, user_id: int) -> None:
@@ -57,3 +63,13 @@ class UserRepository:
         if user:
             self.db.delete(user)
             self.db.commit()
+
+    def update_ranking(self, user_id: int, rank: str, points: int) -> UserModel | None:
+        user = self.db.query(UserModel).filter_by(id=user_id).first()
+        if not user:
+            return None
+        user.rank = rank
+        user.points = points
+        self.db.commit()
+        self.db.refresh(user)
+        return user
