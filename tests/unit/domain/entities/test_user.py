@@ -54,7 +54,16 @@ def test_user_propriedades_basicas():
     assert user.id == 1
     assert user.username == "maria"
     assert user.deck is None
+    assert user.points == 0
+    assert user.rank == "Beginner"
     assert user.has_deck() is False
+
+
+def test_user_rank_customizado():
+    user = User(id=3, username="ana", points=75, rank="Great")
+
+    assert user.points == 75
+    assert user.rank == "Great"
 
 
 def test_user_adicionar_deck_posteriormente(valid_cards_list):
