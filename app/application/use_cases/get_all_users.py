@@ -50,7 +50,7 @@ class GetAllUsersUseCase:
                     "id": user.id,
                     "username": user.username,
                     "points": user.points,
-                    "position": user.position,
+                    "rank": user.rank,
                     "cards": enriched_collection,
                     "deck": enriched_deck,
                 }
