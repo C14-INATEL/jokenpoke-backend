@@ -13,9 +13,9 @@ class TestGetRankingUseCase:
         use_case.ranking_repo = MagicMock()
 
         usuario = MagicMock()
-        usuario.position = 1
         usuario.username = "Ash"
         usuario.points = 100
+        usuario.rank = "Beginner"
 
         use_case.ranking_repo.get_ranking_list.return_value = [usuario]
 
@@ -28,6 +28,7 @@ class TestGetRankingUseCase:
         assert resultado[0]["position"] == 1
         assert resultado[0]["username"] == "Ash"
         assert resultado[0]["points"] == 100
+        assert resultado[0]["rank"] == "Beginner"
 
     def test_execute_with_multiple_users(self):
         # Arrange
@@ -36,19 +37,19 @@ class TestGetRankingUseCase:
         use_case.ranking_repo = MagicMock()
 
         u1 = MagicMock()
-        u1.position = 1
         u1.username = "Red"
         u1.points = 200
+        u1.rank = "Expert"
 
         u2 = MagicMock()
-        u2.position = 2
         u2.username = "Blue"
         u2.points = 150
+        u2.rank = "Intermediate"
 
         u3 = MagicMock()
-        u3.position = 3
         u3.username = "Gary"
         u3.points = 80
+        u3.rank = "Beginner"
 
         use_case.ranking_repo.get_ranking_list.return_value = [u1, u2, u3]
 
@@ -93,16 +94,16 @@ class TestGetRankingUseCase:
         # Assert
         use_case.ranking_repo.get_ranking_list.assert_called_once()
 
-    def test_execute_returns_only_required_fields(self):
+    def test_execute_returns_required_fields(self):
         # Arrange: garante que apenas position, username e points são retornados
         db_mock = MagicMock(spec=Session)
         use_case = GetRankingUseCase(db=db_mock)
         use_case.ranking_repo = MagicMock()
 
         usuario = MagicMock()
-        usuario.position = 1
         usuario.username = "Pikachu"
         usuario.points = 999
+        usuario.rank = "Master"
 
         use_case.ranking_repo.get_ranking_list.return_value = [usuario]
 
@@ -110,4 +111,4 @@ class TestGetRankingUseCase:
         resultado = use_case.execute()
 
         # Assert
-        assert set(resultado[0].keys()) == {"position", "username", "points"}
+        assert set(resultado[0].keys()) == {"position", "username", "points", "rank"}
