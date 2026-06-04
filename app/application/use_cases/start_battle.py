@@ -47,6 +47,8 @@ class StartBattleUseCase:
                     attacker_card=attacker_card.name,
                     defender_card=defender_card.name,
                     winner=resolve_winner_label(result),
+                    attacker_move=attacker_card.move,
+                    defender_move=defender_card.move,
                 )
             )
 

@@ -12,9 +12,10 @@ class GetRankingUseCase:
 
         return [
             {
-                "position": user.position,
+                "position": index,
                 "username": user.username,
                 "points": user.points,
+                "rank": user.rank,
             }
-            for user in users
+            for index, user in enumerate(users, start=1)
         ]

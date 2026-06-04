@@ -198,6 +198,23 @@ class TestExecuteWinnerResolution:
         for r in result.rounds:
             assert r.attacker_card in card_names
 
+    def test_moves_das_cartas_nos_rounds(self, use_case):
+        attacker_deck = make_deck(["papel", "tesoura", "pedra"], owner_id=1)
+        attacker = make_user(uid=1, has_deck=True, deck=attacker_deck)
+
+        defender_deck = make_deck(["pedra", "pedra", "pedra"], owner_id=2)
+        defender = make_user(uid=2, has_deck=True, deck=defender_deck)
+        defender.deck.get_random_card = MagicMock(
+            return_value=defender_deck.get_card(0)
+        )
+
+        with patch("app.application.use_cases.start_battle.settings") as mock_settings:
+            mock_settings.battle_rounds = 1
+            result = use_case.execute(attacker, defender)
+
+        assert result.rounds[0].attacker_move == "papel"
+        assert result.rounds[0].defender_move == "pedra"
+
 
 class TestExecuteValidations:
     def test_mesmo_jogador_levanta_excecao(self, use_case):

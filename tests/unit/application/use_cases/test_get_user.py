@@ -40,7 +40,7 @@ class TestGetUserByIdUseCase:
             cards=[carta1, carta2],
             deck=[deck_item],
             points=100,
-            position=1,
+            rank="Beginner",
         )
 
         use_case.user_repo.get_by_id_with_relations.return_value = usuario_falso
@@ -55,7 +55,7 @@ class TestGetUserByIdUseCase:
         assert resultado["id"] == 10
         assert resultado["username"] == "Ash Ketchum"
         assert resultado["points"] == 100
-        assert resultado["position"] == 1
+        assert resultado["rank"] == "Beginner"
 
         assert len(resultado["cards"]) == 2
 
@@ -95,7 +95,7 @@ class TestGetAllUsersUseCase:
             cards=[],
             deck=[],
             points=0,
-            position=None,
+            rank="Beginner",
         )
 
         u2 = SimpleNamespace(
@@ -104,7 +104,7 @@ class TestGetAllUsersUseCase:
             cards=[],
             deck=[],
             points=0,
-            position=None,
+            rank="Beginner",
         )
 
         use_case.user_repo.get_all_with_relations.return_value = [
