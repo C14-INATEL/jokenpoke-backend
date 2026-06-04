@@ -11,7 +11,7 @@ pipeline {
         IMAGE_NAME              = 'jokenpoke-backend'
         IMAGE_TAG               = "${env.BRANCH_NAME ?: 'local'}-${env.BUILD_NUMBER}"
 
-        COVERAGE_THRESHOLD      = '80'
+        COVERAGE_THRESHOLD      = '90'
 
         DOCKER_CREDENTIALS      = 'docker-hub-credentials'
         DOCKER_REGISTRY         = credentials('docker-registry-url')
