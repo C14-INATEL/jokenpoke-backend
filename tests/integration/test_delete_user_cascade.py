@@ -45,7 +45,7 @@ class TestDeleteUserCascade:
         response = client.delete(f"/users/{user_id}")
         assert response.status_code == 200
 
-    def test_delete_user_with_deck_removes_deck_entries(
+    def test_delete_user_removes_user_from_listing(
         self, client, registered_user_with_deck
     ):
         user_id = registered_user_with_deck["id"]
@@ -55,6 +55,28 @@ class TestDeleteUserCascade:
         users = client.get("/users/").json()
         deleted = next((u for u in users if u["id"] == user_id), None)
         assert deleted is None
+
+    def test_delete_user_removes_deck_entries(self, client, registered_user_with_deck):
+        user_id = registered_user_with_deck["id"]
+
+        user_before = client.get(f"/users/{user_id}").json()
+        assert len(user_before["deck"]) > 0
+
+        client.delete(f"/users/{user_id}")
+
+        response = client.get(f"/users/{user_id}")
+        assert response.status_code == 404
+
+    def test_delete_user_removes_cards(self, client, registered_user_with_deck):
+        user_id = registered_user_with_deck["id"]
+
+        user_before = client.get(f"/users/{user_id}").json()
+        assert len(user_before["cards"]) > 0
+
+        client.delete(f"/users/{user_id}")
+
+        response = client.get(f"/users/{user_id}")
+        assert response.status_code == 404
 
     def test_delete_user_not_found_returns_404(self, client):
         response = client.delete("/users/99999")
