@@ -44,16 +44,33 @@ class TestBattleRoutes:
 
         assert response.status_code == 200
         body = response.json()
-        assert set(body.keys()) == {"rounds", "winner"}
+        assert set(body.keys()) == {"rounds", "winner", "ranking", "reward_card"}
         assert body["winner"] in {"attacker", "defender", "draw"}
         assert isinstance(body["rounds"], list)
         assert len(body["rounds"]) > 0
+        assert set(body["ranking"].keys()) == {
+            "old_rank",
+            "new_rank",
+            "old_points",
+            "new_points",
+            "status",
+            "message",
+        }
+        if body["reward_card"] is not None:
+            assert set(body["reward_card"].keys()) == {
+                "id",
+                "name",
+                "move",
+                "description",
+            }
 
         first_round = body["rounds"][0]
         assert set(first_round.keys()) == {
             "round_number",
             "attacker_card",
             "defender_card",
+            "attacker_move",
+            "defender_move",
             "winner",
         }
         assert first_round["winner"] in {"attacker", "defender", "draw"}

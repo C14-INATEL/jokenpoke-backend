@@ -38,7 +38,7 @@ class TestGetAllUsers:
             "id",
             "username",
             "points",
-            "position",
+            "rank",
             "cards",
             "deck",
         }
@@ -57,7 +57,7 @@ class TestGetUserById:
         assert body["id"] == user["id"]
         assert body["username"] == "get_user_success"
         assert body["points"] == 0
-        assert body["position"] is None
+        assert body["rank"] == "Beginner"
         assert isinstance(body["cards"], list)
         assert isinstance(body["deck"], list)
 
