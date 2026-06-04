@@ -337,6 +337,78 @@ pipeline {
                 }
             }
         }
+
+        // =====================================================
+        // SMOKE TEST
+        // =====================================================
+
+        stage('Smoke Test') {
+            environment {
+                DEPLOY_URL = credentials('deploy-url')
+                SMOKE_USER = credentials('smoke-test-user')
+                SMOKE_PASS = credentials('smoke-test-password')
+            }
+
+            steps {
+                echo 'Executando smoke tests contra ambiente Railway...'
+
+                sh '''
+                    set -e
+
+                    check_status() {
+                        LABEL=$1
+                        EXPECTED=$2
+                        ACTUAL=$3
+
+                        if [ "$ACTUAL" != "$EXPECTED" ]; then
+                            echo "  FALHOU: $LABEL — esperado HTTP $EXPECTED, recebido $ACTUAL"
+                            exit 1
+                        fi
+
+                        echo "  OK: $LABEL — HTTP $ACTUAL"
+                    }
+
+                    echo "[1/3] Health check..."
+
+                    STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+                        --max-time 5 "$DEPLOY_URL/health")
+
+                    check_status "GET /health" "200" "$STATUS"
+
+                    echo "[2/3] Auth — login..."
+
+                    RESPONSE=$(curl -s --max-time 10 \
+                        -X POST "$DEPLOY_URL/auth/login" \
+                        -H "Content-Type: application/x-www-form-urlencoded" \
+                        -d "username=$SMOKE_USER&password=$SMOKE_PASS")
+
+                    TOKEN=$(echo "$RESPONSE" | grep -o '"access_token":"[^"]*"' | cut -d'"' -f4)
+
+                    if [ -z "$TOKEN" ]; then
+                        echo "  FALHOU: POST /auth/login — token não retornado"
+                        exit 1
+                    fi
+
+                    echo "  OK: POST /auth/login — token obtido"
+
+                    echo "[3/3] Pokemons — rota pública..."
+
+                    STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+                        --max-time 10 "$DEPLOY_URL/pokemons/")
+
+                    check_status "GET /pokemons/" "200" "$STATUS"
+
+                    echo ""
+                    echo "Todos os smoke tests passaram."
+                '''
+            }
+
+            post {
+                failure {
+                    echo 'Smoke test falhou — aplicação indisponível ou fluxo crítico quebrado.'
+                }
+            }
+        }
     }
 
     // =========================================================
