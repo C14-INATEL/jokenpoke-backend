@@ -29,7 +29,7 @@ def upgrade() -> None:
         sa.PrimaryKeyConstraint("id"),
         sa.UniqueConstraint("username"),
     )
-    
+
     op.create_table(
         "cards",
         sa.Column("id", sa.Integer(), nullable=False),

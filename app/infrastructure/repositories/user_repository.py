@@ -62,10 +62,7 @@ class UserRepository:
         user = (
             self.db.query(UserModel)
             .filter(UserModel.id == user_id)
-            .options(
-                selectinload(UserModel.cards),
-                selectinload(UserModel.deck)
-            )
+            .options(selectinload(UserModel.cards), selectinload(UserModel.deck))
             .first()
         )
         if user:

@@ -45,7 +45,9 @@ class TestDeleteUserCascade:
         response = client.delete(f"/users/{user_id}")
         assert response.status_code == 200
 
-    def test_delete_user_with_deck_removes_deck_entries(self, client, registered_user_with_deck):
+    def test_delete_user_with_deck_removes_deck_entries(
+        self, client, registered_user_with_deck
+    ):
         user_id = registered_user_with_deck["id"]
 
         client.delete(f"/users/{user_id}")
