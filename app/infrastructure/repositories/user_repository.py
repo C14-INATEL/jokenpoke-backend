@@ -59,7 +59,15 @@ class UserRepository:
         return None
 
     def delete(self, user_id: int) -> None:
-        user = self.db.query(UserModel).filter_by(id=user_id).first()
+        user = (
+            self.db.query(UserModel)
+            .filter(UserModel.id == user_id)
+            .options(
+                selectinload(UserModel.cards),
+                selectinload(UserModel.deck)
+            )
+            .first()
+        )
         if user:
             self.db.delete(user)
             self.db.commit()

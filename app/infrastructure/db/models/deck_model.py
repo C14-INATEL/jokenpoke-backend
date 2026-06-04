@@ -8,7 +8,7 @@ class DeckModel(Base):
     __tablename__ = "deck"
 
     id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey("users.id"))
+    user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"))
     card_id = Column(Integer, ForeignKey("cards.id"))
 
     user = relationship("UserModel", back_populates="deck")
