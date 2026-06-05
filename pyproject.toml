@@ -24,6 +24,7 @@ dependencies = [
     "python-dotenv>=1.0.0,<2.0.0",
     "pydantic-settings>=2.0.0,<3.0.0",
     "alembic>=1.13.0,<2.0.0",
+    "dulwich (>=1.2.5,<2.0.0)",
     "python-multipart (>=0.0.30,<0.0.31)",
     "bcrypt (>=5.0.0,<6.0.0)",
 ]
