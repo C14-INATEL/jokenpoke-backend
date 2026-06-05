@@ -50,4 +50,3 @@ class TestCalcularNovoRank:
         assert result["new_rank"] == "Beginner"
         assert result["new_points"] == 0
         assert result["status"] == "maintained"
-

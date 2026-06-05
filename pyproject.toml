@@ -138,3 +138,4 @@ docstring-code-format = true
 [tool.pytest.ini_options]
 pythonpath = ["."]
 testpaths = ["tests"]
+addopts = "--import-mode=importlib"
