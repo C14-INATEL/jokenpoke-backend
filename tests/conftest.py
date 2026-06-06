@@ -4,8 +4,6 @@ from unittest.mock import MagicMock
 
 pytest_plugins = [
     "tests.fixtures.cards",
-    "tests.fixtures.users",
-    "tests.fixtures.database",
     "tests.fixtures.battles",
 ]
 
