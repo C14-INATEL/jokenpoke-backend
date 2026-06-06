@@ -166,10 +166,7 @@ jokenpoke-backend/
 │   ├── application/                # Camada de aplicação (casos de uso)
 │   │   └── use_cases/              # Um arquivo por caso de uso
 │   ├── core/                       # Configurações e utilitários globais
-│   │   ├── middleware/             # Middlewares: CORS, GZip, logging, rate limit
-│   │   ├── utils/randomizer.py     # Utilitário de aleatoriedade
 │   │   ├── config.py               # Configurações da aplicação (pydantic-settings)
-│   │   └── logging.py              # Configuração centralizada de logs
 │   ├── domain/                     # Camada de domínio (regras de negócio puras)
 │   │   ├── entities/               # Entidades do domínio (Battle, Card, Deck, etc.)
 │   │   ├── factories/              # Fábricas para criação de objetos de domínio
@@ -187,10 +184,7 @@ jokenpoke-backend/
 │   │       └── router.py               # Agregador de todos os routers
 │   ├── schemas/                  # Schemas Pydantic (request/response)
 │   ├── shared/                   # Código compartilhado entre camadas
-│   │   ├── constants/            # Constantes do jogo
 │   │   ├── exceptions/           # Exceções de domínio customizadas
-│   │   ├── types/                # Tipos customizados
-│   │   └── utils/pagination.py   # Utilitário de paginação
 │   └── main.py                   # Ponto de entrada da aplicação FastAPI
 ├── docker/                         # Dockerfiles e configurações de container
 │   ├── jenkins/Dockerfile.jenkins  # Imagem Jenkins customizada com ferramentas
@@ -1262,12 +1256,12 @@ docker run -p 8000:8000 \
 │                   Rede: jokenpoke-net (bridge)                  │
 │                                                                 │
 │  ┌──────────────┐    webhook    ┌──────────────┐                │
-│  │    GitHub    │ ────────────▶ │    ngrok     │                │
+│  │    GitHub    │  ───────────> │    ngrok     │                │
 │  │  (externo)   │               │    :4040     │                │
 │  └──────────────┘               └──────┬───────┘                │
 │                                        │ tunnel                 │
 │  ┌──────────────┐    análise    ┌──────▼───────┐                │
-│  │  SonarQube   │ ◀──────────── │    Jenkins   │                │
+│  │  SonarQube   │  <─────────── │    Jenkins   │                │
 │  │  :9000       │               │    :8080     │                │
 │  └──────────────┘               └──────┬───────┘                │
 │                                        │ docker.sock            │
