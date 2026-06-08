@@ -1365,13 +1365,17 @@ Configura o ambiente Python dentro do container de agente:
 4. Configura Poetry para criar o virtualenv no projeto
 5. Instala todas as dependências do `pyproject.toml`
 
+**Responsável:** Gabriel Soares
+
 #### Estágio 2 — Lint
 
 Executa as verificações de qualidade de código com Ruff:
 - `ruff check .` — verifica erros de lint (E, F, I, B, UP, SIM, C4, S)
 - `ruff format --check .` — verifica se o código está formatado corretamente
 
-**O estágio falha se houver qualquer violação de lint.**
+**Responsável:** Matheus Netto
+
+> O estágio falha se houver qualquer violação de lint.
 
 #### Estágio 3 — Unit Tests
 
@@ -1381,6 +1385,8 @@ Executa a suíte completa de testes com coleta de cobertura:
 - Cobertura HTML: `reports/coverage-html/` (publicado via htmlpublisher)
 - **Falha automaticamente se cobertura < 90%**
 
+**Responsável:** Gabriel Soares
+
 **Artefatos publicados:** `test-results.xml`, `coverage.xml`, `coverage-html/**`
 
 #### Estágio 4 — Integration Tests
@@ -1389,6 +1395,8 @@ Executa especificamente os testes de integração com acumulação de cobertura 
 - Banco SQLite isolado via `dependency_overrides`
 - Resultado em `reports/integration-results.xml`
 
+**Responsável:** Maria Clara
+
 #### Estágio 5 — SonarQube Analysis
 
 Executa o `sonar-scanner` no contexto do servidor SonarQube via `withSonarQubeEnv`. Envia:
@@ -1396,17 +1404,27 @@ Executa o `sonar-scanner` no contexto do servidor SonarQube via `withSonarQubeEn
 - Relatório de cobertura XML (`reports/coverage.xml`)
 - Resultados de testes JUnit (`reports/test-results.xml`)
 
+**Responsável:** Gabriel Soares
+
 #### Estágio 6 — Quality Gate
 
-Aguarda o resultado do Quality Gate do SonarQube (timeout de 5 minutos). **Se o quality gate reprovar, a pipeline é abortada** (`abortPipeline: true`).
+Aguarda o resultado do Quality Gate do SonarQube (timeout de 5 minutos).
+
+> Se o Quality Gate reprovar, a pipeline é abortada (`abortPipeline: true`).
+
+**Responsável:** Gabriel Soares
 
 #### Estágio 7 — Package
 
 Empacota o código-fonte em um arquivo `.tar.gz` com número do build, excluindo artefatos de desenvolvimento (`.venv`, `dist`, `reports`, `.git`). Publicado como artefato do Jenkins.
 
+**Responsável:** Gabriel Soares
+
 #### Estágio 8 — Docker Build & Push (Imagem Jenkins)
 
 Constrói a imagem Docker customizada do Jenkins com labels de rastreabilidade (`build.number`, `build.branch`, `build.commit`), publica no Docker Hub com duas tags (`latest` e `{BUILD_NUMBER}`) e limpa as imagens locais após o push.
+
+**Responsável:** Matheus Netto
 
 #### Estágio 9 — Security Scan
 
@@ -1416,12 +1434,16 @@ Varredura completa de segurança:
 - **Bandit:** análise estática de segurança (SAST) — severity médio ou superior
 - **Trivy:** varredura da imagem Docker por vulnerabilidades HIGH e CRITICAL
 
+**Responsável:** Christian Salles
+
 #### Estágio 10 — Smoke Test
 
 Verifica o ambiente de produção no Railway com três checks críticos:
 1. Health check do servidor
 2. Fluxo de autenticação (obtenção de token JWT)
 3. Disponibilidade de rota pública
+
+**Responsável:** Rafael Areias
 
 ---
 
@@ -1435,6 +1457,8 @@ Verifica o ambiente de produção no Railway com três checks críticos:
 - Timeout global: 30 minutos
 - Histórico de builds: últimos 10 retidos
 - Builds concorrentes desabilitados
+
+**Responsável:** Eduardo Pereira
 
 ---
 
