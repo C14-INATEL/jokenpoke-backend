@@ -102,8 +102,7 @@ pipeline {
                         --tb=short \
                         --junitxml=reports/test-results.xml \
                         --cov=app \
-                        --cov-report= \
-                        --cov-fail-under=${COVERAGE_THRESHOLD}
+                        --cov-report= 
                 '''
             }
 
@@ -132,6 +131,7 @@ pipeline {
                         --junitxml=reports/integration-results.xml \
                         --cov=app \
                         --cov-append \
+                        --cov-fail-under=${COVERAGE_THRESHOLD} \
                         --cov-report=xml:reports/coverage.xml \
                         --cov-report=html:reports/coverage-html \
                         --cov-report=term-missing \
