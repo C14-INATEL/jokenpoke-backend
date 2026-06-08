@@ -257,14 +257,12 @@ jokenpoke-backend/
 
 ### 4.3 Gerenciamento de Cartas
 
-**Descrição:** listagem e consulta das cartas disponíveis no jogo, baseadas no dataset de Pokémons.
+**Descrição:** listagem e consulta dos pokemons disponíveis no jogo, presentes no dataset de Pokémons.
 
 **Fluxo de uso:**
-1. Cliente autentica-se via JWT
-2. Acessa `GET /cards` para listar cartas disponíveis
-3. Consulta carta específica via `GET /cards/{card_id}`
+2. Acessa `GET /pokemons` para listar pokemons disponíveis
 
-**Benefício:** permite ao cliente construir interfaces de seleção de cartas para montagem de deck.
+**Benefício:** permite ao cliente visualizar toda a coleção de pokemons disponíveis na aplicação.
 
 ---
 
@@ -273,7 +271,7 @@ jokenpoke-backend/
 **Descrição:** permite que o jogador monte seu deck de batalha selecionando cartas da sua coleção.
 
 **Fluxo de uso:**
-1. Jogador autenticado acessa `POST /decks/{user_id}/build`
+1. Jogador acessa `POST /decks/{user_id}/build`
 2. Sistema valida o número de cartas e a propriedade das mesmas
 3. Deck é persistido e associado ao usuário
 4. Jogador pode consultar seu deck atual
@@ -287,10 +285,11 @@ jokenpoke-backend/
 **Descrição:** executa uma batalha automatizada por rounds entre dois jogadores, aplicando regras de vantagem de elemento.
 
 **Fluxo de uso:**
-1. Atacante autenticado envia `POST /battle/{defender_id}`
-2. Sistema valida que ambos os jogadores possuem deck montado
-3. Rounds são processados automaticamente com base nas regras de `MOVE_WEAKNESS`
-4. Resultado é retornado com: lista de rounds, movimentos de cada round, vencedor final, ranking atualizado e carta de recompensa (se vencedor)
+1. Cliente autentica-se via JWT
+2. Atacante autenticado envia `POST /battle/{defender_id}`
+3. Sistema valida que ambos os jogadores possuem deck montado
+4. Rounds são processados automaticamente com base nas regras de `MOVE_WEAKNESS`
+5. Resultado é retornado com: lista de rounds, movimentos de cada round, vencedor final, ranking atualizado e carta de recompensa (se vencedor)
 
 **Benefício:** experiência de jogo completa e determinística, com progressão imediata refletida no ranking.
 
@@ -316,8 +315,7 @@ jokenpoke-backend/
 **Fluxo de uso:**
 1. `GET /users` — lista todos os usuários (paginado)
 2. `GET /users/{id}` — consulta usuário específico
-3. `PUT /users/{id}` — atualiza dados do perfil
-4. `DELETE /users/{id}` — remove usuário e todos os dados relacionados (deck e cards) via cascade
+3. `DELETE /users/{id}` — remove usuário e todos os dados relacionados (deck e cards) via cascade
 
 **Benefício:** gestão completa do ciclo de vida do jogador, com garantia de integridade referencial no banco.
 
@@ -453,9 +451,9 @@ poetry run alembic downgrade -1
 ```
 1. Registro          POST /auth/register
 2. Login             POST /auth/login          → recebe access_token
-3. Listar cartas     GET  /cards               (autenticado)
+3. Listar pokemons     GET  /pokemons               
 4. Montar deck       POST /decks/{user_id}/build
-5. Batalhar          POST /battle/{defender_id}
+5. Batalhar          POST /battle/{defender_id}   (autenticado)
 6. Ver ranking       GET  /ranking
 ```
 
@@ -477,14 +475,14 @@ curl -X POST http://localhost:8000/auth/login \
   -d "username=ash_ketchum&password=pikachu123"
 ```
 
-**3. Montar deck (autenticado):**
+**3. Montar deck:**
 ```bash
 curl -X POST http://localhost:8000/decks/1/build \
   -H "Authorization: Bearer SEU_TOKEN_AQUI" \
   -H "Content-Type: application/json"
 ```
 
-**4. Iniciar batalha:**
+**4. Iniciar batalha (autenticado):**
 ```bash
 curl -X POST http://localhost:8000/battle/2 \
   -H "Authorization: Bearer SEU_TOKEN_AQUI"
@@ -525,7 +523,7 @@ As histórias de usuário completas estão documentadas no diretório [`docs/`](
 | ID | Título | Epic | Prioridade | Status | PRs |
 |---|---|---|---|---|---|
 | [US-001](./docs/Us-001.md) | Atualização de Ranking e Recompensa ao Vencedor | Progressão do Jogador | Alta | ✅ Concluído | #32, #33 |
-| [US-002](./docs/Us-002.md) | Autenticação via Endpoint de Login com JWT | Autenticação e Segurança | Alta | ✅ Concluído | #24, #28 |
+| [US-002](./docs/Us-002.md) | Autenticação via Endpoint de Login com JWT | Autenticação e Segurança | Alta | ✅ Concluído | #24, #27, #28 |
 | [US-003](./docs/Us-003.md) | Lógica de Batalha com Validação de Deck | Sistema de Batalha | Alta | ✅ Concluído | #16, #17 |
 | [US-004](./docs/Us-004.md) | Estabilidade e Padronização do Ambiente de Testes | Qualidade de Código | Média | ✅ Concluído | #29, #30 |
 | [US-005](./docs/Us-005.md) | Deleção Completa de Usuário com Cascade | Gerenciamento de Usuários | Alta | ✅ Concluído | #34, #35 |
@@ -537,6 +535,7 @@ As histórias de usuário completas estão documentadas no diretório [`docs/`](
 | #16 | Feature | US-003 | Implementa validação e lógica de batalha |
 | #17 | Test | US-003 | Testes unitários de batalha (51 testes) |
 | #24 | Feature | US-002 | Endpoint de login com JWT |
+| #27 | Fix | US-002 | Compatibilidade Swagger OAuth2, troca passlib por bcrypt e adiciona python-multipart |
 | #28 | Test | US-002 | Testes de integração para autenticação (5 testes) |
 | #29 | Chore | US-004 | Adiciona httpx2 para compatibilidade com TestClient |
 | #30 | Refactor | US-004 | Padroniza dependências com `Annotated` |
