@@ -95,18 +95,14 @@ pipeline {
 
         stage('Unit Tests') {
             steps {
-                echo 'Executando testes com pytest...'
-
+                echo 'Executando testes unitários...'
                 sh '''
                     mkdir -p reports
-
-                    .venv/bin/poetry run pytest tests/ \
+                    .venv/bin/poetry run pytest tests/unit/ \
                         --tb=short \
                         --junitxml=reports/test-results.xml \
                         --cov=app \
-                        --cov-report=xml:reports/coverage.xml \
-                        --cov-report=html:reports/coverage-html \
-                        --cov-report=term-missing \
+                        --cov-report= \
                         --cov-fail-under=${COVERAGE_THRESHOLD}
                 '''
             }
@@ -118,6 +114,38 @@ pipeline {
                         testResults: 'reports/test-results.xml'
                     )
 
+                    archiveArtifacts(
+                        artifacts: 'reports/test-results.xml',
+                        allowEmptyArchive: true
+                    )
+                }
+            }
+        }
+
+        stage('Integration Tests') {
+            steps {
+                echo 'Executando testes de integração...'
+                sh '''
+                    mkdir -p reports
+                    .venv/bin/poetry run pytest tests/integration/ \
+                        --tb=short \
+                        --junitxml=reports/integration-results.xml \
+                        --cov=app \
+                        --cov-append \
+                        --cov-report=xml:reports/coverage.xml \
+                        --cov-report=html:reports/coverage-html \
+                        --cov-report=term-missing \
+                        -v
+                '''
+            }
+
+            post {
+                always {
+                    junit(
+                        allowEmptyResults: true,
+                        testResults: 'reports/integration-results.xml'
+                    )
+
                     publishHTML(target: [
                         reportDir   : 'reports/coverage-html',
                         reportFiles : 'index.html',
@@ -125,37 +153,11 @@ pipeline {
                     ])
 
                     archiveArtifacts(
-                        artifacts: 'reports/test-results.xml, reports/coverage.xml, reports/coverage-html/**',
-                        allowEmptyArchive: true
-                    )
-                }
-            }
-        }
-
-        stage('Integration Test') {
-            steps {
-                echo 'Executando testes de integração...'
-                sh '''
-                    mkdir -p reports
-                    .venv/bin/poetry run pytest tests/integration/ \
-                    --tb=short \
-                    --junitxml=reports/integration-results.xml \
-                    --cov=app \
-                    --cov-append \
-                    --cov-report=xml:reports/coverage.xml \
-                    --cov-report=html:reports/coverage-html \
-                    --cov-report=term-missing \
-                    -v
-                '''
-            }
-            post {
-                always {
-                    junit(
-                        allowEmptyResults: true,
-                        testResults: 'reports/integration-results.xml'
-                    )
-                    archiveArtifacts(
-                        artifacts: 'reports/integration-results.xml',
+                        artifacts: '''
+                            reports/integration-results.xml,
+                            reports/coverage.xml,
+                            reports/coverage-html/**
+                        '''.trim(),
                         allowEmptyArchive: true
                     )
                 }
