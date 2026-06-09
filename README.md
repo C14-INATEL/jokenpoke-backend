@@ -1373,27 +1373,40 @@ Executa as verificações de qualidade de código com Ruff:
 - `ruff check .` — verifica erros de lint (E, F, I, B, UP, SIM, C4, S)
 - `ruff format --check .` — verifica se o código está formatado corretamente
 
-**Responsável:** Matheus Netto
-
 > O estágio falha se houver qualquer violação de lint.
+
+**Responsável:** Matheus Netto
 
 #### Estágio 3 — Unit Tests
 
-Executa a suíte completa de testes com coleta de cobertura:
-- Saída JUnit XML: `reports/test-results.xml`
-- Cobertura XML: `reports/coverage.xml` (para SonarQube)
-- Cobertura HTML: `reports/coverage-html/` (publicado via htmlpublisher)
-- **Falha automaticamente se cobertura < 90%**
+Executa exclusivamente os testes unitários do projeto com coleta inicial de cobertura:
+
+* Executa os testes localizados em `tests/unit/`
+* Gera saída JUnit XML em `reports/test-results.xml`
+* Inicia a coleta de cobertura do código (`--cov=app`)
+* Aplica o limite mínimo de cobertura configurado em `COVERAGE_THRESHOLD`
+
+**Artefatos publicados:** `test-results.xml`
+
+> Observação: os relatórios XML e HTML de cobertura não são gerados neste estágio para permitir a consolidação da cobertura com os testes de integração.
 
 **Responsável:** Gabriel Soares
 
-**Artefatos publicados:** `test-results.xml`, `coverage.xml`, `coverage-html/**`
-
 #### Estágio 4 — Integration Tests
 
-Executa especificamente os testes de integração com acumulação de cobertura (`--cov-append`):
-- Banco SQLite isolado via `dependency_overrides`
-- Resultado em `reports/integration-results.xml`
+Executa os testes de integração e consolida a cobertura total do projeto:
+
+* Executa os testes localizados em `tests/integration/`
+* Banco SQLite isolado via `dependency_overrides`
+* Acumula a cobertura coletada anteriormente utilizando `--cov-append`
+* Gera saída JUnit XML em `reports/integration-results.xml`
+* Gera relatório XML de cobertura em `reports/coverage.xml` (utilizado pelo SonarQube)
+* Gera relatório HTML de cobertura em `reports/coverage-html/`
+* Publica o relatório HTML via htmlpublisher
+
+**Artefatos publicados:** `integration-results.xml`, `coverage.xml`, `coverage-html/**`
+
+> A cobertura apresentada neste estágio representa o resultado consolidado dos testes unitários e de integração.
 
 **Responsável:** Maria Clara
 
