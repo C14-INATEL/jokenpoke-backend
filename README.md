@@ -101,7 +101,7 @@ O projeto adota **Clean Architecture** (Arquitetura Limpa), com separação estr
 |---|---|---|
 | Backend | FastAPI + Python 3.12 | API REST assíncrona com documentação OpenAPI automática |
 | Banco de dados | PostgreSQL (produção) / SQLite (testes) | Persistência relacional com Alembic para migrations |
-| Autenticação | JWT (python-jose) + bcrypt (passlib) | Tokens stateless com hash seguro de senhas |
+| Autenticação | JWT (python-jose) + bcrypt | Tokens stateless com hash seguro de senhas |
 | ORM | SQLAlchemy 2.x | Mapeamento objeto-relacional com suporte a migrations |
 | Containers | Docker + Docker Compose | Isolamento de ambiente e orquestração de serviços |
 | CI/CD | Jenkins (containerizado) | Pipeline automatizada de 10 estágios |
@@ -124,7 +124,7 @@ O projeto adota **Clean Architecture** (Arquitetura Limpa), com separação estr
 | **Banco (testes)** | SQLite | — | Banco de dados em memória/arquivo para testes isolados |
 | **Driver PostgreSQL** | psycopg2-binary | ≥2.9.0 | Adaptador Python para PostgreSQL |
 | **Autenticação** | python-jose[cryptography] | ≥3.3.0 | Geração e validação de tokens JWT |
-| **Hashing** | passlib[bcrypt] + bcrypt | ≥1.7.4 / ≥5.0.0 | Hash seguro de senhas com bcrypt |
+| **Hashing** | bcrypt | ≥5.0.0 | Hash seguro de senhas com bcrypt |
 | **Validação** | Pydantic + pydantic-settings | ≥2.0.0 | Validação de dados e gerenciamento de configurações |
 | **Variáveis de ambiente** | python-dotenv | ≥1.0.0 | Carregamento de variáveis de ambiente do arquivo `.env` |
 | **Multipart** | python-multipart | ≥0.0.30 | Suporte a formulários (OAuth2PasswordRequestForm) |
