@@ -233,7 +233,6 @@ pipeline {
 
                     sh '''
                         docker build \
-                            --no-cache \
                             --label "build.number=''' + buildNumber + '''" \
                             --label "build.branch=''' + branch + '''" \
                             --label "build.commit=''' + commit + '''" \
