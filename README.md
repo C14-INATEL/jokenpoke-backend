@@ -1410,6 +1410,8 @@ Executa os testes de integração e consolida a cobertura total do projeto:
 
 **Responsável:** Maria Clara
 
+**Responsável:** Maria Clara
+
 #### Estágio 5 — SonarQube Analysis
 
 Executa o `sonar-scanner` no contexto do servidor SonarQube via `withSonarQubeEnv`. Envia:
