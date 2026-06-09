@@ -101,7 +101,7 @@ O projeto adota **Clean Architecture** (Arquitetura Limpa), com separação estr
 |---|---|---|
 | Backend | FastAPI + Python 3.12 | API REST assíncrona com documentação OpenAPI automática |
 | Banco de dados | PostgreSQL (produção) / SQLite (testes) | Persistência relacional com Alembic para migrations |
-| Autenticação | JWT (python-jose) + bcrypt | Tokens stateless com hash seguro de senhas |
+| Autenticação | JWT (python-jose) + bcrypt (passlib) | Tokens stateless com hash seguro de senhas |
 | ORM | SQLAlchemy 2.x | Mapeamento objeto-relacional com suporte a migrations |
 | Containers | Docker + Docker Compose | Isolamento de ambiente e orquestração de serviços |
 | CI/CD | Jenkins (containerizado) | Pipeline automatizada de 10 estágios |
@@ -124,7 +124,7 @@ O projeto adota **Clean Architecture** (Arquitetura Limpa), com separação estr
 | **Banco (testes)** | SQLite | — | Banco de dados em memória/arquivo para testes isolados |
 | **Driver PostgreSQL** | psycopg2-binary | ≥2.9.0 | Adaptador Python para PostgreSQL |
 | **Autenticação** | python-jose[cryptography] | ≥3.3.0 | Geração e validação de tokens JWT |
-| **Hashing** | bcrypt | ≥5.0.0 | Hash seguro de senhas com bcrypt |
+| **Hashing** | passlib[bcrypt] + bcrypt | ≥1.7.4 / ≥5.0.0 | Hash seguro de senhas com bcrypt |
 | **Validação** | Pydantic + pydantic-settings | ≥2.0.0 | Validação de dados e gerenciamento de configurações |
 | **Variáveis de ambiente** | python-dotenv | ≥1.0.0 | Carregamento de variáveis de ambiente do arquivo `.env` |
 | **Multipart** | python-multipart | ≥0.0.30 | Suporte a formulários (OAuth2PasswordRequestForm) |
@@ -1379,34 +1379,21 @@ Executa as verificações de qualidade de código com Ruff:
 
 #### Estágio 3 — Unit Tests
 
-Executa exclusivamente os testes unitários do projeto com coleta inicial de cobertura:
-
-* Executa os testes localizados em `tests/unit/`
-* Gera saída JUnit XML em `reports/test-results.xml`
-* Inicia a coleta de cobertura do código (`--cov=app`)
-* Aplica o limite mínimo de cobertura configurado em `COVERAGE_THRESHOLD`
-
-**Artefatos publicados:** `test-results.xml`
-
-> Observação: os relatórios XML e HTML de cobertura não são gerados neste estágio para permitir a consolidação da cobertura com os testes de integração.
+Executa a suíte completa de testes com coleta de cobertura:
+- Saída JUnit XML: `reports/test-results.xml`
+- Cobertura XML: `reports/coverage.xml` (para SonarQube)
+- Cobertura HTML: `reports/coverage-html/` (publicado via htmlpublisher)
+- **Falha automaticamente se cobertura < 90%**
 
 **Responsável:** Gabriel Soares
 
+**Artefatos publicados:** `test-results.xml`, `coverage.xml`, `coverage-html/**`
+
 #### Estágio 4 — Integration Tests
 
-Executa os testes de integração e consolida a cobertura total do projeto:
-
-* Executa os testes localizados em `tests/integration/`
-* Banco SQLite isolado via `dependency_overrides`
-* Acumula a cobertura coletada anteriormente utilizando `--cov-append`
-* Gera saída JUnit XML em `reports/integration-results.xml`
-* Gera relatório XML de cobertura em `reports/coverage.xml` (utilizado pelo SonarQube)
-* Gera relatório HTML de cobertura em `reports/coverage-html/`
-* Publica o relatório HTML via htmlpublisher
-
-**Artefatos publicados:** `integration-results.xml`, `coverage.xml`, `coverage-html/**`
-
-> A cobertura apresentada neste estágio representa o resultado consolidado dos testes unitários e de integração.
+Executa especificamente os testes de integração com acumulação de cobertura (`--cov-append`):
+- Banco SQLite isolado via `dependency_overrides`
+- Resultado em `reports/integration-results.xml`
 
 **Responsável:** Maria Clara
 
