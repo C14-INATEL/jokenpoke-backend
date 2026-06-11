@@ -1,9 +1,12 @@
+from fastapi import status
+
+
 def _register_user(client, username: str) -> dict:
     response = client.post(
         "/auth/register",
         json={"username": username, "password": "poke12345"},
     )
-    assert response.status_code == 200
+    assert response.status_code == status.HTTP_200_OK
 
     users = client.get("/users/").json()
     user = next(u for u in users if u["username"] == username)
@@ -22,7 +25,7 @@ class TestGetAllUsers:
 
         response = client.get("/users/")
 
-        assert response.status_code == 200
+        assert response.status_code == status.HTTP_200_OK
         body = response.json()
         assert isinstance(body, list)
         assert len(body) == 2
@@ -32,7 +35,7 @@ class TestGetAllUsers:
 
         response = client.get("/users/")
 
-        assert response.status_code == 200
+        assert response.status_code == status.HTTP_200_OK
         user = response.json()[0]
         assert set(user.keys()) == {
             "id",
@@ -52,7 +55,7 @@ class TestGetUserById:
 
         response = client.get(f"/users/{user['id']}")
 
-        assert response.status_code == 200
+        assert response.status_code == status.HTTP_200_OK
         body = response.json()
         assert body["id"] == user["id"]
         assert body["username"] == "get_user_success"
@@ -64,7 +67,7 @@ class TestGetUserById:
     def test_get_user_by_id_not_found_returns_404(self, client):
         response = client.get("/users/99999")
 
-        assert response.status_code == 404
+        assert response.status_code == status.HTTP_404_NOT_FOUND
         assert "detail" in response.json()
 
 
@@ -74,14 +77,14 @@ class TestDeleteUser:
 
         response = client.delete(f"/users/{user['id']}")
 
-        assert response.status_code == 200
+        assert response.status_code == status.HTTP_200_OK
         assert "delete_user_success" in response.json()["message"]
 
         get_response = client.get(f"/users/{user['id']}")
-        assert get_response.status_code == 404
+        assert get_response.status_code == status.HTTP_404_NOT_FOUND
 
     def test_delete_user_not_found_returns_404(self, client):
         response = client.delete("/users/99999")
 
-        assert response.status_code == 404
+        assert response.status_code == status.HTTP_404_NOT_FOUND
         assert "detail" in response.json()

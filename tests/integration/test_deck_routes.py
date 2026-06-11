@@ -1,4 +1,5 @@
 import pytest
+from fastapi import status
 
 
 @pytest.fixture
@@ -7,7 +8,7 @@ def registered_user(client):
         "/auth/register",
         json={"username": "decktrainer", "password": "poke123"},
     )
-    assert response.status_code == 200
+    assert response.status_code == status.HTTP_200_OK
 
     token = response.json()["access_token"]
 
@@ -27,7 +28,7 @@ class TestBuildDeck:
             json={"pokemon_ids": pokemon_ids},
         )
 
-        assert response.status_code == 200
+        assert response.status_code == status.HTTP_200_OK
         assert "message" in response.json()
         assert "decktrainer" in response.json()["message"]
 
@@ -37,7 +38,7 @@ class TestBuildDeck:
             json={"pokemon_ids": [1, 2, 3]},
         )
 
-        assert response.status_code == 404
+        assert response.status_code == status.HTTP_404_NOT_FOUND
 
     def test_build_deck_pokemon_not_owned_returns_400(self, client, registered_user):
         user_id = registered_user["id"]
@@ -51,7 +52,7 @@ class TestBuildDeck:
             json={"pokemon_ids": unowned[:3]},
         )
 
-        assert response.status_code == 400
+        assert response.status_code == status.HTTP_400_BAD_REQUEST
 
     def test_build_deck_wrong_size_returns_422(self, client, registered_user):
         user_id = registered_user["id"]
@@ -61,4 +62,4 @@ class TestBuildDeck:
             json={"pokemon_ids": [1, 2]},
         )
 
-        assert response.status_code == 422
+        assert response.status_code == status.HTTP_422_UNPROCESSABLE_CONTENT

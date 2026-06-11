@@ -1,8 +1,11 @@
+from fastapi import status
+
+
 class TestGetAllPokemons:
     def test_get_all_pokemons_returns_200(self, client):
         response = client.get("/pokemons/")
 
-        assert response.status_code == 200
+        assert response.status_code == status.HTTP_200_OK
 
     def test_get_all_pokemons_returns_list(self, client):
         response = client.get("/pokemons/")

@@ -1,4 +1,5 @@
 import pytest
+from fastapi import status
 
 
 @pytest.fixture
@@ -7,7 +8,7 @@ def registered_user_with_deck(client):
         "/auth/register",
         json={"username": "trainerwithdeck", "password": "poke123"},
     )
-    assert response.status_code == 200
+    assert response.status_code == status.HTTP_200_OK
     token = response.json()["access_token"]
 
     users = client.get("/users/").json()
@@ -19,7 +20,7 @@ def registered_user_with_deck(client):
         f"/decks/{user_id}/build",
         json={"pokemon_ids": card_ids},
     )
-    assert response.status_code == 200
+    assert response.status_code == status.HTTP_200_OK
 
     return {"id": user_id, "token": token}
 
@@ -30,20 +31,20 @@ class TestDeleteUserCascade:
             "/auth/register",
             json={"username": "nodecktrainer", "password": "poke123"},
         )
-        assert response.status_code == 200
+        assert response.status_code == status.HTTP_200_OK
 
         users = client.get("/users/").json()
         user = next(u for u in users if u["username"] == "nodecktrainer")
         user_id = user["id"]
 
         response = client.delete(f"/users/{user_id}")
-        assert response.status_code == 200
+        assert response.status_code == status.HTTP_200_OK
 
     def test_delete_user_with_deck_returns_200(self, client, registered_user_with_deck):
         user_id = registered_user_with_deck["id"]
 
         response = client.delete(f"/users/{user_id}")
-        assert response.status_code == 200
+        assert response.status_code == status.HTTP_200_OK
 
     def test_delete_user_removes_user_from_listing(
         self, client, registered_user_with_deck
@@ -65,7 +66,7 @@ class TestDeleteUserCascade:
         client.delete(f"/users/{user_id}")
 
         response = client.get(f"/users/{user_id}")
-        assert response.status_code == 404
+        assert response.status_code == status.HTTP_404_NOT_FOUND
 
     def test_delete_user_removes_cards(self, client, registered_user_with_deck):
         user_id = registered_user_with_deck["id"]
@@ -76,8 +77,8 @@ class TestDeleteUserCascade:
         client.delete(f"/users/{user_id}")
 
         response = client.get(f"/users/{user_id}")
-        assert response.status_code == 404
+        assert response.status_code == status.HTTP_404_NOT_FOUND
 
     def test_delete_user_not_found_returns_404(self, client):
         response = client.delete("/users/99999")
-        assert response.status_code == 404
+        assert response.status_code == status.HTTP_404_NOT_FOUND

@@ -1,9 +1,12 @@
+from fastapi import status
+
+
 def _register_user(client, username: str) -> dict:
     response = client.post(
         "/auth/register",
         json={"username": username, "password": "poke12345"},
     )
-    assert response.status_code == 200
+    assert response.status_code == status.HTTP_200_OK
 
     users = client.get("/users/").json()
     user = next(u for u in users if u["username"] == username)
@@ -23,7 +26,7 @@ def _build_deck(client, user: dict) -> None:
         json={"pokemon_ids": pokemon_ids},
     )
 
-    assert response.status_code == 200
+    assert response.status_code == status.HTTP_200_OK
 
 
 def _auth_headers(user: dict) -> dict:
@@ -42,7 +45,7 @@ class TestBattleRoutes:
             headers=_auth_headers(attacker),
         )
 
-        assert response.status_code == 200
+        assert response.status_code == status.HTTP_200_OK
         body = response.json()
         assert set(body.keys()) == {"rounds", "winner", "ranking", "reward_card"}
         assert body["winner"] in {"attacker", "defender", "draw"}
@@ -85,7 +88,7 @@ class TestBattleRoutes:
             headers=_auth_headers(attacker),
         )
 
-        assert response.status_code == 400
+        assert response.status_code == status.HTTP_400_BAD_REQUEST
         assert "deck" in response.json()["detail"].lower()
 
     def test_battle_defender_without_deck_returns_domain_error(self, client):
@@ -98,7 +101,7 @@ class TestBattleRoutes:
             headers=_auth_headers(attacker),
         )
 
-        assert response.status_code == 400
+        assert response.status_code == status.HTTP_400_BAD_REQUEST
         assert "deck" in response.json()["detail"].lower()
 
     def test_battle_against_self_returns_domain_error(self, client):
@@ -109,7 +112,7 @@ class TestBattleRoutes:
             headers=_auth_headers(attacker),
         )
 
-        assert response.status_code == 400
+        assert response.status_code == status.HTTP_400_BAD_REQUEST
         assert "si mesmo" in response.json()["detail"]
 
     def test_battle_defender_not_found_returns_404(self, client):
@@ -120,5 +123,5 @@ class TestBattleRoutes:
             headers=_auth_headers(attacker),
         )
 
-        assert response.status_code == 404
+        assert response.status_code == status.HTTP_404_NOT_FOUND
         assert "detail" in response.json()
