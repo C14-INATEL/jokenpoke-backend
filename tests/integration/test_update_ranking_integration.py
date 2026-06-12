@@ -1,9 +1,12 @@
+from fastapi import status
+
+
 def _register_user(client, username: str) -> dict:
     response = client.post(
         "/auth/register",
         json={"username": username, "password": "poke12345"},
     )
-    assert response.status_code == 200
+    assert response.status_code == status.HTTP_200_OK
 
     users = client.get("/users/").json()
     user = next(u for u in users if u["username"] == username)
@@ -23,7 +26,7 @@ def _build_deck(client, user: dict) -> None:
         json={"pokemon_ids": pokemon_ids},
     )
 
-    assert response.status_code == 200
+    assert response.status_code == status.HTTP_200_OK
 
 
 def _auth_headers(user: dict) -> dict:
@@ -43,7 +46,7 @@ class TestUpdateRankingIntegration:
             headers=_auth_headers(attacker),
         )
 
-        assert response.status_code == 200
+        assert response.status_code == status.HTTP_200_OK
         body = response.json()
 
         assert "ranking" in body
@@ -80,7 +83,7 @@ class TestUpdateRankingIntegration:
             f"/battle/{defender['id']}",
             headers=_auth_headers(attacker),
         )
-        assert battle_response.status_code == 200
+        assert battle_response.status_code == status.HTTP_200_OK
         battle_ranking = battle_response.json()["ranking"]
 
         ranking_after = client.get("/ranking/").json()
@@ -111,7 +114,7 @@ class TestUpdateRankingIntegration:
             headers=_auth_headers(attacker),
         )
 
-        assert response.status_code == 200
+        assert response.status_code == status.HTTP_200_OK
         body = response.json()
         winner = body["winner"]
         ranking = body["ranking"]
@@ -148,7 +151,7 @@ class TestUpdateRankingIntegration:
                 f"/battle/{defender['id']}",
                 headers=_auth_headers(attacker),
             )
-            assert response.status_code == 200
+            assert response.status_code == status.HTTP_200_OK
 
             ranking = response.json()["ranking"]
             assert ranking["old_points"] == previous_points
