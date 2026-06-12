@@ -32,6 +32,7 @@ def _auth_headers(user: dict) -> dict:
 
 class TestUpdateRankingIntegration:
     def test_battle_returns_ranking_data_in_response(self, client):
+        """Verifica que a resposta da batalha inclui dados de ranking."""
         attacker = _register_user(client, "rank_attacker")
         defender = _register_user(client, "rank_defender")
         _build_deck(client, attacker)
