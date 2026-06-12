@@ -1,10 +1,13 @@
+from fastapi import status
+
+
 class TestRegister:
     def test_register_success(self, client):
         response = client.post(
             "/auth/register",
             json={"username": "pikachu", "password": "thunderbolt123"},
         )
-        assert response.status_code == 200
+        assert response.status_code == status.HTTP_200_OK
         body = response.json()
         assert body["message"] == "Usuário registrado com sucesso"
         assert "access_token" in body
@@ -15,10 +18,10 @@ class TestRegister:
         payload = {"username": "charmander", "password": "fire123"}
 
         first = client.post("/auth/register", json=payload)
-        assert first.status_code == 200
+        assert first.status_code == status.HTTP_200_OK
 
         second = client.post("/auth/register", json=payload)
-        assert second.status_code == 400
+        assert second.status_code == status.HTTP_400_BAD_REQUEST
         assert "detail" in second.json()
 
 
@@ -33,7 +36,7 @@ class TestLogin:
             "/auth/login",
             data={"username": "squirtle", "password": "watergun99"},
         )
-        assert response.status_code == 200
+        assert response.status_code == status.HTTP_200_OK
         body = response.json()
         assert body["message"] == "Login realizado com sucesso"
         assert "access_token" in body
@@ -50,11 +53,11 @@ class TestLogin:
             "/auth/login",
             data={"username": "bulbasaur", "password": "senhaerrada"},
         )
-        assert response.status_code == 401
+        assert response.status_code == status.HTTP_401_UNAUTHORIZED
 
     def test_login_user_not_found_returns_401(self, client):
         response = client.post(
             "/auth/login",
             data={"username": "naoexiste", "password": "qualquer"},
         )
-        assert response.status_code == 401
+        assert response.status_code == status.HTTP_401_UNAUTHORIZED

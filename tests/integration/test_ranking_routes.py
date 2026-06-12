@@ -1,9 +1,12 @@
+from fastapi import status
+
+
 def _register_user(client, username: str) -> dict:
     response = client.post(
         "/auth/register",
         json={"username": username, "password": "poke12345"},
     )
-    assert response.status_code == 200
+    assert response.status_code == status.HTTP_200_OK
     return response.json()
 
 
@@ -14,7 +17,7 @@ class TestGetRanking:
         _register_user(client, "user_two")
 
         response = client.get("/ranking/")
-        assert response.status_code == 200
+        assert response.status_code == status.HTTP_200_OK
 
         body = response.json()
         assert isinstance(body, list)
@@ -29,7 +32,7 @@ class TestGetRanking:
         _register_user(client, "user_structure")
 
         response = client.get("/ranking/")
-        assert response.status_code == 200
+        assert response.status_code == status.HTTP_200_OK
 
         body = response.json()
         assert len(body) == 1
@@ -57,7 +60,7 @@ class TestGetRanking:
         _register_user(client, u3)
 
         response = client.get("/ranking/")
-        assert response.status_code == 200
+        assert response.status_code == status.HTTP_200_OK
 
         body = response.json()
         assert len(body) == 3
@@ -74,7 +77,7 @@ class TestGetRanking:
 
     def test_ranking_empty_database_returns_200_and_empty_list(self, client):
         response = client.get("/ranking/")
-        assert response.status_code == 200
+        assert response.status_code == status.HTTP_200_OK
 
         body = response.json()
         assert body == []
