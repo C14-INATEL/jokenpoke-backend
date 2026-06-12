@@ -31,17 +31,7 @@ def _auth_headers(user: dict) -> dict:
 
 
 class TestUpdateRankingIntegration:
-    """
-    Testes de integração que verificam a atualização do ranking
-    como efeito colateral de uma batalha (POST /battle/{defender_id}).
-
-    Diferente dos testes unitários de Ranking.calcular_novo_rank(),
-    estes testes exercitam o fluxo completo:
-    HTTP request → use case → banco de dados → resposta.
-    """
-
     def test_battle_returns_ranking_data_in_response(self, client):
-        """Verifica que a resposta da batalha inclui dados de ranking."""
         attacker = _register_user(client, "rank_attacker")
         defender = _register_user(client, "rank_defender")
         _build_deck(client, attacker)
@@ -99,7 +89,11 @@ class TestUpdateRankingIntegration:
 
         assert attacker_after["points"] == battle_ranking["new_points"]
         assert attacker_after["rank"] == battle_ranking["new_rank"]
-        assert attacker_after["points"] != initial_points or attacker_after["rank"] != initial_rank or battle_ranking["status"] == "maintained"
+        assert (
+            attacker_after["points"] != initial_points
+            or attacker_after["rank"] != initial_rank
+            or battle_ranking["status"] == "maintained"
+        )
 
     def test_ranking_status_reflects_match_outcome(self, client):
         """
@@ -122,9 +116,15 @@ class TestUpdateRankingIntegration:
         ranking = body["ranking"]
 
         if winner == "attacker":
-            assert ranking["new_points"] > ranking["old_points"] or ranking["status"] == "promoted"
+            assert (
+                ranking["new_points"] > ranking["old_points"]
+                or ranking["status"] == "promoted"
+            )
         elif winner == "defender":
-            assert ranking["new_points"] < ranking["old_points"] or ranking["status"] == "demoted"
+            assert (
+                ranking["new_points"] < ranking["old_points"]
+                or ranking["status"] == "demoted"
+            )
         else:
             assert ranking["new_points"] == ranking["old_points"]
             assert ranking["status"] == "maintained"
