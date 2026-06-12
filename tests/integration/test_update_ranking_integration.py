@@ -142,7 +142,7 @@ class TestUpdateRankingIntegration:
         previous_points = 0
         previous_rank = "Beginner"
 
-        for i in range(3):
+        for _ in range(3):
             response = client.post(
                 f"/battle/{defender['id']}",
                 headers=_auth_headers(attacker),
