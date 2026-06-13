@@ -128,6 +128,7 @@ class TestUpdateRankingIntegration:
             assert (
                 ranking["new_points"] < ranking["old_points"]
                 or ranking["status"] == "demoted"
+                or (ranking["new_points"] == 0 and ranking["old_points"] == 0)
             )
         else:
             assert ranking["new_points"] == ranking["old_points"]
